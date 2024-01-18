@@ -1,6 +1,6 @@
 ---
 title: "Sample Report - Data Science Capstone"
-author: "Student name"
+author: "Teng Ma"
 date: '`r Sys.Date()`'
 format:
   html:
