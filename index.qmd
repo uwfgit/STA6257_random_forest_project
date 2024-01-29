@@ -1,6 +1,6 @@
 ---
-title: "Sample Report - Data Science Capstone"
-author: "Teng Ma"
+title: "Random Forest Algorithm"
+author: "Kristen Monaco, Praya Cheekapara, Raymond Fleming, Teng Ma"
 date: '`r Sys.Date()`'
 format:
   html:
@@ -14,10 +14,12 @@ execute:
   message: false
 editor: 
   markdown: 
-    wrap: 72
+    wrap: 102
 ---
 
 ## Introduction
+
+
 
 ### What is "mehtod"?
 
@@ -60,6 +62,12 @@ y_i = \beta_0 + \beta_1 X_1 +\varepsilon_i
 $$
 
 ## Analysis and Results
+
+```{r}
+
+```
+
+
 
 ### Data and Visualization
 
