@@ -22,6 +22,14 @@ Random Forest is an ensemble learning method that combines multiple decision tre
 The main idea behind Random Forest is to introduce randomness in the training process by creating a diverse set of decision trees. Each tree in the Random Forest is trained on a random subset of the data and a random subset of features. By combining the predictions of multiple trees, Random Forest reduces the risk of overfitting and improves the overall accuracy and robustness of the model. The randomness in the training process also helps in handling high-dimensional data, handling missing values, and providing estimates of variable importance. Random Forest has gained popularity due to its ability to handle complex datasets and produce reliable predictions in various domains.
 
 # Literature Review
+The thesis [@arXiv:1407.7502] dives deep into a detailed analysis of random forests, which is an important machine learning algorithm. It aims to understand how they learn, how they work internally, and how easy they are to interpret. In the first part, it explores the creation of decision trees and their assembly into random forests, including their design and purpose. It also presents a study on the computational efficiency and scalability of random forests, with specific implementation insights from Scikit-Learn. The second part focuses on understanding how interpretable random forests are by examining the Mean Decrease Impurity measure - a key method for determining variable importance, especially in the context of multiway totally randomized trees under extensive or asymptotic conditions.
+
+[@arXiv:2304.02490]
+
+[@arXiv:2401.12667]
+
+[@arXiv:2401.10959]
+
 
 
 # Methods
