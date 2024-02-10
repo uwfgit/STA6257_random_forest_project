@@ -93,7 +93,7 @@ library(knitr)
 The preview of the dataset
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
-# 读取数据
+
 data <- read_csv("All_threat_data.csv")
 
 ggplot(data, aes(x = factor(Status), fill = factor(Status))) + 

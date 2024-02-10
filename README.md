@@ -11,6 +11,7 @@ TODO
 
 ## Tools
 - vscode
+- rstudio
 - quarto
 - R
 

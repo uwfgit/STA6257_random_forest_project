@@ -4,3 +4,4 @@
 .Ruserdata
 process.py
 process_test.csv
+*.ipynb
