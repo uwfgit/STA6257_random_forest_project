@@ -3129,16 +3129,6 @@ vertical-align: -.125em;
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>Random Forest is an ensemble learning method that combines multiple decision trees to make predictions. The main idea behind Random Forest is to introduce randomness in the training process by creating a diverse set of decision trees. Each tree in the Random Forest is trained on a random subset of the data and a random subset of features. By combining the predictions of multiple trees, Random Forest reduces the risk of overfitting and improves the overall accuracy and robustness of the model. The randomness in the training process also helps in handling high-dimensional data, handling missing values, and providing estimates of variable importance. Random Forest has gained popularity due to its ability to handle complex datasets and produce reliable predictions in various domains.</p>
-</section>
-<section id="literature-review" class="level1">
-<h1>Literature Review</h1>
-<p>The thesis <span class="citation" data-cites="arXiv:1407.7502">(<a href="#ref-arXiv:1407.7502" role="doc-biblioref">Louppe 2014</a>)</span> dives deep into a detailed analysis of random forests, which is an important machine learning algorithm. It aims to understand how they learn, how they work internally, and how easy they are to interpret. In the first part, it explores the creation of decision trees and their assembly into random forests, including their design and purpose. It also presents a study on the computational efficiency and scalability of random forests, with specific implementation insights from Scikit-Learn. The second part focuses on understanding how interpretable random forests are by examining the Mean Decrease Impurity measure - a key method for determining variable importance, especially in the context of multiway totally randomized trees under extensive or asymptotic conditions.</p>
-<p>Random Forest is a widely used machine learning method for analyzing high-dimensional data, loved for its flexibility and ability to identify important features. However, it often overlooks the intricate connections among features and how they collectively influence outcomes. The thesis <span class="citation" data-cites="arXiv:2304.02490">(<a href="#ref-arXiv:2304.02490" role="doc-biblioref">Lucas F. Voges 2023</a>)</span> introduces two innovative approaches that tackle this issue: Mutual Forest Impact (MFI) and Mutual Impurity Reduction (MIR). MFI assesses the combined effect of features on outcomes, providing a more detailed understanding than correlation analysis. MIR takes this even further by integrating the relationship parameter with individual feature importance, incorporating testing procedures for selecting features based on statistical significance. Evaluations on simulated datasets and comparisons with existing feature selection methods demonstrate the potential of MFI and MIR in uncovering complex relationships between features and outcomes without any biases towards favoring features with many splits or high minor allele frequencies.</p>
-<p>The paper <span class="citation" data-cites="arXiv:2401.12667">(<a href="#ref-arXiv:2401.12667" role="doc-biblioref">Zardad Khan 2024</a>)</span> introduces a new method for selecting features called ROBUST Weighted Score for Unbalanced data (ROWSU). It’s specifically designed to deal with the problem of class imbalance in high-dimensional gene expression data when doing binary classification tasks. To tackle the challenge of imbalanced classes, ROWSU first balances out the dataset by creating synthetic data points for the minority class. Then it uses a greedy search to find the smallest set of genes that are important, and it introduces a unique weighted robust score that calculates how useful each gene is using support vector weights. This whole process results in a final set of genes that combines both high-scoring genes and those found through greedy search, making sure we select genes that can really tell our classes apart even if they’re imbalanced. We tested ROWSU on six different gene expression datasets and compared its performance to other state-of-the-art feature selection techniques using accuracy and sensitivity metrics. We also visualized our results with boxplots and stability plots. Our findings show that ROWSU performs better than other methods at improving classifier effectiveness, as shown by its results with k nearest neighbors (kNN) and random forest (RF) classifiers.</p>
-<p>The main focus of this article <span class="citation" data-cites="arXiv:2401.10959">(<a href="#ref-arXiv:2401.10959" role="doc-biblioref">Rabah Ouali 2024</a>)</span> is to make sure that the electrical grid works properly by making energy providers follow the rules and specifications set by Transmission System Operators (TSOs). Since there are many different energy sources connected through power electronic inverters, it’s crucial for them to choose between Grid Forming (GFM) and Grid Following (GFL) operating modes in order to maintain grid stability. This means that energy suppliers need to comply with these requirements. In this study, we compare various machine learning algorithms to classify converter control modes (GFL or GFM) using frequency-domain admittance from external measurements. While most algorithms can accurately identify known control structures, they struggle when faced with new modifications. However, the random forest algorithm stands out as it consistently performs well across different control configurations.</p>
-</section>
-<section id="methods" class="level1">
-<h1>Methods</h1>
 <section id="random-forest-involves-the-following-basic-concepts" class="level2">
 <h2 class="anchored" data-anchor-id="random-forest-involves-the-following-basic-concepts">Random Forest involves the following basic concepts:</h2>
 <ol type="1">
@@ -3159,6 +3149,13 @@ vertical-align: -.125em;
 <p>y_final = mode(Y)</p>
 </blockquote>
 </section>
+</section>
+<section id="literature-review" class="level1">
+<h1>Literature Review</h1>
+<p>The thesis <span class="citation" data-cites="arXiv:1407.7502">(<a href="#ref-arXiv:1407.7502" role="doc-biblioref">Louppe 2014</a>)</span> dives deep into a detailed analysis of random forests, which is an important machine learning algorithm. It aims to understand how they learn, how they work internally, and how easy they are to interpret. In the first part, it explores the creation of decision trees and their assembly into random forests, including their design and purpose. It also presents a study on the computational efficiency and scalability of random forests, with specific implementation insights from Scikit-Learn. The second part focuses on understanding how interpretable random forests are by examining the Mean Decrease Impurity measure - a key method for determining variable importance, especially in the context of multiway totally randomized trees under extensive or asymptotic conditions.</p>
+<p>Random Forest is a widely used machine learning method for analyzing high-dimensional data, loved for its flexibility and ability to identify important features. However, it often overlooks the intricate connections among features and how they collectively influence outcomes. The thesis <span class="citation" data-cites="arXiv:2304.02490">(<a href="#ref-arXiv:2304.02490" role="doc-biblioref">Lucas F. Voges 2023</a>)</span> introduces two innovative approaches that tackle this issue: Mutual Forest Impact (MFI) and Mutual Impurity Reduction (MIR). MFI assesses the combined effect of features on outcomes, providing a more detailed understanding than correlation analysis. MIR takes this even further by integrating the relationship parameter with individual feature importance, incorporating testing procedures for selecting features based on statistical significance. Evaluations on simulated datasets and comparisons with existing feature selection methods demonstrate the potential of MFI and MIR in uncovering complex relationships between features and outcomes without any biases towards favoring features with many splits or high minor allele frequencies.</p>
+<p>The paper <span class="citation" data-cites="arXiv:2401.12667">(<a href="#ref-arXiv:2401.12667" role="doc-biblioref">Zardad Khan 2024</a>)</span> introduces a new method for selecting features called ROBUST Weighted Score for Unbalanced data (ROWSU). It’s specifically designed to deal with the problem of class imbalance in high-dimensional gene expression data when doing binary classification tasks. To tackle the challenge of imbalanced classes, ROWSU first balances out the dataset by creating synthetic data points for the minority class. Then it uses a greedy search to find the smallest set of genes that are important, and it introduces a unique weighted robust score that calculates how useful each gene is using support vector weights. This whole process results in a final set of genes that combines both high-scoring genes and those found through greedy search, making sure we select genes that can really tell our classes apart even if they’re imbalanced. We tested ROWSU on six different gene expression datasets and compared its performance to other state-of-the-art feature selection techniques using accuracy and sensitivity metrics. We also visualized our results with boxplots and stability plots. Our findings show that ROWSU performs better than other methods at improving classifier effectiveness, as shown by its results with k nearest neighbors (kNN) and random forest (RF) classifiers.</p>
+<p>The main focus of this article <span class="citation" data-cites="arXiv:2401.10959">(<a href="#ref-arXiv:2401.10959" role="doc-biblioref">Rabah Ouali 2024</a>)</span> is to make sure that the electrical grid works properly by making energy providers follow the rules and specifications set by Transmission System Operators (TSOs). Since there are many different energy sources connected through power electronic inverters, it’s crucial for them to choose between Grid Forming (GFM) and Grid Following (GFL) operating modes in order to maintain grid stability. This means that energy suppliers need to comply with these requirements. In this study, we compare various machine learning algorithms to classify converter control modes (GFL or GFM) using frequency-domain admittance from external measurements. While most algorithms can accurately identify known control structures, they struggle when faced with new modifications. However, the random forest algorithm stands out as it consistently performs well across different control configurations.</p>
 </section>
 <section id="analysis-and-results" class="level1">
 <h1>Analysis and Results</h1>
@@ -3676,29 +3673,44 @@ vertical-align: -.125em;
 </blockquote>
 <p>Here, λ is a random number between 0 and 1.</p>
 </section>
-<section id="methods-1" class="level3">
-<h3 class="anchored" data-anchor-id="methods-1">Methods:</h3>
 </section>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<p>The data needs to be normalized using 5 different methods (Min-Max Normalization, Z-Score Normalization, Max Absolute Scaling, L1 Norm Normalization, L2 Norm Normalization) due to significant differences in feature values initially.</p>
+<blockquote class="blockquote">
+<p>X_new = (X_old-min(X_old)) / (max(X_old)-min(X_old))</p>
+<p>X_new = (X_old - mean(X_old)) / sd(X_old)</p>
+<p>X_new = X_old / max(abs(X_old))</p>
+<p>X_new = X_old / sum(abs(X_old))</p>
+<p>X_new = X_old / sqrt(sum(X_old^2))</p>
+</blockquote>
 </section>
+<section id="evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="evaluation">Evaluation</h2>
+<p>Evaluate the test set and calculate four metrics (accuracy, recall, precision, F1).</p>
+<ul>
+<li>Accuracy = sum(actual labels == predicted labels) / total number of labels</li>
+<li>Recall = True Positives / (True Positives + False Negatives)</li>
+<li>Precision = True Positives / (True Positives + False Positives)</li>
+<li>F1 = 2 * (Precision * Recall) / (Precision + Recall)</li>
+</ul>
 </section>
-<section id="todo" class="level1">
-<h1>TODO</h1>
-<section id="evaluation" class="level3">
-<h3 class="anchored" data-anchor-id="evaluation">Evaluation:</h3>
+<section id="final-outcome" class="level2">
+<h2 class="anchored" data-anchor-id="final-outcome">Final outcome:</h2>
+<p>The idea is to combine five models using a voting method and pick the category with the most votes as our final prediction. It’s like a team effort in machine learning, known as the Hard Voting Classifier. For a sample point x, five models make predictions respectively:</p>
+<blockquote class="blockquote">
+<p>y1 = Model1(x)</p>
+<p>y2 = Model2(x)</p>
+<p>y3 = Model3(x)</p>
+<p>y4 = Model4(x)</p>
+<p>y5 = Model5(x)</p>
+</blockquote>
+<p>Place these five prediction results into a set <code>Y = {y1, y2, y3, y4, y5}</code>. The final prediction result <code>y_final</code> is the element that appears most frequently in the set <code>Y</code>, mathematically represented as <code>y_final = mode(Y)</code>.</p>
 </section>
-</section>
-<section id="todo-1" class="level1">
-<h1>TODO</h1>
-<section id="the-basic-concepts-involved-in-random-forests" class="level3">
-<h3 class="anchored" data-anchor-id="the-basic-concepts-involved-in-random-forests">The basic concepts involved in random forests:</h3>
-</section>
-</section>
-<section id="todo-2" class="level1">
-<h1>TODO</h1>
-<section id="statistical-modeling" class="level3">
-<h3 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h3>
-<section id="data-preperatopm" class="level4">
-<h4 class="anchored" data-anchor-id="data-preperatopm">Data preperatopm</h4>
+<section id="statistical-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h2>
+<section id="data-processing" class="level3">
+<h3 class="anchored" data-anchor-id="data-processing">Data Processing</h3>
 <ol type="1">
 <li>Process the data by setting the first 14 columns as [features] and the last column as the [label]</li>
 <li>Split the dataset into training and testing sets</li>
@@ -3734,7 +3746,6 @@ vertical-align: -.125em;
 [3] &quot;( Before )Data Category Counts:  23&quot; </code></pre>
 </div>
 </div>
-</section>
 <section id="handle-class-imbalance" class="level4">
 <h4 class="anchored" data-anchor-id="handle-class-imbalance">Handle class imbalance</h4>
 <ol type="1">
@@ -4250,9 +4261,16 @@ Unknown                     8.869024</code></pre>
 </div>
 </section>
 </section>
+</section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 </section>
+</section>
+<section id="todo" class="level1">
+<h1>TODO</h1>
+</section>
+<section id="todo-add-references-of-hard-voting-classifier" class="level1">
+<h1>TODO: Add references of Hard Voting Classifier</h1>
 <section id="references" class="level2 unnumbered">
 
 
