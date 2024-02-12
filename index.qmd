@@ -58,6 +58,16 @@ The paper [@arXiv:2401.12667] introduces a new method for selecting features cal
 
 The main focus of this article [@arXiv:2401.10959] is to make sure that the electrical grid works properly by making energy providers follow the rules and specifications set by Transmission System Operators (TSOs). Since there are many different energy sources connected through power electronic inverters, it's crucial for them to choose between Grid Forming (GFM) and Grid Following (GFL) operating modes in order to maintain grid stability. This means that energy suppliers need to comply with these requirements. In this study, we compare various machine learning algorithms to classify converter control modes (GFL or GFM) using frequency-domain admittance from external measurements. While most algorithms can accurately identify known control structures, they struggle when faced with new modifications. However, the random forest algorithm stands out as it consistently performs well across different control configurations.
 
+Biau [@biau2012analysis] delves into the statistical components and mathematical support of the random forest model. Several theorems are outlined in which to display the consistency of the model. Then, proof is provided for those outcomes, with worked out equations that adjust for inequalities and support the propositions. He touches in the importance of variable selection and the increasing adaptability found within the random forest algorithm.
+
+Biau and Scornet [@biau2016random] provide an overview into the methodology, practice, and recent developments of the random forest algorithm. Basic principles are discussed, and mathematical support for the algorithm is provided. They delve into the importance of variable selection and tree parameters when performing predictive analysis.
+
+Liaw and Wiener [@liaw2002classification] discuss the introduction of the random forest algorithm by L. Breiman, in addition to offering examples of its application in the R interface. They discuss how the algorithm draws bootstrap samples and estimates rates of error. It is noted that the production of multiple trees is crucial in obtaining variable importance and measures of proximity.
+
+Lingjun et al. [@lingjun2019random] discuss uses and advantages of tree-based machine learning algorithms. They highlight the key benefits of these models over classical regression analyses, and they expound upon the predictive capabilities as a strategy for data-based decision making. A simulation experiment is outlined to allow for greater understanding of the process and its corresponding results.
+
+Segal [@segal2004machine] offers a clear definition and practical application of random forest regression. Two different profiles are established using random forest methodology, and predictive errors are identified. Mathematical equations lend support to the regression analysis. Segal (2004) explains that one of guiding forces in random forest regression is to increase variance by decreasing correlation.
+
 # Analysis and Results
 ## Packages
 The R packages utilized for running the statistical modeling for the Random Forest algorithm were **readr**, **plyr**, **ipred**, **caret**, **caTools**, **randomForest**, **ROSE**. 
