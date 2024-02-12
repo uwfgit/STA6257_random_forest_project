@@ -68,6 +68,23 @@ Lingjun et al. [@lingjun2019random] discuss uses and advantages of tree-based ma
 
 Segal [@segal2004machine] offers a clear definition and practical application of random forest regression. Two different profiles are established using random forest methodology, and predictive errors are identified. Mathematical equations lend support to the regression analysis. Segal (2004) explains that one of guiding forces in random forest regression is to increase variance by decreasing correlation.
 
+# The chosen dataset
+Data Source: **Mendeley Data**
+
+[Species data used in Random Forest modelling to determine predictors of extinction](https://data.mendeley.com/datasets/tc6syk8vwf/1)
+
+Published: 17 August 2023
+
+Contributors:
+Dewidine van der Colff, Sabrina Kumschick, Wendy Foden, Domitilla Raimondo, Christophe BOTELLA, Lize von Staden, John Wilson
+
+**Description**
+
+Plant species information extracted from the South African National Red List (http://redlist.sanbi.org/index.php). The list of species includes taxa as categorised by the Red List as Extinct, Critically Endangered Possibly Extinct, and a sample of extant taxa (Critically Endangered, Endangered, Vulnerable, Near Threatened, Least Concern) totaling 946 taxa. The information included are Genspec (UniqueID), Group (Extinct, Threatened or not-Threatened), Life form (LF), Growth form (GF), Fam (taxonomic family), South African biome that the taxa occur in, national Red List status, Range size in km2, threats impacting the species as identified during Red List assessment indicated using binary coding (Yes/No) for Habitat loss, Habitat degradation, Invasive alien species (IAS), Other, Over-exploitation, Pollution, Unknown. This dataset was used to classify taxa as EX, threatened or not-threatened to identify which predictors are the most important for classifying taxa as extinct using Random Forest modeling. 
+
+The first dataset (All_threat_data.csv) includes threat information for all taxa. While the second dataset (Ex_Threatened_threat_data.csv), only includes threat information for extinct and threatened taxa. 
+
+
 # Analysis and Results
 ## Packages
 The R packages utilized for running the statistical modeling for the Random Forest algorithm were **readr**, **plyr**, **ipred**, **caret**, **caTools**, **randomForest**, **ROSE**. 

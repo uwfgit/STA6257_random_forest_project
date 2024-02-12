@@ -3162,6 +3162,16 @@ vertical-align: -.125em;
 <p>Lingjun et al. <span class="citation" data-cites="lingjun2019random">(<a href="#ref-lingjun2019random" role="doc-biblioref">Lingjun et al. 2019</a>)</span> discuss uses and advantages of tree-based machine learning algorithms. They highlight the key benefits of these models over classical regression analyses, and they expound upon the predictive capabilities as a strategy for data-based decision making. A simulation experiment is outlined to allow for greater understanding of the process and its corresponding results.</p>
 <p>Segal <span class="citation" data-cites="segal2004machine">(<a href="#ref-segal2004machine" role="doc-biblioref">Segal 2004</a>)</span> offers a clear definition and practical application of random forest regression. Two different profiles are established using random forest methodology, and predictive errors are identified. Mathematical equations lend support to the regression analysis. Segal (2004) explains that one of guiding forces in random forest regression is to increase variance by decreasing correlation.</p>
 </section>
+<section id="the-chosen-dataset" class="level1">
+<h1>The chosen dataset</h1>
+<p>Data Source: <strong>Mendeley Data</strong></p>
+<p><a href="https://data.mendeley.com/datasets/tc6syk8vwf/1">Species data used in Random Forest modelling to determine predictors of extinction</a></p>
+<p>Published: 17 August 2023</p>
+<p>Contributors: Dewidine van der Colff, Sabrina Kumschick, Wendy Foden, Domitilla Raimondo, Christophe BOTELLA, Lize von Staden, John Wilson</p>
+<p><strong>Description</strong></p>
+<p>Plant species information extracted from the South African National Red List (http://redlist.sanbi.org/index.php). The list of species includes taxa as categorised by the Red List as Extinct, Critically Endangered Possibly Extinct, and a sample of extant taxa (Critically Endangered, Endangered, Vulnerable, Near Threatened, Least Concern) totaling 946 taxa. The information included are Genspec (UniqueID), Group (Extinct, Threatened or not-Threatened), Life form (LF), Growth form (GF), Fam (taxonomic family), South African biome that the taxa occur in, national Red List status, Range size in km2, threats impacting the species as identified during Red List assessment indicated using binary coding (Yes/No) for Habitat loss, Habitat degradation, Invasive alien species (IAS), Other, Over-exploitation, Pollution, Unknown. This dataset was used to classify taxa as EX, threatened or not-threatened to identify which predictors are the most important for classifying taxa as extinct using Random Forest modeling.</p>
+<p>The first dataset (All_threat_data.csv) includes threat information for all taxa. While the second dataset (Ex_Threatened_threat_data.csv), only includes threat information for extinct and threatened taxa.</p>
+</section>
 <section id="analysis-and-results" class="level1">
 <h1>Analysis and Results</h1>
 <section id="packages" class="level2">
