@@ -5,7 +5,7 @@ Authors: Kristen Monaco, Praya Cheekapara, Raymond Fleming, Teng Ma
 TODO
 
 ## GitHub Repo:
-[STA6257_random_forest_project](https://github.com/uwfgit/STA6257_random_forest_project)
+[STA6257_random_forest_project](https://uwfgit.github.io/STA6257_random_forest_project/)
 
 ![](rf.png)
 
