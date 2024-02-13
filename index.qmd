@@ -86,6 +86,23 @@ The purpose of [@uddin2015guided] is to use a random forest to during feature se
 A permutation importance-based feature selection method for short-term electricity load forecasting using random forest.
 The goal of [@huang2016permutation] is to demonstrate a new feature selection method to be used with a random forest based on permutation importance values of a trained random forest to be used in selecting the best features to train a second random forest model to predict load forecasts for a power grid. This feature set is then used as a reduced feature set to train the short term load forecasting model, which improves the computation time necessary and may improve accuracy as well. This feature selection method provided worked best for a random forest model, but also provided better results for an artificial neural network and support vector regression indicating it may generalize well.
 
+Overview of random forest methodology and practical guidance with emphasis on computational biology and bioinformatics.
+[@Boulesteix2016random] Random forest (RF) methodology is found to be used to address two main classes of problems which is to construct a prediction rule in a supervised learning problem and to assess and rank variables with respect to their ability to predict the response. RF is a classification and regression method based on the aggregation of a large number of decision trees.  RF has become a popular analysis tool in many application fields including bioinformatics and will most probably remain relevant in the future due to its high flexibility. However, RF approaches still have to face a number of challenges. They can produce  unexpected results in some specific cases such as a bias depending on the distribution of the predictor. 
+
+Comparison of Random Forest and SVM for Raw Data in Drug Discovery: Prediction of Radiation Protection and Toxicity Case Study.
+[@Matsumoto2016comprison] Random forest and SVM was compared for the raw data in drug discovery. There were two types of problems based on the target protein. They predicted the radiation protection(cancer) function and toxicity for radioprotectors targeting p53 as a case study.Two experiments were performed for each compound.There were 84 total. First, experiments administering the compounds to normal cells were performed. These experiments were able to measure the toxicity.  Then, experiments administering the compounds to gamma
+irradiated cells were performed. These experiments were able to measure the radiation-protection function. The experiment measured the cell death rate for each
+concentration case. After using random forest and machine learning, SVM was found to be better than random forest as determined by the AUC score. In contrast, for predicting toxicity, random forest is better than SVM. 
+
+Research on machine learning framework based on random forest algorithm.
+[@Ren2017research] This article is about research on machine learning framework based on random forest algorithm.There is an introduction to the filtering method. Filtration method is through the statistical method which is to give the characteristics with a weight, to carry out feature ranking according to the characteristics of the weight.Then  some rules are applied to set a threshold and the feature whose weight is greater than the threshold value is retained or 
+otherwise deleted. The steps are as follows for algorithm optimization which is to carry out feature selection and remove noise characteristics, carry out feature selection and delete redundant features, and voting strategies for optimizing the random forest algorithm.
+
+Random Forest. [@Rigatti2017forest] Colon cancer data from the SEER database was  used to construct both a Cox model and a random forest model to determine how well the models perform on the same data.  The data set is sampled with bootstrap sampling. The article explains what random forest is and gives many examples.In the sample problem they evaluated , the Cox and random forest models performed similarly, so because the Cox model was easier to interpret , it made it the preferred method.It only had a a few predictors and no obvious interactions or nonlinear effects,  so the random forest model would not be the best option in this case.However, the both achieved well, because the  concordance error rate  of the models was approximately 18%.
+
+
+
+
 # The chosen dataset
 Data Source: **Mendeley Data**
 

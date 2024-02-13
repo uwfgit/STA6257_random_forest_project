@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kristen Monaco, Praya Cheekapara, Raymond Fleming, Teng Ma">
-<meta name="dcterms.date" content="2024-02-12">
+<meta name="dcterms.date" content="2024-02-13">
 
 <title>Random Forest Algorithm</title>
 <style>
@@ -3114,7 +3114,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 12, 2024</p>
+      <p class="date">February 13, 2024</p>
     </div>
   </div>
   
@@ -3167,6 +3167,10 @@ vertical-align: -.125em;
 <p>Application of random forest algorithm on feature subset selection and classification and regression. The goal of <span class="citation" data-cites="jaiswal2017application">(<a href="#ref-jaiswal2017application" role="doc-biblioref">Jaiswal and Samikannu 2017</a>)</span> is to use a random forest to select a subset of high value features to be analyzed, reducing dimensionality, computational overhead, reducing the probability of overfit, and possibly benefiting the modeler’s ability to visualize and understand the dataset by removing unnecessary features. The method used is to generate large, unpruned trees then use out of bag estimation and the importance of each variable is calculated based on the number of correct votes - the permuted out of bag variables. This can be an iterative process for large datasets. Gini values are used to identify variable interactions across trees in the forest. The results of this paper are not clear, but it does appear that there was a reduction in dimensionality using this method. The limitations may be if there could be an engineered feature, these would be best created prior to using the random forest feature selection.</p>
 <p>A guided random forest based feature selection approach for activity recognition.” The purpose of <span class="citation" data-cites="uddin2015guided">(<a href="#ref-uddin2015guided" role="doc-biblioref">Uddin and Uddiny 2015</a>)</span> is to use a random forest to during feature selection for a human activity recognition problem.This is performed by training a standard random forest then using the feature importance scores generated to select the most important features to use in a second random forest used for prediction.In general, feature selection of this type can improve accuracy and reduce computational complexity. The results were that the guided random forest has a comparable accuracy to the more common methods such as Relief-F and Lasso Logistic Regression, but has a lower computational complexity than Relief-F making it a possible choice for a solution requiring a tradeoff between complexity and accuracy.</p>
 <p>A permutation importance-based feature selection method for short-term electricity load forecasting using random forest. The goal of <span class="citation" data-cites="huang2016permutation">(<a href="#ref-huang2016permutation" role="doc-biblioref">Huang, Lu, and Xu 2016</a>)</span> is to demonstrate a new feature selection method to be used with a random forest based on permutation importance values of a trained random forest to be used in selecting the best features to train a second random forest model to predict load forecasts for a power grid. This feature set is then used as a reduced feature set to train the short term load forecasting model, which improves the computation time necessary and may improve accuracy as well. This feature selection method provided worked best for a random forest model, but also provided better results for an artificial neural network and support vector regression indicating it may generalize well.</p>
+<p>Overview of random forest methodology and practical guidance with emphasis on computational biology and bioinformatics. <span class="citation" data-cites="Boulesteix2016random">(<a href="#ref-Boulesteix2016random" role="doc-biblioref">Boulesteix 2012</a>)</span> Random forest (RF) methodology is found to be used to address two main classes of problems which is to construct a prediction rule in a supervised learning problem and to assess and rank variables with respect to their ability to predict the response. RF is a classification and regression method based on the aggregation of a large number of decision trees. RF has become a popular analysis tool in many application fields including bioinformatics and will most probably remain relevant in the future due to its high flexibility. However, RF approaches still have to face a number of challenges. They can produce unexpected results in some specific cases such as a bias depending on the distribution of the predictor.</p>
+<p>Comparison of Random Forest and SVM for Raw Data in Drug Discovery: Prediction of Radiation Protection and Toxicity Case Study. <span class="citation" data-cites="Matsumoto2016comprison">(<a href="#ref-Matsumoto2016comprison" role="doc-biblioref">Matsumoto and Ohwada 2016</a>)</span> Random forest and SVM was compared for the raw data in drug discovery. There were two types of problems based on the target protein. They predicted the radiation protection(cancer) function and toxicity for radioprotectors targeting p53 as a case study.Two experiments were performed for each compound.There were 84 total. First, experiments administering the compounds to normal cells were performed. These experiments were able to measure the toxicity. Then, experiments administering the compounds to gamma irradiated cells were performed. These experiments were able to measure the radiation-protection function. The experiment measured the cell death rate for each concentration case. After using random forest and machine learning, SVM was found to be better than random forest as determined by the AUC score. In contrast, for predicting toxicity, random forest is better than SVM.</p>
+<p>Research on machine learning framework based on random forest algorithm. <span class="citation" data-cites="Ren2017research">(<a href="#ref-Ren2017research" role="doc-biblioref">Ren and Han 2017</a>)</span> This article is about research on machine learning framework based on random forest algorithm.There is an introduction to the filtering method. Filtration method is through the statistical method which is to give the characteristics with a weight, to carry out feature ranking according to the characteristics of the weight.Then some rules are applied to set a threshold and the feature whose weight is greater than the threshold value is retained or otherwise deleted. The steps are as follows for algorithm optimization which is to carry out feature selection and remove noise characteristics, carry out feature selection and delete redundant features, and voting strategies for optimizing the random forest algorithm.</p>
+<p>Random Forest. <span class="citation" data-cites="Rigatti2017forest">(<a href="#ref-Rigatti2017forest" role="doc-biblioref">Rigatti 2017</a>)</span> Colon cancer data from the SEER database was used to construct both a Cox model and a random forest model to determine how well the models perform on the same data. The data set is sampled with bootstrap sampling. The article explains what random forest is and gives many examples.In the sample problem they evaluated , the Cox and random forest models performed similarly, so because the Cox model was easier to interpret , it made it the preferred method.It only had a a few predictors and no obvious interactions or nonlinear effects, so the random forest model would not be the best option in this case.However, the both achieved well, because the concordance error rate of the models was approximately 18%.</p>
 </section>
 <section id="the-chosen-dataset" class="level1">
 <h1>The chosen dataset</h1>
@@ -4304,6 +4308,9 @@ Biau, Gérard. 2012. <span>“Analysis of a Random Forests Model.”</span> <em>
 <div id="ref-biau2016random" class="csl-entry" role="listitem">
 Biau, Gérard, and Erwan Scornet. 2016. <span>“A Random Forest Guided Tour.”</span> <em>Test</em> 25: 197–227.
 </div>
+<div id="ref-Boulesteix2016random" class="csl-entry" role="listitem">
+Boulesteix, Kruppa, Janitza. 2012. <span>“Overview of Random Forest Methodology and Practical Guidance with Emphasis on Computational Biology and Bioinformatics.”</span> <em>Test</em> 2: 493–507. <a href="https://wires.onlinelibrary.wiley.com/doi/full/10.1002/widm.1072?casa_token=hC16i-KAsGsAAAAA%3Apm3JlfgmWFRQjdRs6ajof4oCVf_VLiV1SVzLNofXVOI4y_-gaEN14K4tWOreZ7vb_R6FE7r2EIBjsCo">https://wires.onlinelibrary.wiley.com/doi/full/10.1002/widm.1072?casa_token=hC16i-KAsGsAAAAA%3Apm3JlfgmWFRQjdRs6ajof4oCVf_VLiV1SVzLNofXVOI4y_-gaEN14K4tWOreZ7vb_R6FE7r2EIBjsCo</a>.
+</div>
 <div id="ref-huang2016permutation" class="csl-entry" role="listitem">
 Huang, Nantian, Guobo Lu, and Dianguo Xu. 2016. <span>“A Permutation Importance-Based Feature Selection Method for Short-Term Electricity Load Forecasting Using Random Forest.”</span> <em>Energies</em> 9 (10): 767.
 </div>
@@ -4322,6 +4329,9 @@ Louppe, Gilles. 2014. <span>“Understanding Random Forests: From Theory to Prac
 <div id="ref-arXiv:2304.02490" class="csl-entry" role="listitem">
 Lucas F. Voges, Stephan Seifert, Lukas C. Jarren. 2023. <span>“Opening the Random Forest Black Box by the Analysis of the Mutual Impact of Features.”</span> <a href="https://arxiv.org/abs/2304.02490">https://arxiv.org/abs/2304.02490</a>.
 </div>
+<div id="ref-Matsumoto2016comprison" class="csl-entry" role="listitem">
+Matsumoto, Aoki, and Ohwada. 2016. <span>“Comparison of Random Forest and SVM for Raw Data in Drug Discovery: Prediction of Radiation Protection and Toxicity Case Study.”</span> <em>International Journal of Machine Learning and Computing</em> 6 (2): 1–4. <a href="https://www.ijmlc.org/vol6/589-L031.pdf">https://www.ijmlc.org/vol6/589-L031.pdf</a>.
+</div>
 <div id="ref-paul2018improved" class="csl-entry" role="listitem">
 Paul, Angshuman, Dipti Prasad Mukherjee, Prasun Das, Abhinandan Gangopadhyay, Appa Rao Chintha, and Saurabh Kundu. 2018. <span>“Improved Random Forest for Classification.”</span> <em>IEEE Transactions on Image Processing</em> 27 (8): 4012–24.
 </div>
@@ -4330,6 +4340,12 @@ Probst, Philipp, and Anne-Laure Boulesteix. 2018. <span>“To Tune or Not to Tun
 </div>
 <div id="ref-arXiv:2401.10959" class="csl-entry" role="listitem">
 Rabah Ouali, Pascal Yim, Jean-Yves Dieulot. 2024. <span>“Machine Learning Classification of Power Converter Control Mode.”</span> <a href="https://arxiv.org/abs/2401.10959">https://arxiv.org/abs/2401.10959</a>.
+</div>
+<div id="ref-Ren2017research" class="csl-entry" role="listitem">
+Ren, Cheng, and Han. 2017. <span>“Research on Machine Learning Framework Based on Random Forest Algorithm.”</span> <em>AIP Conf. Proc</em> 1820 (1): 1–8. <a href="https://pubs.aip.org/aip/acp/article/1820/1/080020/886341/Research-on-machine-learning-framework-based-on">https://pubs.aip.org/aip/acp/article/1820/1/080020/886341/Research-on-machine-learning-framework-based-on</a>.
+</div>
+<div id="ref-Rigatti2017forest" class="csl-entry" role="listitem">
+Rigatti. 2017. <span>“Random Forest”</span> 47. <a href="https://meridian.allenpress.com/jim/article/47/1/31/131479/Random-Forest">https://meridian.allenpress.com/jim/article/47/1/31/131479/Random-Forest</a>.
 </div>
 <div id="ref-segal2004machine" class="csl-entry" role="listitem">
 Segal, Mark R. 2004. <span>“Machine Learning Benchmarks and Random Forest Regression.”</span>
