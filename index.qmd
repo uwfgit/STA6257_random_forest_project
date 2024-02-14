@@ -117,6 +117,8 @@ Data was extracted from the South African Red [@SANBI2021] List database to comp
 
 Plants are an essential component to an ecosystem’s functionality, so it is critical to evaluate drivers of extinction and determine methods of prevention. To examine potential indicators for extinctions, extinct, threatened, and non-threatened taxa are compared to identify and/or distinguish traits that may be associated with risk or vulnerability. The final dataset comprises 842 extant taxa, 33 Extinct taxa, and 69 Possibly Extinct (CR PE) taxa, to total 944 species. 
 
+The table [@vanderColff2023] below organizes and summarizes the explanatory variables. 
+
 | Class                | Predictor Variables       | Description                                                                                                                                                        |
 |----------------------|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Human pressures**  | Habitat loss              | Conversion, fragmentation, and/or elimination of habitat. e.g., logging, wood harvesting, livestock farming, urban development.                                    |
