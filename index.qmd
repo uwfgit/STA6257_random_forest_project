@@ -101,8 +101,6 @@ otherwise deleted. The steps are as follows for algorithm optimization which is 
 Random Forest. [@Rigatti2017forest] Colon cancer data from the SEER database was  used to construct both a Cox model and a random forest model to determine how well the models perform on the same data.  The data set is sampled with bootstrap sampling. The article explains what random forest is and gives many examples.In the sample problem they evaluated , the Cox and random forest models performed similarly, so because the Cox model was easier to interpret , it made it the preferred method.It only had a a few predictors and no obvious interactions or nonlinear effects,  so the random forest model would not be the best option in this case.However, the both achieved well, because the  concordance error rate  of the models was approximately 18%.
 
 
-
-
 # The chosen dataset
 Data Source: **Mendeley Data**
 
@@ -115,10 +113,23 @@ Dewidine van der Colff, Sabrina Kumschick, Wendy Foden, Domitilla Raimondo, Chri
 
 **Description**
 
-Plant species information extracted from the South African National Red List (http://redlist.sanbi.org/index.php). The list of species includes taxa as categorised by the Red List as Extinct, Critically Endangered Possibly Extinct, and a sample of extant taxa (Critically Endangered, Endangered, Vulnerable, Near Threatened, Least Concern) totaling 946 taxa. The information included are Genspec (UniqueID), Group (Extinct, Threatened or not-Threatened), Life form (LF), Growth form (GF), Fam (taxonomic family), South African biome that the taxa occur in, national Red List status, Range size in km2, threats impacting the species as identified during Red List assessment indicated using binary coding (Yes/No) for Habitat loss, Habitat degradation, Invasive alien species (IAS), Other, Over-exploitation, Pollution, Unknown. This dataset was used to classify taxa as EX, threatened or not-threatened to identify which predictors are the most important for classifying taxa as extinct using Random Forest modeling. 
+Data was extracted from the South African Red [@SANBI2021] List database to compile a profile for plant extinctions. South Africa offers a wide array of biodiversity and estimates over 22,000 plant taxa. The International Union for Conservation of Nature’s (IUCN) [@IUCN2023] Red List of Threatened Species provides a standardized method to document and assess extinctions (IUCN 2023). Species are classified into one of the following groups: Extinct (EX), Extinct in the wild (EW), Critically endangered possibly extinct (CR PE), Critically endangered (CR), Endangered (EN), Vulnerable (VU), Near threatened (NT), Conservation dependent (CD), Least concern (LC), and Data deficient (DD).
 
-The first dataset (All_threat_data.csv) includes threat information for all taxa. While the second dataset (Ex_Threatened_threat_data.csv), only includes threat information for extinct and threatened taxa. 
+Plants are an essential component to an ecosystem’s functionality, so it is critical to evaluate drivers of extinction and determine methods of prevention. To examine potential indicators for extinctions, extinct, threatened, and non-threatened taxa are compared to identify and/or distinguish traits that may be associated with risk or vulnerability. The final dataset comprises 842 extant taxa, 33 Extinct taxa, and 69 Possibly Extinct (CR PE) taxa, to total 944 species. 
 
+| Class                | Predictor Variables       | Description                                                                                                                                                        |
+|----------------------|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Human pressures**  | Habitat loss              | Conversion, fragmentation, and/or elimination of habitat. e.g., logging, wood harvesting, livestock farming, urban development.                                    |
+|                      | Habitat degradation       | Alteration of natural habitats necessary for species survival resulting in reduced functionality e.g., fire suppression, droughts.                                  |
+|                      | Invasive species          | Impacts of alien species on natives through different mechanisms e.g. alteration of soil chemistry, resource competition.                                          |
+|                      | Pollution                 | Pollutants entering the natural environment e.g., air-borne pollutants, waste.                                                                                     |
+|                      | Over-exploitation         | Excessive use of species causing decreases in viable populations e.g. overharvesting.                                                                              |
+|                      | Other                     | Intrinsic factors, changes in native taxa dynamics, human disturbance, natural disasters.                                                                          |
+|                      | Unknown                   | N/A                                                                                                                                                                |
+| **Biological traits**| Life form (LF)            | Annual or perennial                                                                                                                                                |
+|                      | Growth form (GF)          | One of 14 distinct forms: Parasitic plant, Tree, Shrub, Suffrutex, Herb, Lithophyte, Succulent, Graminoid, Geophyte, Climber, Carnivorous, Cyperoid, Creeper, Epiphyte. |
+| **Distribution state**| Biomes                    | One of nine biomes present in South Africa: Fynbos, Grassland, Succulent Karoo, Albany Thicket, Savanna, Forest, Nama Karoo, Desert, Indian Ocean Coastal Belt. Note: if a taxon was found in multiple biomes, it was marked as generalist. |
+|                      | Range size                | All species range sizes are based on the standard measure of Extent of Occurrence (EOO), a parameter defined as the shortest continuous imaginary boundary that can be drawn to encompass all the known, inferred, or projected sites of present occurrence of a taxon. |
 
 # Analysis and Results
 ## Packages

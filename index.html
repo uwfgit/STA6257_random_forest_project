@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kristen Monaco, Praya Cheekapara, Raymond Fleming, Teng Ma">
-<meta name="dcterms.date" content="2024-02-13">
+<meta name="dcterms.date" content="2024-02-14">
 
 <title>Random Forest Algorithm</title>
 <style>
@@ -3114,7 +3114,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 13, 2024</p>
+      <p class="date">February 14, 2024</p>
     </div>
   </div>
   
@@ -3179,8 +3179,79 @@ vertical-align: -.125em;
 <p>Published: 17 August 2023</p>
 <p>Contributors: Dewidine van der Colff, Sabrina Kumschick, Wendy Foden, Domitilla Raimondo, Christophe BOTELLA, Lize von Staden, John Wilson</p>
 <p><strong>Description</strong></p>
-<p>Plant species information extracted from the South African National Red List (http://redlist.sanbi.org/index.php). The list of species includes taxa as categorised by the Red List as Extinct, Critically Endangered Possibly Extinct, and a sample of extant taxa (Critically Endangered, Endangered, Vulnerable, Near Threatened, Least Concern) totaling 946 taxa. The information included are Genspec (UniqueID), Group (Extinct, Threatened or not-Threatened), Life form (LF), Growth form (GF), Fam (taxonomic family), South African biome that the taxa occur in, national Red List status, Range size in km2, threats impacting the species as identified during Red List assessment indicated using binary coding (Yes/No) for Habitat loss, Habitat degradation, Invasive alien species (IAS), Other, Over-exploitation, Pollution, Unknown. This dataset was used to classify taxa as EX, threatened or not-threatened to identify which predictors are the most important for classifying taxa as extinct using Random Forest modeling.</p>
-<p>The first dataset (All_threat_data.csv) includes threat information for all taxa. While the second dataset (Ex_Threatened_threat_data.csv), only includes threat information for extinct and threatened taxa.</p>
+<p>Data was extracted from the South African Red <span class="citation" data-cites="SANBI2021">(<a href="#ref-SANBI2021" role="doc-biblioref">South African National Biodiversity Institute 2021</a>)</span> List database to compile a profile for plant extinctions. South Africa offers a wide array of biodiversity and estimates over 22,000 plant taxa. The International Union for Conservation of Nature’s (IUCN) <span class="citation" data-cites="IUCN2023">(<a href="#ref-IUCN2023" role="doc-biblioref">International Union for Conservation of Nature 2023</a>)</span> Red List of Threatened Species provides a standardized method to document and assess extinctions (IUCN 2023). Species are classified into one of the following groups: Extinct (EX), Extinct in the wild (EW), Critically endangered possibly extinct (CR PE), Critically endangered (CR), Endangered (EN), Vulnerable (VU), Near threatened (NT), Conservation dependent (CD), Least concern (LC), and Data deficient (DD).</p>
+<p>Plants are an essential component to an ecosystem’s functionality, so it is critical to evaluate drivers of extinction and determine methods of prevention. To examine potential indicators for extinctions, extinct, threatened, and non-threatened taxa are compared to identify and/or distinguish traits that may be associated with risk or vulnerability. The final dataset comprises 842 extant taxa, 33 Extinct taxa, and 69 Possibly Extinct (CR PE) taxa, to total 944 species.</p>
+<table class="table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 12%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>Predictor Variables</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Human pressures</strong></td>
+<td>Habitat loss</td>
+<td>Conversion, fragmentation, and/or elimination of habitat. e.g., logging, wood harvesting, livestock farming, urban development.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Habitat degradation</td>
+<td>Alteration of natural habitats necessary for species survival resulting in reduced functionality e.g., fire suppression, droughts.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Invasive species</td>
+<td>Impacts of alien species on natives through different mechanisms e.g. alteration of soil chemistry, resource competition.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Pollution</td>
+<td>Pollutants entering the natural environment e.g., air-borne pollutants, waste.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Over-exploitation</td>
+<td>Excessive use of species causing decreases in viable populations e.g. overharvesting.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Other</td>
+<td>Intrinsic factors, changes in native taxa dynamics, human disturbance, natural disasters.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Unknown</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td><strong>Biological traits</strong></td>
+<td>Life form (LF)</td>
+<td>Annual or perennial</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Growth form (GF)</td>
+<td>One of 14 distinct forms: Parasitic plant, Tree, Shrub, Suffrutex, Herb, Lithophyte, Succulent, Graminoid, Geophyte, Climber, Carnivorous, Cyperoid, Creeper, Epiphyte.</td>
+</tr>
+<tr class="even">
+<td><strong>Distribution state</strong></td>
+<td>Biomes</td>
+<td>One of nine biomes present in South Africa: Fynbos, Grassland, Succulent Karoo, Albany Thicket, Savanna, Forest, Nama Karoo, Desert, Indian Ocean Coastal Belt. Note: if a taxon was found in multiple biomes, it was marked as generalist.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Range size</td>
+<td>All species range sizes are based on the standard measure of Extent of Occurrence (EOO), a parameter defined as the shortest continuous imaginary boundary that can be drawn to encompass all the known, inferred, or projected sites of present occurrence of a taxon.</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="analysis-and-results" class="level1">
 <h1>Analysis and Results</h1>
@@ -4314,6 +4385,9 @@ Boulesteix, Kruppa, Janitza. 2012. <span>“Overview of Random Forest Methodolog
 <div id="ref-huang2016permutation" class="csl-entry" role="listitem">
 Huang, Nantian, Guobo Lu, and Dianguo Xu. 2016. <span>“A Permutation Importance-Based Feature Selection Method for Short-Term Electricity Load Forecasting Using Random Forest.”</span> <em>Energies</em> 9 (10): 767.
 </div>
+<div id="ref-IUCN2023" class="csl-entry" role="listitem">
+International Union for Conservation of Nature. 2023. <span>“The IUCN Red List of Threatened Species. Version 2023-1.”</span> <a href="https://www.iucnredlist.org">https://www.iucnredlist.org</a>.
+</div>
 <div id="ref-jaiswal2017application" class="csl-entry" role="listitem">
 Jaiswal, Jitendra Kumar, and Rita Samikannu. 2017. <span>“Application of Random Forest Algorithm on Feature Subset Selection and Classification and Regression.”</span> In <em>2017 World Congress on Computing and Communication Technologies (WCCCT)</em>, 65–68. Ieee.
 </div>
@@ -4349,6 +4423,9 @@ Rigatti. 2017. <span>“Random Forest”</span> 47. <a href="https://meridian.al
 </div>
 <div id="ref-segal2004machine" class="csl-entry" role="listitem">
 Segal, Mark R. 2004. <span>“Machine Learning Benchmarks and Random Forest Regression.”</span>
+</div>
+<div id="ref-SANBI2021" class="csl-entry" role="listitem">
+South African National Biodiversity Institute. 2021. <span>“Red List of South African Plants Version 2021.1.”</span> <a href="http://redlist.sanbi.org/stats.php">http://redlist.sanbi.org/stats.php</a>.
 </div>
 <div id="ref-uddin2015guided" class="csl-entry" role="listitem">
 Uddin, Md Taufeeq, and Md Azher Uddiny. 2015. <span>“A Guided Random Forest Based Feature Selection Approach for Activity Recognition.”</span> In <em>2015 International Conference on Electrical Engineering and Information Communication Technology (ICEEICT)</em>, 1–6. IEEE.
