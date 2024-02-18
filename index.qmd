@@ -163,8 +163,7 @@ library(ggplot2)
 library(knitr)
 ```
 ## Data and Visualization
-
-The preview of the dataset
+### The preview of the dataset
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 
