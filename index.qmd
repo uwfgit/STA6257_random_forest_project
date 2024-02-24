@@ -184,6 +184,23 @@ ggplot(data, aes(x = factor(Status), fill = factor(Status))) +
         panel.grid.minor = element_blank())
 ```
 
+
+```{r}
+ggplot(data = data, aes(x = Status, y = Range, fill = Status)) +
+  geom_boxplot() +
+  labs(title = "Distribution of Range by Conservation Status") +
+  theme_bw() +
+  ylim(0,100000)
+```
+
+```{r}
+library(dplyr)
+library(corrplot)
+library(DescTools)
+CatData <- data %>% select(!(Range))
+corrplot::corrplot(DescTools::PairApply(CatData,DescTools::CramerV))
+```
+
 ## Data Preparation
 Encode the 15 columns, with 'group' categorized into 1, 2, and 3. 'Yes' should be encoded as 1, 'No' as 0, and other categories should be numbered starting from 1. In the first column, replace the "-" with a ".".
 
@@ -584,6 +601,45 @@ print(paste('Precision :', precision))
 
 F1 = 2 * recall * precision / ( recall + precision )
 print(paste('F1 :', F1))
+```
+
+```{r}
+library(ggplot2) 	
+library(grid)
+library(gridExtra)       	
+library(likert)
+ 
+cm_vote <- confusionMatrix(final_pred_factor, label_test_factor)
+ 
+cm <- confusionMatrix(final_pred_factor, label_test_factor)
+cm
+ 
+cm_d <- as.data.frame(cm$table)
+cm_st <-data.frame(cm$overall)
+cm_st$cm.overall <- round(cm_st$cm.overall,2)
+cm_d$diag <- cm_d$Prediction == cm_d$Reference
+cm_d$ndiag <- cm_d$Prediction != cm_d$Reference     
+cm_d[cm_d == 0] <- NA
+cm_d$Reference <-  reverse.levels(cm_d$Reference)
+cm_d$ref_freq <- cm_d$Freq * ifelse(is.na(cm_d$diag),-1,1) 
+ 
+plt1 <-  ggplot(data = cm_d, aes(x = Prediction , y =  Reference, fill = Freq))+
+  scale_x_discrete(position = "top") +
+  geom_tile( data = cm_d,aes(fill = ref_freq)) +
+  scale_fill_gradient2(guide = FALSE ,low="red",high="mediumvioletred", mid= "mistyrose",
+                   	midpoint = 0,na.value = 'white') +
+  geom_text(aes(label = Freq), color = 'black', size = 3)+
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+    	legend.position = "none",
+    	panel.border = element_blank(),
+    	plot.background = element_blank(),
+    	axis.line = element_blank(),
+  )
+plt1
+plt2 <-  tableGrob(cm_st)
+grid.arrange(plt1, plt2, nrow = 1, ncol = 2,
+         	top=textGrob("Confusion Matrix",gp=gpar(fontsize=25,font=1)))
 ```
 ## Conclusion
 # TODO
