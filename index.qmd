@@ -20,35 +20,6 @@ editor:
 # Introduction
 Random Forest is a common ensemble method used to make predictions from a variety of dataset types. This is done by combining a number of diverse, but simpler decision tree models into an ensemble model which can be more accurate, but also more versatile.   In creating a normal random forest, each of the decision trees is created with a randomized subset of data, and a random subset of features, with the output of each tree combined into the output of the random forest. The benefits to building the model this way include the ability to handle missing data natively, dimensionality reduction or reducing the need to perform dimensionality reduction prior to modeling, and the structure of the forest can be used to estimate variable importance, which can then be utilized in training other models or feature engineering.  Given these benefits, and the ability to use complex datasets natively, Random Forests have gained popularity over time and are often used.
 
-## Random Forest involves the following basic concepts:
-1. **Bootstrap Sampling (Bagging):**
-Perform random sampling with replacement on the original dataset to form a new dataset for training a decision tree. In each round of bootstrap sampling, about 36.8% of the samples will be missed, not appearing in the new dataset, and these data are referred to as out-of-bag (OOB) data.
-
-2. **Random Feature Selection:**
-At each node of the decision tree training, randomly select a subset of features, and then use information gain (or other criteria) to choose the best split. 
-Repeat the above steps, generating multiple decision trees, to form a "forest".
-
-3. **Prediction:**
-When predicting new data samples, each tree produces its own prediction result. Random Forest synthesizes these results and uses majority voting to determine the final prediction outcome.
-
-4. **Ensemble Learning via Hard Voting Classifier:**
-By voting, the results of five models are integrated to get the combined outcome. The result selects the category that appears most frequently as the final prediction result. This is a strategy of ensemble learning, known as the Hard Voting Classifier.
-For a sample point x, five models make predictions respectively:
-
-> y1 = Model1(x)
-> 
-> y2 = Model2(x)
-> 
-> y3 = Model3(x)
-> 
-> y4 = Model4(x)
-> 
-> y5 = Model5(x)
-
-Put these five prediction results into a set `Y = {y1, y2, y3, y4, y5}`, and the final prediction result y_final is the element that appears most frequently in the set Y, mathematically represented as:
-
-> y_final = mode(Y)
-
 # Literature Review
 The thesis [@arXiv:1407.7502] dives deep into a detailed analysis of random forests, which is an important machine learning algorithm. It aims to understand how they learn, how they work internally, and how easy they are to interpret. In the first part, it explores the creation of decision trees and their assembly into random forests, including their design and purpose. It also presents a study on the computational efficiency and scalability of random forests, with specific implementation insights from Scikit-Learn. The second part focuses on understanding how interpretable random forests are by examining the Mean Decrease Impurity measure - a key method for determining variable importance, especially in the context of multiway totally randomized trees under extensive or asymptotic conditions.
 
@@ -100,161 +71,39 @@ otherwise deleted. The steps are as follows for algorithm optimization which is 
 
 Random Forest. [@Rigatti2017forest] Colon cancer data from the SEER database was  used to construct both a Cox model and a random forest model to determine how well the models perform on the same data.  The data set is sampled with bootstrap sampling. The article explains what random forest is and gives many examples.In the sample problem they evaluated , the Cox and random forest models performed similarly, so because the Cox model was easier to interpret , it made it the preferred method.It only had a a few predictors and no obvious interactions or nonlinear effects,  so the random forest model would not be the best option in this case.However, the both achieved well, because the  concordance error rate  of the models was approximately 18%.
 
-
-# The chosen dataset
-Data Source: **Mendeley Data**
-
-[Species data used in Random Forest modelling to determine predictors of extinction](https://data.mendeley.com/datasets/tc6syk8vwf/1)
-
-Published: 17 August 2023
-
-Contributors:
-Dewidine van der Colff, Sabrina Kumschick, Wendy Foden, Domitilla Raimondo, Christophe BOTELLA, Lize von Staden, John Wilson
-
-**Description**
-
-Data was extracted from the South African Red [@SANBI2021] List database to compile a profile for plant extinctions. South Africa offers a wide array of biodiversity and estimates over 22,000 plant taxa. The International Union for Conservation of Nature’s (IUCN) [@IUCN2023] Red List of Threatened Species provides a standardized method to document and assess extinctions (IUCN 2023). Species are classified into one of the following groups: Extinct (EX), Extinct in the wild (EW), Critically endangered possibly extinct (CR PE), Critically endangered (CR), Endangered (EN), Vulnerable (VU), Near threatened (NT), Conservation dependent (CD), Least concern (LC), and Data deficient (DD).
-
-Plants are an essential component to an ecosystem’s functionality, so it is critical to evaluate drivers of extinction and determine methods of prevention. To examine potential indicators for extinctions, extinct, threatened, and non-threatened taxa are compared to identify and/or distinguish traits that may be associated with risk or vulnerability. The final dataset comprises 842 extant taxa, 33 Extinct taxa, and 69 Possibly Extinct (CR PE) taxa, to total 944 species. 
-
-The table [@vanderColff2023] below organizes and summarizes the explanatory variables. 
-
-| Class                | Predictor Variables       | Description                                                                                                                                                        |
-|----------------------|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Human pressures**  | Habitat loss              | Conversion, fragmentation, and/or elimination of habitat. e.g., logging, wood harvesting, livestock farming, urban development.                                    |
-|                      | Habitat degradation       | Alteration of natural habitats necessary for species survival resulting in reduced functionality e.g., fire suppression, droughts.                                  |
-|                      | Invasive species          | Impacts of alien species on natives through different mechanisms e.g. alteration of soil chemistry, resource competition.                                          |
-|                      | Pollution                 | Pollutants entering the natural environment e.g., air-borne pollutants, waste.                                                                                     |
-|                      | Over-exploitation         | Excessive use of species causing decreases in viable populations e.g. overharvesting.                                                                              |
-|                      | Other                     | Intrinsic factors, changes in native taxa dynamics, human disturbance, natural disasters.                                                                          |
-|                      | Unknown                   | N/A                                                                                                                                                                |
-| **Biological traits**| Life form (LF)            | Annual or perennial                                                                                                                                                |
-|                      | Growth form (GF)          | One of 14 distinct forms: Parasitic plant, Tree, Shrub, Suffrutex, Herb, Lithophyte, Succulent, Graminoid, Geophyte, Climber, Carnivorous, Cyperoid, Creeper, Epiphyte. |
-| **Distribution state**| Biomes                    | One of nine biomes present in South Africa: Fynbos, Grassland, Succulent Karoo, Albany Thicket, Savanna, Forest, Nama Karoo, Desert, Indian Ocean Coastal Belt. Note: if a taxon was found in multiple biomes, it was marked as generalist. |
-|                      | Range size                | All species range sizes are based on the standard measure of Extent of Occurrence (EOO), a parameter defined as the shortest continuous imaginary boundary that can be drawn to encompass all the known, inferred, or projected sites of present occurrence of a taxon. |
-
-# Analysis and Results
-## Packages
-The R packages utilized for running the statistical modeling for the Random Forest algorithm were **readr**, **plyr**, **ipred**, **caret**, **caTools**, **randomForest**, **ROSE**. 
-- readr: Part of the tidyverse, readr is designed for reading rectangular data, particularly CSVs (comma-separated values) and other delimited types of text files. It's known for its speed and for providing more informative error messages compared to base R functions like read.csv. It also converts data into tibbles, which are a modern take on data frames.
-
-- **plyr**: This package is used for splitting, applying, and combining data. plyr is known for its capability to handle different data types (arrays, lists, data frames, etc.) and apply functions to each element of the split data, then combine the results. Note that plyr is largely superseded by dplyr (also part of tidyverse), which is more efficient especially for large datasets.
-
-- **ipred**: Standing for "Improved Predictors", ipred provides functions for predictive modeling. It includes methods for bagging (Bootstrap Aggregating), which helps improve the stability and accuracy of machine learning algorithms, particularly for decision trees.
-
-- **caret**: The caret package (short for Classification And REgression Training) is a comprehensive framework for building machine learning models in R. It simplifies the process of model training, tuning, and predicting by providing a unified interface for various machine learning algorithms.
-
-- **caTools**: This package contains several tools for handling data, including functions for reading/writing Binary Large Objects (BLOBs), moving window statistics, and splitting data into training/testing sets. It's often used for its simple and effective method for creating reproducible train/test splits.
-
-- **randomForest**: As the name suggests, this package is used for implementing the Random Forest algorithm for classification and regression tasks. Random Forest is an ensemble learning method that operates by constructing a multitude of decision trees and outputting the mode of the classes (classification) or mean prediction (regression) of the individual trees.
-
-- **ROSE**: Standing for Random OverSampling Examples, the ROSE package is used to deal with imbalanced datasets in binary classification problems. It generates synthetic samples in a two-class problem to balance the class distribution, using smoothed bootstrapping. This helps improve the performance of classification models on imbalanced datasets.
-
-### Import packages
-```{r}
-library(readr)
-library(plyr)
-library(ipred)
-library(caret)
-library(caTools)
-library(randomForest)
-library(ROSE)
-library(ggplot2)
-library(knitr)
-```
-## Data and Visualization
-### The preview of the dataset
-
-```{r, warning=FALSE, echo=T, message=FALSE}
-
-data <- read_csv("All_threat_data.csv")
-
-ggplot(data, aes(x = factor(Status), fill = factor(Status))) + 
-  geom_bar(show.legend = FALSE) +
-  scale_fill_brewer(palette = "Paired") +
-  labs(title = "Barplot of Status", 
-       x = "Status", 
-       y = "Frequency") +
-  theme_minimal() +
-  theme(text = element_text(size = 12),
-        plot.title = element_text(hjust = 0.5),
-        axis.title = element_text(size = 14, face = "bold"),
-        axis.text.x = element_text(angle = 45, hjust = 1),
-        panel.grid.major = element_line(color = "grey80"),
-        panel.grid.minor = element_blank())
-```
-
-
-```{r}
-ggplot(data = data, aes(x = Status, y = Range, fill = Status)) +
-  geom_boxplot() +
-  labs(title = "Distribution of Range by Conservation Status") +
-  theme_bw() +
-  ylim(0,100000)
-```
-
-```{r}
-table1 <- table(data$Habitat_loss, data$Biomes,
-                dnn = c("Habitat Loss", "Biomes"))
-addmargins(table1)
-
-barplot(table1,
-    	ylab="Count of Plant Species", xlab="Biomes",
-    	main="Distribution of Habitat Loss by Geographical Regions",
-    	col=c("turquoise4", "turquoise2"),
-    	beside <- FALSE, xlim=c(0,0.8), width=.05)
-legend("right", title="Habitat Loss",
-   	legend= sort(unique(data$Habitat_loss)),
-   	fill =c("turquoise4", "turquoise2"), box.lty=0)
-```
-
-```{r}
-Group2 <- factor(data$Group, levels=c("NotThr","Thr","EX"))
-plt3 <- ggplot(data = data,
-               aes(x=Biomes, y = Group2)) +
-  geom_bar(aes(y= Group,fill=Group2),
-           stat="identity",
-           alpha=.7) +
-  scale_fill_brewer(palette=3) +
-  theme_bw() +
-  labs(title = "Distribution of Plant Species by Status", 
-       y = "Conservation Group")
-plt3
-```
-
-```{r}
-library(dplyr)
-library(corrplot)
-library(DescTools)
-CatData <- data %>% select(!(Range))
-corrplot::corrplot(DescTools::PairApply(CatData,DescTools::CramerV))
-```
-
-## Data Preparation
-Encode the 15 columns, with 'group' categorized into 1, 2, and 3. 'Yes' should be encoded as 1, 'No' as 0, and other categories should be numbered starting from 1. In the first column, replace the "-" with a ".".
-
-### Original Dataset Preview
-
-```{r}
-original_data <- read_csv("All_threat_data.csv")
-kable(head(original_data, 10))
-```
-### Encoding Dataset Prview
-
-```{r, warning=FALSE, echo=TRUE}
-encode_data <- read_csv("process.csv")
-kable(head(encode_data, 10))
-```
-Split the dataset into a training set and a test set with a ratio of 7:3. Perform class imbalance handling on the training set using the ROSE library, aiming for an equal data quantity among classes, represented as 1:1:1.
-
-Given a minority class sample point x, we find its k nearest neighbors. Then, we randomly select one of these neighbors, denoted as z, and construct a new data point y that lies on the line segment between x and z:
-
-> y = x + λ * (z - x)
-
-Here, λ is a random number between 0 and 1.
-
 ## Methods
-The data needs to be normalized using 5 different methods (Min-Max Normalization, Z-Score Normalization, Max Absolute Scaling, L1 Norm Normalization, L2 Norm Normalization) due to significant differences in feature values initially.
+
+### Random Forest involves the following basic concepts:
+1. **Bootstrap Sampling (Bagging):**
+Perform random sampling with replacement on the original dataset to form a new dataset for training a decision tree. In each round of bootstrap sampling, about 36.8% of the samples will be missed, not appearing in the new dataset, and these data are referred to as out-of-bag (OOB) data.
+
+2. **Random Feature Selection:**
+At each node of the decision tree training, randomly select a subset of features, and then use information gain (or other criteria) to choose the best split. 
+Repeat the above steps, generating multiple decision trees, to form a "forest".
+
+3. **Prediction:**
+When predicting new data samples, each tree produces its own prediction result. Random Forest synthesizes these results and uses majority voting to determine the final prediction outcome.
+
+4. **Ensemble Learning via Hard Voting Classifier:**
+By voting, the results of five models are integrated to get the combined outcome. The result selects the category that appears most frequently as the final prediction result. This is a strategy of ensemble learning, known as the Hard Voting Classifier.
+For a sample point x, five models make predictions respectively:
+
+> y1 = Model1(x)
+> 
+> y2 = Model2(x)
+> 
+> y3 = Model3(x)
+> 
+> y4 = Model4(x)
+> 
+> y5 = Model5(x)
+
+Put these five prediction results into a set `Y = {y1, y2, y3, y4, y5}`, and the final prediction result y_final is the element that appears most frequently in the set Y, mathematically represented as:
+
+> y_final = mode(Y)
+
+### Five different methods
+The data needs to be normalized using 5 different methods (**Min-Max Normalization**, **Z-Score Normalization**, **Max Absolute Scaling**, **L1 Norm Normalization**, **L2 Norm Normalization**) due to significant differences in feature values initially.
 
 > X_new = (X_old-min(X_old)) / (max(X_old)-min(X_old))
 >
@@ -331,7 +180,7 @@ $$H=\sum\limits_{i=1}^{n}-p_i log_2 p_i$$
 - Overfitting can be a challenge for Decision trees.This can be solved by pre-pruning and post-pruning. Pre-pruning prevents the tree from growing too big  and post pruning allows the tree to grow to its full capacity and gets rid of branches based on different criteria.Using the averages of multiple models would be a Random Forest model.
 
 
-## Evaluation
+### Evaluation
 Evaluate the test set and calculate four metrics (accuracy, recall, precision, F1).
 
 - Accuracy = sum(actual labels == predicted labels) / total number of labels
@@ -339,7 +188,7 @@ Evaluate the test set and calculate four metrics (accuracy, recall, precision, F
 - Precision = True Positives / (True Positives + False Positives)
 - F1 = 2 * (Precision * Recall) / (Precision + Recall)
 
-## Final outcome:
+### Final outcome:
 The idea is to combine five models using a voting method and pick the category with the most votes as our final prediction. It's like a team effort in machine learning, known as the Hard Voting Classifier.
 For a sample point x, five models make predictions respectively:
 
@@ -354,6 +203,158 @@ For a sample point x, five models make predictions respectively:
 > y5 = Model5(x)
 
 Place these five prediction results into a set `Y = {y1, y2, y3, y4, y5}`. The final prediction result `y_final` is the element that appears most frequently in the set `Y`, mathematically represented as `y_final = mode(Y)`.
+
+# The chosen dataset
+Data Source: **Mendeley Data**
+
+[Species data used in Random Forest modelling to determine predictors of extinction](https://data.mendeley.com/datasets/tc6syk8vwf/1)
+
+Published: 17 August 2023
+
+Contributors:
+Dewidine van der Colff, Sabrina Kumschick, Wendy Foden, Domitilla Raimondo, Christophe BOTELLA, Lize von Staden, John Wilson
+
+**Description**
+
+Data was extracted from the South African Red [@SANBI2021] List database to compile a profile for plant extinctions. South Africa offers a wide array of biodiversity and estimates over 22,000 plant taxa. The International Union for Conservation of Nature’s (IUCN) [@IUCN2023] Red List of Threatened Species provides a standardized method to document and assess extinctions (IUCN 2023). Species are classified into one of the following groups: Extinct (EX), Extinct in the wild (EW), Critically endangered possibly extinct (CR PE), Critically endangered (CR), Endangered (EN), Vulnerable (VU), Near threatened (NT), Conservation dependent (CD), Least concern (LC), and Data deficient (DD).
+
+Plants are an essential component to an ecosystem’s functionality, so it is critical to evaluate drivers of extinction and determine methods of prevention. To examine potential indicators for extinctions, extinct, threatened, and non-threatened taxa are compared to identify and/or distinguish traits that may be associated with risk or vulnerability. The final dataset comprises 842 extant taxa, 33 Extinct taxa, and 69 Possibly Extinct (CR PE) taxa, to total 944 species. 
+
+The table [@vanderColff2023] below organizes and summarizes the explanatory variables. 
+
+| Class                | Predictor Variables       | Description                                                                                                                                                        |
+|----------------------|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Human pressures**  | Habitat loss              | Conversion, fragmentation, and/or elimination of habitat. e.g., logging, wood harvesting, livestock farming, urban development.                                    |
+|                      | Habitat degradation       | Alteration of natural habitats necessary for species survival resulting in reduced functionality e.g., fire suppression, droughts.                                  |
+|                      | Invasive species          | Impacts of alien species on natives through different mechanisms e.g. alteration of soil chemistry, resource competition.                                          |
+|                      | Pollution                 | Pollutants entering the natural environment e.g., air-borne pollutants, waste.                                                                                     |
+|                      | Over-exploitation         | Excessive use of species causing decreases in viable populations e.g. overharvesting.                                                                              |
+|                      | Other                     | Intrinsic factors, changes in native taxa dynamics, human disturbance, natural disasters.                                                                          |
+|                      | Unknown                   | N/A                                                                                                                                                                |
+| **Biological traits**| Life form (LF)            | Annual or perennial                                                                                                                                                |
+|                      | Growth form (GF)          | One of 14 distinct forms: Parasitic plant, Tree, Shrub, Suffrutex, Herb, Lithophyte, Succulent, Graminoid, Geophyte, Climber, Carnivorous, Cyperoid, Creeper, Epiphyte. |
+| **Distribution state**| Biomes                    | One of nine biomes present in South Africa: Fynbos, Grassland, Succulent Karoo, Albany Thicket, Savanna, Forest, Nama Karoo, Desert, Indian Ocean Coastal Belt. Note: if a taxon was found in multiple biomes, it was marked as generalist. |
+|                      | Range size                | All species range sizes are based on the standard measure of Extent of Occurrence (EOO), a parameter defined as the shortest continuous imaginary boundary that can be drawn to encompass all the known, inferred, or projected sites of present occurrence of a taxon. |
+
+## Data and Visualization
+### The preview of the dataset
+#### Import packages
+```{r}
+library(readr)
+library(plyr)
+library(ipred)
+library(caret)
+library(caTools)
+library(randomForest)
+library(ROSE)
+library(ggplot2)
+library(knitr)
+```
+```{r, warning=FALSE, echo=T, message=FALSE}
+
+data <- read_csv("All_threat_data.csv")
+
+ggplot(data, aes(x = factor(Status), fill = factor(Status))) + 
+  geom_bar(show.legend = FALSE) +
+  scale_fill_brewer(palette = "Paired") +
+  labs(title = "Barplot of Status", 
+       x = "Status", 
+       y = "Frequency") +
+  theme_minimal() +
+  theme(text = element_text(size = 12),
+        plot.title = element_text(hjust = 0.5),
+        axis.title = element_text(size = 14, face = "bold"),
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid.major = element_line(color = "grey80"),
+        panel.grid.minor = element_blank())
+```
+
+### TODO: header of the description of the graph
+```{r}
+ggplot(data = data, aes(x = Status, y = Range, fill = Status)) +
+  geom_boxplot() +
+  labs(title = "Distribution of Range by Conservation Status") +
+  theme_bw() +
+  ylim(0,100000)
+```
+### TODO: header of the description of the graph
+```{r}
+table1 <- table(data$Habitat_loss, data$Biomes,
+                dnn = c("Habitat Loss", "Biomes"))
+addmargins(table1)
+
+barplot(table1,
+    	ylab="Count of Plant Species", xlab="Biomes",
+    	main="Distribution of Habitat Loss by Geographical Regions",
+    	col=c("turquoise4", "turquoise2"),
+    	beside <- FALSE, xlim=c(0,0.8), width=.05)
+legend("right", title="Habitat Loss",
+   	legend= sort(unique(data$Habitat_loss)),
+   	fill =c("turquoise4", "turquoise2"), box.lty=0)
+```
+### TODO: header of the description of the graph
+```{r}
+Group2 <- factor(data$Group, levels=c("NotThr","Thr","EX"))
+plt3 <- ggplot(data = data,
+               aes(x=Biomes, y = Group2)) +
+  geom_bar(aes(y= Group,fill=Group2),
+           stat="identity",
+           alpha=.7) +
+  scale_fill_brewer(palette=3) +
+  theme_bw() +
+  labs(title = "Distribution of Plant Species by Status", 
+       y = "Conservation Group")
+plt3
+```
+### TODO: header of the description of the graph
+```{r}
+library(dplyr)
+library(corrplot)
+library(DescTools)
+CatData <- data %>% select(!(Range))
+corrplot::corrplot(DescTools::PairApply(CatData,DescTools::CramerV))
+```
+
+# Analysis and Results
+## Packages
+The R packages utilized for running the statistical modeling for the Random Forest algorithm were **readr**, **plyr**, **ipred**, **caret**, **caTools**, **randomForest**, **ROSE**. 
+- readr: Part of the tidyverse, readr is designed for reading rectangular data, particularly CSVs (comma-separated values) and other delimited types of text files. It's known for its speed and for providing more informative error messages compared to base R functions like read.csv. It also converts data into tibbles, which are a modern take on data frames.
+
+- **plyr**: This package is used for splitting, applying, and combining data. plyr is known for its capability to handle different data types (arrays, lists, data frames, etc.) and apply functions to each element of the split data, then combine the results. Note that plyr is largely superseded by dplyr (also part of tidyverse), which is more efficient especially for large datasets.
+
+- **ipred**: Standing for "Improved Predictors", ipred provides functions for predictive modeling. It includes methods for bagging (Bootstrap Aggregating), which helps improve the stability and accuracy of machine learning algorithms, particularly for decision trees.
+
+- **caret**: The caret package (short for Classification And REgression Training) is a comprehensive framework for building machine learning models in R. It simplifies the process of model training, tuning, and predicting by providing a unified interface for various machine learning algorithms.
+
+- **caTools**: This package contains several tools for handling data, including functions for reading/writing Binary Large Objects (BLOBs), moving window statistics, and splitting data into training/testing sets. It's often used for its simple and effective method for creating reproducible train/test splits.
+
+- **randomForest**: As the name suggests, this package is used for implementing the Random Forest algorithm for classification and regression tasks. Random Forest is an ensemble learning method that operates by constructing a multitude of decision trees and outputting the mode of the classes (classification) or mean prediction (regression) of the individual trees.
+
+- **ROSE**: Standing for Random OverSampling Examples, the ROSE package is used to deal with imbalanced datasets in binary classification problems. It generates synthetic samples in a two-class problem to balance the class distribution, using smoothed bootstrapping. This helps improve the performance of classification models on imbalanced datasets.
+
+
+## Data Preparation
+Encode the 15 columns, with 'group' categorized into 1, 2, and 3. 'Yes' should be encoded as 1, 'No' as 0, and other categories should be numbered starting from 1. In the first column, replace the "-" with a ".".
+
+### Original Dataset Preview
+
+```{r}
+original_data <- read_csv("All_threat_data.csv")
+kable(head(original_data, 10))
+```
+### Encoding Dataset Prview
+
+```{r, warning=FALSE, echo=TRUE}
+encode_data <- read_csv("process.csv")
+kable(head(encode_data, 10))
+```
+Split the dataset into a training set and a test set with a ratio of 7:3. Perform class imbalance handling on the training set using the ROSE library, aiming for an equal data quantity among classes, represented as 1:1:1.
+
+Given a minority class sample point x, we find its k nearest neighbors. Then, we randomly select one of these neighbors, denoted as z, and construct a new data point y that lies on the line segment between x and z:
+
+> y = x + λ * (z - x)
+
+Here, λ is a random number between 0 and 1.
 
 ## Statistical Modeling
 ### Data Processing

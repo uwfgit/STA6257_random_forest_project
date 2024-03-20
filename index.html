@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kristen Monaco, Praya Cheekapara, Raymond Fleming, Teng Ma">
-<meta name="dcterms.date" content="2024-03-08">
+<meta name="dcterms.date" content="2024-03-20">
 
 <title>Random Forest Algorithm</title>
 <style>
@@ -3253,7 +3253,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 8, 2024</p>
+      <p class="date">March 20, 2024</p>
     </div>
   </div>
   
@@ -3268,26 +3268,6 @@ window.Quarto = {
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>Random Forest is a common ensemble method used to make predictions from a variety of dataset types. This is done by combining a number of diverse, but simpler decision tree models into an ensemble model which can be more accurate, but also more versatile. In creating a normal random forest, each of the decision trees is created with a randomized subset of data, and a random subset of features, with the output of each tree combined into the output of the random forest. The benefits to building the model this way include the ability to handle missing data natively, dimensionality reduction or reducing the need to perform dimensionality reduction prior to modeling, and the structure of the forest can be used to estimate variable importance, which can then be utilized in training other models or feature engineering. Given these benefits, and the ability to use complex datasets natively, Random Forests have gained popularity over time and are often used.</p>
-<section id="random-forest-involves-the-following-basic-concepts" class="level2">
-<h2 class="anchored" data-anchor-id="random-forest-involves-the-following-basic-concepts">Random Forest involves the following basic concepts:</h2>
-<ol type="1">
-<li><p><strong>Bootstrap Sampling (Bagging):</strong> Perform random sampling with replacement on the original dataset to form a new dataset for training a decision tree. In each round of bootstrap sampling, about 36.8% of the samples will be missed, not appearing in the new dataset, and these data are referred to as out-of-bag (OOB) data.</p></li>
-<li><p><strong>Random Feature Selection:</strong> At each node of the decision tree training, randomly select a subset of features, and then use information gain (or other criteria) to choose the best split. Repeat the above steps, generating multiple decision trees, to form a “forest”.</p></li>
-<li><p><strong>Prediction:</strong> When predicting new data samples, each tree produces its own prediction result. Random Forest synthesizes these results and uses majority voting to determine the final prediction outcome.</p></li>
-<li><p><strong>Ensemble Learning via Hard Voting Classifier:</strong> By voting, the results of five models are integrated to get the combined outcome. The result selects the category that appears most frequently as the final prediction result. This is a strategy of ensemble learning, known as the Hard Voting Classifier. For a sample point x, five models make predictions respectively:</p></li>
-</ol>
-<blockquote class="blockquote">
-<p>y1 = Model1(x)</p>
-<p>y2 = Model2(x)</p>
-<p>y3 = Model3(x)</p>
-<p>y4 = Model4(x)</p>
-<p>y5 = Model5(x)</p>
-</blockquote>
-<p>Put these five prediction results into a set <code>Y = {y1, y2, y3, y4, y5}</code>, and the final prediction result y_final is the element that appears most frequently in the set Y, mathematically represented as:</p>
-<blockquote class="blockquote">
-<p>y_final = mode(Y)</p>
-</blockquote>
-</section>
 </section>
 <section id="literature-review" class="level1">
 <h1>Literature Review</h1>
@@ -3310,6 +3290,151 @@ window.Quarto = {
 <p>Comparison of Random Forest and SVM for Raw Data in Drug Discovery: Prediction of Radiation Protection and Toxicity Case Study. <span class="citation" data-cites="Matsumoto2016comprison">(<a href="#ref-Matsumoto2016comprison" role="doc-biblioref">Matsumoto and Ohwada 2016</a>)</span> Random forest and SVM was compared for the raw data in drug discovery. There were two types of problems based on the target protein. They predicted the radiation protection(cancer) function and toxicity for radioprotectors targeting p53 as a case study.Two experiments were performed for each compound.There were 84 total. First, experiments administering the compounds to normal cells were performed. These experiments were able to measure the toxicity. Then, experiments administering the compounds to gamma irradiated cells were performed. These experiments were able to measure the radiation-protection function. The experiment measured the cell death rate for each concentration case. After using random forest and machine learning, SVM was found to be better than random forest as determined by the AUC score. In contrast, for predicting toxicity, random forest is better than SVM.</p>
 <p>Research on machine learning framework based on random forest algorithm. <span class="citation" data-cites="Ren2017research">(<a href="#ref-Ren2017research" role="doc-biblioref">Ren and Han 2017</a>)</span> This article is about research on machine learning framework based on random forest algorithm.There is an introduction to the filtering method. Filtration method is through the statistical method which is to give the characteristics with a weight, to carry out feature ranking according to the characteristics of the weight.Then some rules are applied to set a threshold and the feature whose weight is greater than the threshold value is retained or otherwise deleted. The steps are as follows for algorithm optimization which is to carry out feature selection and remove noise characteristics, carry out feature selection and delete redundant features, and voting strategies for optimizing the random forest algorithm.</p>
 <p>Random Forest. <span class="citation" data-cites="Rigatti2017forest">(<a href="#ref-Rigatti2017forest" role="doc-biblioref">Rigatti 2017</a>)</span> Colon cancer data from the SEER database was used to construct both a Cox model and a random forest model to determine how well the models perform on the same data. The data set is sampled with bootstrap sampling. The article explains what random forest is and gives many examples.In the sample problem they evaluated , the Cox and random forest models performed similarly, so because the Cox model was easier to interpret , it made it the preferred method.It only had a a few predictors and no obvious interactions or nonlinear effects, so the random forest model would not be the best option in this case.However, the both achieved well, because the concordance error rate of the models was approximately 18%.</p>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<section id="random-forest-involves-the-following-basic-concepts" class="level3">
+<h3 class="anchored" data-anchor-id="random-forest-involves-the-following-basic-concepts">Random Forest involves the following basic concepts:</h3>
+<ol type="1">
+<li><p><strong>Bootstrap Sampling (Bagging):</strong> Perform random sampling with replacement on the original dataset to form a new dataset for training a decision tree. In each round of bootstrap sampling, about 36.8% of the samples will be missed, not appearing in the new dataset, and these data are referred to as out-of-bag (OOB) data.</p></li>
+<li><p><strong>Random Feature Selection:</strong> At each node of the decision tree training, randomly select a subset of features, and then use information gain (or other criteria) to choose the best split. Repeat the above steps, generating multiple decision trees, to form a “forest”.</p></li>
+<li><p><strong>Prediction:</strong> When predicting new data samples, each tree produces its own prediction result. Random Forest synthesizes these results and uses majority voting to determine the final prediction outcome.</p></li>
+<li><p><strong>Ensemble Learning via Hard Voting Classifier:</strong> By voting, the results of five models are integrated to get the combined outcome. The result selects the category that appears most frequently as the final prediction result. This is a strategy of ensemble learning, known as the Hard Voting Classifier. For a sample point x, five models make predictions respectively:</p></li>
+</ol>
+<blockquote class="blockquote">
+<p>y1 = Model1(x)</p>
+<p>y2 = Model2(x)</p>
+<p>y3 = Model3(x)</p>
+<p>y4 = Model4(x)</p>
+<p>y5 = Model5(x)</p>
+</blockquote>
+<p>Put these five prediction results into a set <code>Y = {y1, y2, y3, y4, y5}</code>, and the final prediction result y_final is the element that appears most frequently in the set Y, mathematically represented as:</p>
+<blockquote class="blockquote">
+<p>y_final = mode(Y)</p>
+</blockquote>
+</section>
+<section id="five-different-methods" class="level3">
+<h3 class="anchored" data-anchor-id="five-different-methods">Five different methods</h3>
+<p>The data needs to be normalized using 5 different methods (<strong>Min-Max Normalization</strong>, <strong>Z-Score Normalization</strong>, <strong>Max Absolute Scaling</strong>, <strong>L1 Norm Normalization</strong>, <strong>L2 Norm Normalization</strong>) due to significant differences in feature values initially.</p>
+<blockquote class="blockquote">
+<p>X_new = (X_old-min(X_old)) / (max(X_old)-min(X_old))</p>
+<p>X_new = (X_old - mean(X_old)) / sd(X_old)</p>
+<p>X_new = X_old / max(abs(X_old))</p>
+<p>X_new = X_old / sum(abs(X_old))</p>
+<p>X_new = X_old / sqrt(sum(X_old^2))</p>
+</blockquote>
+</section>
+<section id="potential-additions-to-methodsmodeling" class="level3">
+<h3 class="anchored" data-anchor-id="potential-additions-to-methodsmodeling">Potential additions to methods/modeling</h3>
+<section id="decision-trees" class="level4">
+<h4 class="anchored" data-anchor-id="decision-trees">Decision trees</h4>
+<p>Decision trees start with a basic question, such as, “Should I surf?” From there, you can ask a series of questions to determine an answer. “Is it a long period swell?” or “Is the wind blowing offshore?”. These questions make up the decision nodes in the tree, acting as a means to split the data. Each question aids in the arrival of a final decision, which would be denoted by the leaf node. Observations that fit the criteria will follow the “Yes” branch, and those that do not will follow the alternate path. Decision trees seek to find the best split to subset the data, and they are typically trained through the Classification and Regression Tree (CART) algorithm. Metrics, such as Gini impurity, information gain, or mean square error (MSE), can be used to evaluate the quality of the split. This decision tree is an example of a classification problem, where the class labels are “surf” and “don’t surf.”</p>
+<section id="benefitsadvantages" class="level5">
+<h5 class="anchored" data-anchor-id="benefitsadvantages">Benefits/Advantages</h5>
+<ul>
+<li>Capable of performing both classification and regression tasks.</li>
+<li>Capable of handling large datasets with high dimensionality.</li>
+<li>Decreased training time compared to other algorithms.</li>
+<li>Promotes predictive ability with high accuracy, even with large datasets.</li>
+<li>Can solve problems internally and still maintain accuracy, even when a large proportion of data is missing.</li>
+<li>Enhances the accuracy of the model and prevents issues in overfitting.</li>
+<li>Can be used as a feature selection tool using its variable importance plot.</li>
+</ul>
+</section>
+<section id="limitationschallenges" class="level5">
+<h5 class="anchored" data-anchor-id="limitationschallenges">Limitations/Challenges</h5>
+<ul>
+<li>Prone to problems, such as bias and overfitting.
+<ul>
+<li>However, when multiple decision trees form an ensemble in the random forest algorithm, they predict results with greater accuracy, particularly when the individual trees are uncorrelated with each other.</li>
+</ul></li>
+<li>Time-consuming
+<ul>
+<li>Since random forest algorithms can handle large data sets, they can provide more accurate predictions. However, the process can be slow as they are computing data for each individual decision tree.</li>
+</ul></li>
+<li>Requires more resources</li>
+<li>More complex
+<ul>
+<li>The prediction of a single decision tree is easier to interpret when compared to a forest of them.</li>
+</ul></li>
+</ul>
+</section>
+<section id="ensemble-method" class="level5">
+<h5 class="anchored" data-anchor-id="ensemble-method">Ensemble Method</h5>
+<p>Ensemble learning methods are made up of a set of classifiers (i.e., decision trees), and their predictions are aggregated to identify the most popular result.</p>
+<ul>
+<li>Bagging
+<ul>
+<li>Also known as bootstrap aggregation</li>
+<li>A random sample of data in a training set is selected with replacement, meaning the individual data points can be chosen more than once.</li>
+<li>Models are trained independently.</li>
+<li>Final output is based on majority voting.</li>
+<li>This approach helps to reduce variance.</li>
+</ul></li>
+<li>Boosting
+<ul>
+<li>Combines weak learners into strong learners by creating sequential models such that the final model has the highest accuracy.</li>
+</ul></li>
+</ul>
+</section>
+<section id="assumptions" class="level5">
+<h5 class="anchored" data-anchor-id="assumptions">Assumptions</h5>
+<ul>
+<li>Some of the actual values in the feature variable of the dataset should be present so the classifier can predict accurate results.</li>
+<li>The predictions from each tree must have very low correlations.</li>
+</ul>
+</section>
+</section>
+<section id="gini-impurity" class="level4">
+<h4 class="anchored" data-anchor-id="gini-impurity">Gini Impurity</h4>
+<ul>
+<li>The Gini coefficient is a measure of inequality between 0 and 1, where a value closer to 1 indicates more inequality. This is used to calculate inequality in income and wealth, but can be used in other problems where a measure of inequality is needed.</li>
+</ul>
+<p><span class="math display">\[
+G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n^2\bar{x}}
+\]</span></p>
+<ul>
+<li>For decision trees, a related measure is used to measure the entropy of a result by calculating the probability that a random entry will be in the wrong class if it were randomly assigned a label.</li>
+</ul>
+<p><span class="math display">\[I_G=1-\sum\limits_{i=1}^{J}p_i^2\]</span></p>
+<ul>
+<li>This measure can be used in multiclass problems, and is often used for finding where to split the features. The other commonly used option is Entropy, which is also an entropy measure but with a more complex calculation.</li>
+</ul>
+<p><span class="math display">\[H=\sum\limits_{i=1}^{n}-p_i log_2 p_i\]</span></p>
+<ul>
+<li>The tradeoff is a faster calculation using the Gini impurity, with a possibly higher accuracy.</li>
+</ul>
+</section>
+<section id="out-of-bag-error-estimation" class="level4">
+<h4 class="anchored" data-anchor-id="out-of-bag-error-estimation">Out of bag error estimation</h4>
+<ul>
+<li><p>There are subsets of each observation which is the B-bootstrap and each bagged tree makes use of around two thirds of population data.The remaining one-third population data that isn’t used to fit the given bagged tree are the Out of bag observations.</p></li>
+<li><p>Overfitting can be a challenge for Decision trees.This can be solved by pre-pruning and post-pruning. Pre-pruning prevents the tree from growing too big and post pruning allows the tree to grow to its full capacity and gets rid of branches based on different criteria.Using the averages of multiple models would be a Random Forest model.</p></li>
+</ul>
+</section>
+</section>
+<section id="evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="evaluation">Evaluation</h3>
+<p>Evaluate the test set and calculate four metrics (accuracy, recall, precision, F1).</p>
+<ul>
+<li>Accuracy = sum(actual labels == predicted labels) / total number of labels</li>
+<li>Recall = True Positives / (True Positives + False Negatives)</li>
+<li>Precision = True Positives / (True Positives + False Positives)</li>
+<li>F1 = 2 * (Precision * Recall) / (Precision + Recall)</li>
+</ul>
+</section>
+<section id="final-outcome" class="level3">
+<h3 class="anchored" data-anchor-id="final-outcome">Final outcome:</h3>
+<p>The idea is to combine five models using a voting method and pick the category with the most votes as our final prediction. It’s like a team effort in machine learning, known as the Hard Voting Classifier. For a sample point x, five models make predictions respectively:</p>
+<blockquote class="blockquote">
+<p>y1 = Model1(x)</p>
+<p>y2 = Model2(x)</p>
+<p>y3 = Model3(x)</p>
+<p>y4 = Model4(x)</p>
+<p>y5 = Model5(x)</p>
+</blockquote>
+<p>Place these five prediction results into a set <code>Y = {y1, y2, y3, y4, y5}</code>. The final prediction result <code>y_final</code> is the element that appears most frequently in the set <code>Y</code>, mathematically represented as <code>y_final = mode(Y)</code>.</p>
+</section>
+</section>
 </section>
 <section id="the-chosen-dataset" class="level1">
 <h1>The chosen dataset</h1>
@@ -3392,22 +3517,12 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-</section>
-<section id="analysis-and-results" class="level1">
-<h1>Analysis and Results</h1>
-<section id="packages" class="level2">
-<h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<p>The R packages utilized for running the statistical modeling for the Random Forest algorithm were <strong>readr</strong>, <strong>plyr</strong>, <strong>ipred</strong>, <strong>caret</strong>, <strong>caTools</strong>, <strong>randomForest</strong>, <strong>ROSE</strong>. - readr: Part of the tidyverse, readr is designed for reading rectangular data, particularly CSVs (comma-separated values) and other delimited types of text files. It’s known for its speed and for providing more informative error messages compared to base R functions like read.csv. It also converts data into tibbles, which are a modern take on data frames.</p>
-<ul>
-<li><p><strong>plyr</strong>: This package is used for splitting, applying, and combining data. plyr is known for its capability to handle different data types (arrays, lists, data frames, etc.) and apply functions to each element of the split data, then combine the results. Note that plyr is largely superseded by dplyr (also part of tidyverse), which is more efficient especially for large datasets.</p></li>
-<li><p><strong>ipred</strong>: Standing for “Improved Predictors”, ipred provides functions for predictive modeling. It includes methods for bagging (Bootstrap Aggregating), which helps improve the stability and accuracy of machine learning algorithms, particularly for decision trees.</p></li>
-<li><p><strong>caret</strong>: The caret package (short for Classification And REgression Training) is a comprehensive framework for building machine learning models in R. It simplifies the process of model training, tuning, and predicting by providing a unified interface for various machine learning algorithms.</p></li>
-<li><p><strong>caTools</strong>: This package contains several tools for handling data, including functions for reading/writing Binary Large Objects (BLOBs), moving window statistics, and splitting data into training/testing sets. It’s often used for its simple and effective method for creating reproducible train/test splits.</p></li>
-<li><p><strong>randomForest</strong>: As the name suggests, this package is used for implementing the Random Forest algorithm for classification and regression tasks. Random Forest is an ensemble learning method that operates by constructing a multitude of decision trees and outputting the mode of the classes (classification) or mean prediction (regression) of the individual trees.</p></li>
-<li><p><strong>ROSE</strong>: Standing for Random OverSampling Examples, the ROSE package is used to deal with imbalanced datasets in binary classification problems. It generates synthetic samples in a two-class problem to balance the class distribution, using smoothed bootstrapping. This helps improve the performance of classification models on imbalanced datasets.</p></li>
-</ul>
-<section id="import-packages" class="level3">
-<h3 class="anchored" data-anchor-id="import-packages">Import packages</h3>
+<section id="data-and-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="data-and-visualization">Data and Visualization</h2>
+<section id="the-preview-of-the-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="the-preview-of-the-dataset">The preview of the dataset</h3>
+<section id="import-packages" class="level4">
+<h4 class="anchored" data-anchor-id="import-packages">Import packages</h4>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3422,12 +3537,6 @@ window.Quarto = {
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</section>
-</section>
-<section id="data-and-visualization" class="level2">
-<h2 class="anchored" data-anchor-id="data-and-visualization">Data and Visualization</h2>
-<section id="the-preview-of-the-dataset" class="level3">
-<h3 class="anchored" data-anchor-id="the-preview-of-the-dataset">The preview of the dataset</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3455,6 +3564,10 @@ window.Quarto = {
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="todo-header-of-the-description-of-the-graph" class="level3">
+<h3 class="anchored" data-anchor-id="todo-header-of-the-description-of-the-graph">TODO: header of the description of the graph</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3472,6 +3585,9 @@ window.Quarto = {
 </div>
 </div>
 </div>
+</section>
+<section id="todo-header-of-the-description-of-the-graph-1" class="level3">
+<h3 class="anchored" data-anchor-id="todo-header-of-the-description-of-the-graph-1">TODO: header of the description of the graph</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3510,6 +3626,9 @@ Habitat Loss Nama Karoo Savanna Succulent Karoo Sum
 </div>
 </div>
 </div>
+</section>
+<section id="todo-header-of-the-description-of-the-graph-2" class="level3">
+<h3 class="anchored" data-anchor-id="todo-header-of-the-description-of-the-graph-2">TODO: header of the description of the graph</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3533,6 +3652,9 @@ Habitat Loss Nama Karoo Savanna Succulent Karoo Sum
 </div>
 </div>
 </div>
+</section>
+<section id="todo-header-of-the-description-of-the-graph-3" class="level3">
+<h3 class="anchored" data-anchor-id="todo-header-of-the-description-of-the-graph-3">TODO: header of the description of the graph</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3551,6 +3673,21 @@ Habitat Loss Nama Karoo Savanna Succulent Karoo Sum
 </div>
 </div>
 </section>
+</section>
+</section>
+<section id="analysis-and-results" class="level1">
+<h1>Analysis and Results</h1>
+<section id="packages" class="level2">
+<h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<p>The R packages utilized for running the statistical modeling for the Random Forest algorithm were <strong>readr</strong>, <strong>plyr</strong>, <strong>ipred</strong>, <strong>caret</strong>, <strong>caTools</strong>, <strong>randomForest</strong>, <strong>ROSE</strong>. - readr: Part of the tidyverse, readr is designed for reading rectangular data, particularly CSVs (comma-separated values) and other delimited types of text files. It’s known for its speed and for providing more informative error messages compared to base R functions like read.csv. It also converts data into tibbles, which are a modern take on data frames.</p>
+<ul>
+<li><p><strong>plyr</strong>: This package is used for splitting, applying, and combining data. plyr is known for its capability to handle different data types (arrays, lists, data frames, etc.) and apply functions to each element of the split data, then combine the results. Note that plyr is largely superseded by dplyr (also part of tidyverse), which is more efficient especially for large datasets.</p></li>
+<li><p><strong>ipred</strong>: Standing for “Improved Predictors”, ipred provides functions for predictive modeling. It includes methods for bagging (Bootstrap Aggregating), which helps improve the stability and accuracy of machine learning algorithms, particularly for decision trees.</p></li>
+<li><p><strong>caret</strong>: The caret package (short for Classification And REgression Training) is a comprehensive framework for building machine learning models in R. It simplifies the process of model training, tuning, and predicting by providing a unified interface for various machine learning algorithms.</p></li>
+<li><p><strong>caTools</strong>: This package contains several tools for handling data, including functions for reading/writing Binary Large Objects (BLOBs), moving window statistics, and splitting data into training/testing sets. It’s often used for its simple and effective method for creating reproducible train/test splits.</p></li>
+<li><p><strong>randomForest</strong>: As the name suggests, this package is used for implementing the Random Forest algorithm for classification and regression tasks. Random Forest is an ensemble learning method that operates by constructing a multitude of decision trees and outputting the mode of the classes (classification) or mean prediction (regression) of the individual trees.</p></li>
+<li><p><strong>ROSE</strong>: Standing for Random OverSampling Examples, the ROSE package is used to deal with imbalanced datasets in binary classification problems. It generates synthetic samples in a two-class problem to balance the class distribution, using smoothed bootstrapping. This helps improve the performance of classification models on imbalanced datasets.</p></li>
+</ul>
 </section>
 <section id="data-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="data-preparation">Data Preparation</h2>
@@ -4005,128 +4142,6 @@ Habitat Loss Nama Karoo Savanna Succulent Karoo Sum
 </blockquote>
 <p>Here, λ is a random number between 0 and 1.</p>
 </section>
-</section>
-<section id="methods" class="level2">
-<h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p>The data needs to be normalized using 5 different methods (Min-Max Normalization, Z-Score Normalization, Max Absolute Scaling, L1 Norm Normalization, L2 Norm Normalization) due to significant differences in feature values initially.</p>
-<blockquote class="blockquote">
-<p>X_new = (X_old-min(X_old)) / (max(X_old)-min(X_old))</p>
-<p>X_new = (X_old - mean(X_old)) / sd(X_old)</p>
-<p>X_new = X_old / max(abs(X_old))</p>
-<p>X_new = X_old / sum(abs(X_old))</p>
-<p>X_new = X_old / sqrt(sum(X_old^2))</p>
-</blockquote>
-<section id="potential-additions-to-methodsmodeling" class="level3">
-<h3 class="anchored" data-anchor-id="potential-additions-to-methodsmodeling">Potential additions to methods/modeling</h3>
-<section id="decision-trees" class="level4">
-<h4 class="anchored" data-anchor-id="decision-trees">Decision trees</h4>
-<p>Decision trees start with a basic question, such as, “Should I surf?” From there, you can ask a series of questions to determine an answer. “Is it a long period swell?” or “Is the wind blowing offshore?”. These questions make up the decision nodes in the tree, acting as a means to split the data. Each question aids in the arrival of a final decision, which would be denoted by the leaf node. Observations that fit the criteria will follow the “Yes” branch, and those that do not will follow the alternate path. Decision trees seek to find the best split to subset the data, and they are typically trained through the Classification and Regression Tree (CART) algorithm. Metrics, such as Gini impurity, information gain, or mean square error (MSE), can be used to evaluate the quality of the split. This decision tree is an example of a classification problem, where the class labels are “surf” and “don’t surf.”</p>
-<section id="benefitsadvantages" class="level5">
-<h5 class="anchored" data-anchor-id="benefitsadvantages">Benefits/Advantages</h5>
-<ul>
-<li>Capable of performing both classification and regression tasks.</li>
-<li>Capable of handling large datasets with high dimensionality.</li>
-<li>Decreased training time compared to other algorithms.</li>
-<li>Promotes predictive ability with high accuracy, even with large datasets.</li>
-<li>Can solve problems internally and still maintain accuracy, even when a large proportion of data is missing.</li>
-<li>Enhances the accuracy of the model and prevents issues in overfitting.</li>
-<li>Can be used as a feature selection tool using its variable importance plot.</li>
-</ul>
-</section>
-<section id="limitationschallenges" class="level5">
-<h5 class="anchored" data-anchor-id="limitationschallenges">Limitations/Challenges</h5>
-<ul>
-<li>Prone to problems, such as bias and overfitting.
-<ul>
-<li>However, when multiple decision trees form an ensemble in the random forest algorithm, they predict results with greater accuracy, particularly when the individual trees are uncorrelated with each other.</li>
-</ul></li>
-<li>Time-consuming
-<ul>
-<li>Since random forest algorithms can handle large data sets, they can provide more accurate predictions. However, the process can be slow as they are computing data for each individual decision tree.</li>
-</ul></li>
-<li>Requires more resources</li>
-<li>More complex
-<ul>
-<li>The prediction of a single decision tree is easier to interpret when compared to a forest of them.</li>
-</ul></li>
-</ul>
-</section>
-<section id="ensemble-method" class="level5">
-<h5 class="anchored" data-anchor-id="ensemble-method">Ensemble Method</h5>
-<p>Ensemble learning methods are made up of a set of classifiers (i.e., decision trees), and their predictions are aggregated to identify the most popular result.</p>
-<ul>
-<li>Bagging
-<ul>
-<li>Also known as bootstrap aggregation</li>
-<li>A random sample of data in a training set is selected with replacement, meaning the individual data points can be chosen more than once.</li>
-<li>Models are trained independently.</li>
-<li>Final output is based on majority voting.</li>
-<li>This approach helps to reduce variance.</li>
-</ul></li>
-<li>Boosting
-<ul>
-<li>Combines weak learners into strong learners by creating sequential models such that the final model has the highest accuracy.</li>
-</ul></li>
-</ul>
-</section>
-<section id="assumptions" class="level5">
-<h5 class="anchored" data-anchor-id="assumptions">Assumptions</h5>
-<ul>
-<li>Some of the actual values in the feature variable of the dataset should be present so the classifier can predict accurate results.</li>
-<li>The predictions from each tree must have very low correlations.</li>
-</ul>
-</section>
-</section>
-<section id="gini-impurity" class="level4">
-<h4 class="anchored" data-anchor-id="gini-impurity">Gini Impurity</h4>
-<ul>
-<li>The Gini coefficient is a measure of inequality between 0 and 1, where a value closer to 1 indicates more inequality. This is used to calculate inequality in income and wealth, but can be used in other problems where a measure of inequality is needed.</li>
-</ul>
-<p><span class="math display">\[
-G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n^2\bar{x}}
-\]</span></p>
-<ul>
-<li>For decision trees, a related measure is used to measure the entropy of a result by calculating the probability that a random entry will be in the wrong class if it were randomly assigned a label.</li>
-</ul>
-<p><span class="math display">\[I_G=1-\sum\limits_{i=1}^{J}p_i^2\]</span></p>
-<ul>
-<li>This measure can be used in multiclass problems, and is often used for finding where to split the features. The other commonly used option is Entropy, which is also an entropy measure but with a more complex calculation.</li>
-</ul>
-<p><span class="math display">\[H=\sum\limits_{i=1}^{n}-p_i log_2 p_i\]</span></p>
-<ul>
-<li>The tradeoff is a faster calculation using the Gini impurity, with a possibly higher accuracy.</li>
-</ul>
-</section>
-<section id="out-of-bag-error-estimation" class="level4">
-<h4 class="anchored" data-anchor-id="out-of-bag-error-estimation">Out of bag error estimation</h4>
-<ul>
-<li><p>There are subsets of each observation which is the B-bootstrap and each bagged tree makes use of around two thirds of population data.The remaining one-third population data that isn’t used to fit the given bagged tree are the Out of bag observations.</p></li>
-<li><p>Overfitting can be a challenge for Decision trees.This can be solved by pre-pruning and post-pruning. Pre-pruning prevents the tree from growing too big and post pruning allows the tree to grow to its full capacity and gets rid of branches based on different criteria.Using the averages of multiple models would be a Random Forest model.</p></li>
-</ul>
-</section>
-</section>
-</section>
-<section id="evaluation" class="level2">
-<h2 class="anchored" data-anchor-id="evaluation">Evaluation</h2>
-<p>Evaluate the test set and calculate four metrics (accuracy, recall, precision, F1).</p>
-<ul>
-<li>Accuracy = sum(actual labels == predicted labels) / total number of labels</li>
-<li>Recall = True Positives / (True Positives + False Negatives)</li>
-<li>Precision = True Positives / (True Positives + False Positives)</li>
-<li>F1 = 2 * (Precision * Recall) / (Precision + Recall)</li>
-</ul>
-</section>
-<section id="final-outcome" class="level2">
-<h2 class="anchored" data-anchor-id="final-outcome">Final outcome:</h2>
-<p>The idea is to combine five models using a voting method and pick the category with the most votes as our final prediction. It’s like a team effort in machine learning, known as the Hard Voting Classifier. For a sample point x, five models make predictions respectively:</p>
-<blockquote class="blockquote">
-<p>y1 = Model1(x)</p>
-<p>y2 = Model2(x)</p>
-<p>y3 = Model3(x)</p>
-<p>y4 = Model4(x)</p>
-<p>y5 = Model5(x)</p>
-</blockquote>
-<p>Place these five prediction results into a set <code>Y = {y1, y2, y3, y4, y5}</code>. The final prediction result <code>y_final</code> is the element that appears most frequently in the set <code>Y</code>, mathematically represented as <code>y_final = mode(Y)</code>.</p>
 </section>
 <section id="statistical-modeling" class="level2">
 <h2 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h2>
