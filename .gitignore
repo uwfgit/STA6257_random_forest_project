@@ -4,4 +4,5 @@
 .Ruserdata
 process.py
 process_test.csv
+.sta6257_py_3.10.11_pkgs
 *.ipynb

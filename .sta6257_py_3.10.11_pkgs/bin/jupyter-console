@@ -1,8 +1,0 @@
-#!/Users/max/Documents/STA6257_random_forest_project/.sta6257_py_3.10.11_pkgs/bin/python3.10
-# -*- coding: utf-8 -*-
-import re
-import sys
-from jupyter_console.app import main
-if __name__ == '__main__':
-    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
-    sys.exit(main())
