@@ -25,6 +25,3 @@ By marrying advanced machine learning techniques with critical conservation data
 - rstudio
 - quarto
 - R
-
-More information:
-[STA6257_random_forest_project](https://uwfgit.github.io/STA6257_random
