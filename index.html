@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kristen Monaco, Praya Cheekapara, Raymond Fleming, Teng Ma">
-<meta name="dcterms.date" content="2024-03-20">
+<meta name="dcterms.date" content="2024-03-26">
 
 <title>Random Forest Algorithm</title>
 <style>
@@ -3253,7 +3253,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 20, 2024</p>
+      <p class="date">March 26, 2024</p>
     </div>
   </div>
   
@@ -3564,6 +3564,7 @@ G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n^2\bar{x}}
 </div>
 </div>
 </div>
+<p>The bar plot “Barplot of Status” shows how often different statuses occur. Each bar represents a specific status category. The plot clearly shows that the dataset is seriously unbalanced. One category, marked as ‘LC’, drastically outnumbers the others with a frequency that surpasses 500. The imbalance could mess up any analysis or predictive modeling that uses this data, as the models might get all biased towards the ‘LC’ status because it happens so often. To effectively tackle the issue of data imbalance, we might need to use certain techniques for resampling the data that can boost the representation of underrepresented classes or balance out the dominance of the overrepresented class. By implementing these strategies, we ensure that any insights or models derived from our analysis reflect a more balanced dataset, avoiding any bias caused by imbalanced data. In order to achieve this goal, we have chosen to utilize the ROSE package—a tool specifically designed for addressing imbalances in datasets. With its advanced methods for generating synthetic data and resampling, ROSE enables us to achieve a fairer distribution of classes and thereby enhance the reliability and validity of our analytical outcomes.</p>
 </section>
 </section>
 <section id="todo-header-of-the-description-of-the-graph" class="level3">
