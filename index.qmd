@@ -1,5 +1,5 @@
 ---
-title: "Random Forest Algorithm"
+title: "Predicting Plant Extinctions Using the Random Forest Algorithm"
 author: "Kristen Monaco, Praya Cheekapara, Raymond Fleming, Teng Ma"
 date: '`r Sys.Date()`'
 format:
@@ -72,6 +72,78 @@ otherwise deleted. The steps are as follows for algorithm optimization which is 
 Random Forest. [@Rigatti2017forest] Colon cancer data from the SEER database was  used to construct both a Cox model and a random forest model to determine how well the models perform on the same data.  The data set is sampled with bootstrap sampling. The article explains what random forest is and gives many examples.In the sample problem they evaluated , the Cox and random forest models performed similarly, so because the Cox model was easier to interpret , it made it the preferred method.It only had a a few predictors and no obvious interactions or nonlinear effects,  so the random forest model would not be the best option in this case.However, the both achieved well, because the  concordance error rate  of the models was approximately 18%.
 
 ## Methods
+#### Decision trees
+
+Decision Trees are a type of Supervised Machine Learning where the data is continuously split according to a certain parameter. The tree can be explained by two entities: decision (internal) nodes and leaves. The decision nodes are where the data is split, and the leaves are the decisions or the final outcomes.
+A decision tree is a flowchart-like structure in which each internal node represents a test on a feature (e.g. whether a coin flip comes up heads or tails) , each leaf node represents a class label (decision taken after computing all features), and branches represent conjunctions of features that lead to those class labels. The paths from root to leaf represent classification rules. The algorithm for predicting the class of a given dataset starts from the root node of the tree. It compares the values of the root attribute with the record attribute, follows the branch based on the comparison, and jumps to the next node. This process continues until it reaches the leaf node of the tree.
+
+
+```{r}
+library(readr)
+library(plyr)
+library(ipred)
+library(caret)
+library(caTools)
+library(randomForest)
+library(ROSE)
+library(ggplot2)
+library(knitr)
+library(rsample)     
+library(dplyr)       
+library(rpart)       
+library(rpart.plot)  
+library(ipred)      
+library(caret)      
+library(readr)
+ 
+dataP2 <- read_csv("process.csv")
+dataP2 <- as.data.frame(dataP2)
+set.seed(123)
+split2 <- sample.split(dataP2, SplitRatio = 0.7) 
+species_train <- subset(dataP2, split2 == "TRUE") 
+species_test <- subset(dataP2, split2 == "FALSE")
+m3 <- rpart(
+  formula = Group~ LF + GF + Biomes + Range +
+    Habitat_degradation + Habitat_loss + IAS +
+    Other + Unknown + Other + Over_exploitation,
+  data    = species_train,
+  method  = "anova"
+)
+rpart.plot(m3)
+
+```
+Decision trees in random forest work together to create a robust and accurate model by leveraging the diversity and averaging multiple decision trees.
+
+When evaluating the quality of the splits in decision trees, several metrics are considered.
+
+**1. Gini impurity: **
+
+The Gini coefficient is a measure of inequality between 0 and 1, where a value closer to 1 indicates more inequality. This is used to calculate inequality in income and wealth, but it can be used in other problems where a measure of inequality is needed.
+$$
+G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n^2\bar{x}}
+$$
+
+**2. Entropy: **
+
+For decision trees, a related measure is used to measure the entropy of a result by calculating the probability that a random entry will be in the wrong class if it were randomly assigned a label.
+$$I_G=1-\sum\limits_{i=1}^{J}p_i^2$$
+
+**3. Information gain: **
+
+ This measure can be used in multiclass problems and is often used for finding where to split the features. The other commonly used option is Entropy, which is also an entropy measure but with a more complex calculation.
+
+The tradeoff is a faster calculation using the Gini impurity, with a possibly higher accuracy.
+$$H=\sum\limits_{i=1}^{n}-p_i log_2 p_i$$
+
+**4.  Out of bag error estimation: **
+
+- Each decision tree is trained on a bootstrapped sample of the original dataset.
+- The data points that are not included in the bootstrapped sample for a particular tree are called out-of-bag instances.
+- OOB error provides a measure of how well the random forest model is likely to perform on new data.
+- It is useful for assessing model performance and tuning hyperparameters.
+
+$$\text{OOB Error} = \frac{1}{N} \sum_{i=1}^{N} I(y_i \neq \hat{y}_{i, \text{OOB}})
+$$
 
 ### Random Forest involves the following basic concepts:
 1. **Bootstrap Sampling (Bagging):**
@@ -102,7 +174,7 @@ Put these five prediction results into a set `Y = {y1, y2, y3, y4, y5}`, and the
 
 > y_final = mode(Y)
 
-### Five different methods
+### Five normalization methods
 The data needs to be normalized using 5 different methods (**Min-Max Normalization**, **Z-Score Normalization**, **Max Absolute Scaling**, **L1 Norm Normalization**, **L2 Norm Normalization**) due to significant differences in feature values initially.
 
 > X_new = (X_old-min(X_old)) / (max(X_old)-min(X_old))
@@ -114,71 +186,6 @@ The data needs to be normalized using 5 different methods (**Min-Max Normalizati
 > X_new = X_old / sum(abs(X_old))
 >
 > X_new = X_old / sqrt(sum(X_old^2))
-
-### Potential additions to methods/modeling
-#### Decision trees
-Decision trees start with a basic question, such as, “Should I surf?” From there, you can ask a series of questions to determine an answer. “Is it a long period swell?” or “Is the wind blowing offshore?”.
-These questions make up the decision nodes in the tree, acting as a means to split the data. Each question aids in the arrival of a final decision, which would be denoted by the leaf node.
-Observations that fit the criteria will follow the “Yes” branch, and those that do not will follow the alternate path.
-Decision trees seek to find the best split to subset the data, and they are typically trained through the Classification and Regression Tree (CART) algorithm. Metrics, such as Gini impurity, information gain, or mean square error (MSE), can be used to evaluate the quality of the split.
-This decision tree is an example of a classification problem, where the class labels are “surf” and “don’t surf.”
-
-##### Benefits/Advantages
-- Capable of performing both classification and regression tasks.
-- Capable of handling large datasets with high dimensionality.
-- Decreased training time compared to other algorithms.
-- Promotes predictive ability with high accuracy, even with large datasets.
-- Can solve problems internally and still maintain accuracy, even when a large proportion of data is missing.
-- Enhances the accuracy of the model and prevents issues in overfitting.
-- Can be used as a feature selection tool using its variable importance plot.
-
-##### Limitations/Challenges
-- Prone to problems, such as bias and overfitting.
-  - However, when multiple decision trees form an ensemble in the random forest algorithm, they predict results with greater accuracy, particularly when the individual trees are uncorrelated with each other.
-- Time-consuming
-  - Since random forest algorithms can handle large data sets, they can provide more accurate predictions. However, the process can be slow as they are computing data for each individual decision tree.
-- Requires more resources
-- More complex
-  - The prediction of a single decision tree is easier to interpret when compared to a forest of them.
-
-##### Ensemble Method
-Ensemble learning methods are made up of a set of classifiers (i.e., decision trees), and their predictions are aggregated to identify the most popular result.
-
-- Bagging
-  - Also known as bootstrap aggregation
-  - A random sample of data in a training set is selected with replacement, meaning the individual data points can be chosen more than once.
-  - Models are trained independently.
-  - Final output is based on majority voting.
-  - This approach helps to reduce variance.
-- Boosting
-  - Combines weak learners into strong learners by creating sequential models such that the final model has the highest accuracy.
-
-##### Assumptions
-- Some of the actual values in the feature variable of the dataset should be present so the classifier can predict accurate results.
-- The predictions from each tree must have very low correlations.
-
-#### Gini Impurity
-- The Gini coefficient is a measure of inequality between 0 and 1, where a value closer to 1 indicates more inequality.  This is used to calculate inequality in income and wealth, but can be used in other problems where a measure of inequality is needed.
-
-$$
-G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n^2\bar{x}}
-$$
-
-- For decision trees, a related measure is used to measure the entropy of a result by calculating the probability that a random entry will be in the wrong class if it were randomly assigned a label.
-
-$$I_G=1-\sum\limits_{i=1}^{J}p_i^2$$
-
-- This measure can be used in multiclass problems, and is often used for finding where to split the features.   The other commonly used option is Entropy, which is also an entropy measure but with a more complex calculation.
-
-$$H=\sum\limits_{i=1}^{n}-p_i log_2 p_i$$
-
-- The tradeoff is a faster calculation using the Gini impurity, with a possibly higher accuracy. 
-
-#### Out of bag  error estimation
-- There are subsets of each observation which is the B-bootstrap and each bagged tree makes use of around two thirds of population data.The remaining one-third population data that isn’t used to fit the given bagged tree are the Out of bag observations.
-
-- Overfitting can be a challenge for Decision trees.This can be solved by pre-pruning and post-pruning. Pre-pruning prevents the tree from growing too big  and post pruning allows the tree to grow to its full capacity and gets rid of branches based on different criteria.Using the averages of multiple models would be a Random Forest model.
-
 
 ### Evaluation
 Evaluate the test set and calculate four metrics (accuracy, recall, precision, F1).
@@ -204,15 +211,34 @@ For a sample point x, five models make predictions respectively:
 
 Place these five prediction results into a set `Y = {y1, y2, y3, y4, y5}`. The final prediction result `y_final` is the element that appears most frequently in the set `Y`, mathematically represented as `y_final = mode(Y)`.
 
-# The chosen dataset
+## Benefits/Advantages
+- Capable of performing both classification and regression tasks.
+- Capable of handling large datasets with high dimensionality.
+- Decreased training time compared to other algorithms.
+- Promotes predictive ability with high accuracy, even with large datasets.
+- Can solve problems internally and still maintain accuracy, even when a large proportion of data is missing.
+- Enhances the accuracy of the model and prevents issues in overfitting.
+- Can be used as a feature selection tool using its variable importance plot.
+
+## Limitations/Challenges
+- Prone to problems, such as bias and overfitting.
+  - However, when multiple decision trees form an ensemble in the random forest algorithm, they predict results with greater accuracy, particularly when the individual trees are uncorrelated with each other.
+- Time-consuming.
+  - Since random forest algorithms can handle large data sets, they can provide more  accurate predictions. However, the process can be slow as they are computing data for each individual decision tree.
+- Requires more resources.
+- More complex.
+  - The prediction of a single decision tree is easier to interpret when compared to a forest of them.
+
+## Assumptions
+- Independence of trees: Each tree is built using a random subset of features and a bootstrapped sample of the data, aiming to reduce correlation between trees.
+- Randomness: While some of the actual values in the feature variable of the dataset should be present so the classifier can predict accurate results, random forests must also assume random subset of features to prevent overfitting and encourage diversity.
+
+
+# Analysis and Results
+## Data and Visualization
 Data Source: **Mendeley Data**
 
 [Species data used in Random Forest modelling to determine predictors of extinction](https://data.mendeley.com/datasets/tc6syk8vwf/1)
-
-Published: 17 August 2023
-
-Contributors:
-Dewidine van der Colff, Sabrina Kumschick, Wendy Foden, Domitilla Raimondo, Christophe BOTELLA, Lize von Staden, John Wilson
 
 **Description**
 
@@ -236,7 +262,6 @@ The table [@vanderColff2023] below organizes and summarizes the explanatory vari
 | **Distribution state**| Biomes                    | One of nine biomes present in South Africa: Fynbos, Grassland, Succulent Karoo, Albany Thicket, Savanna, Forest, Nama Karoo, Desert, Indian Ocean Coastal Belt. Note: if a taxon was found in multiple biomes, it was marked as generalist. |
 |                      | Range size                | All species range sizes are based on the standard measure of Extent of Occurrence (EOO), a parameter defined as the shortest continuous imaginary boundary that can be drawn to encompass all the known, inferred, or projected sites of present occurrence of a taxon. |
 
-## Data and Visualization
 ### The preview of the dataset
 #### Import packages
 ```{r}
@@ -270,53 +295,43 @@ ggplot(data, aes(x = factor(Status), fill = factor(Status))) +
 ```
 The bar plot "Barplot of Status" shows how often different statuses occur. Each bar represents a specific status category. The plot clearly shows that the dataset is seriously unbalanced. One category, marked as 'LC', drastically outnumbers the others with a frequency that surpasses 500. The imbalance could mess up any analysis or predictive modeling that uses this data, as the models might get all biased towards the 'LC' status because it happens so often. To effectively tackle the issue of data imbalance, we might need to use certain techniques for resampling the data that can boost the representation of underrepresented classes or balance out the dominance of the overrepresented class. By implementing these strategies, we ensure that any insights or models derived from our analysis reflect a more balanced dataset, avoiding any bias caused by imbalanced data. In order to achieve this goal, we have chosen to utilize the ROSE package—a tool specifically designed for addressing imbalances in datasets. With its advanced methods for generating synthetic data and resampling, ROSE enables us to achieve a fairer distribution of classes and thereby enhance the reliability and validity of our analytical outcomes.
 
-### TODO: header of the description of the graph
+### Distribution of Range by Conservation Status
 ```{r}
 ggplot(data = data, aes(x = Status, y = Range, fill = Status)) +
   geom_boxplot() +
-  labs(title = "Distribution of Range by Conservation Status") +
   theme_bw() +
   ylim(0,100000)
 ```
-### TODO: header of the description of the graph
-```{r}
-table1 <- table(data$Habitat_loss, data$Biomes,
-                dnn = c("Habitat Loss", "Biomes"))
-addmargins(table1)
+TODO: descirptions
 
-barplot(table1,
-    	ylab="Count of Plant Species", xlab="Biomes",
-    	main="Distribution of Habitat Loss by Geographical Regions",
-    	col=c("turquoise4", "turquoise2"),
-    	beside <- FALSE, xlim=c(0,0.8), width=.05)
-legend("right", title="Habitat Loss",
-   	legend= sort(unique(data$Habitat_loss)),
-   	fill =c("turquoise4", "turquoise2"), box.lty=0)
-```
-### TODO: header of the description of the graph
+### Distribution of Categorical Variables
 ```{r}
-Group2 <- factor(data$Group, levels=c("NotThr","Thr","EX"))
-plt3 <- ggplot(data = data,
-               aes(x=Biomes, y = Group2)) +
-  geom_bar(aes(y= Group,fill=Group2),
-           stat="identity",
-           alpha=.7) +
-  scale_fill_brewer(palette=3) +
-  theme_bw() +
-  labs(title = "Distribution of Plant Species by Status", 
-       y = "Conservation Group")
-plt3
-```
-### TODO: header of the description of the graph
-```{r}
-library(dplyr)
-library(corrplot)
-library(DescTools)
-CatData <- data %>% select(!(Range))
-corrplot::corrplot(DescTools::PairApply(CatData,DescTools::CramerV))
-```
+library(tidyverse)
+library(gsheet)
+data2 <- as_tibble(gsheet2tbl("https://docs.google.com/spreadsheets/d/1BJui4r7xoVY6e3z2-IgCr_eBn7SvNAQ4BEpPo1GILNU/edit?usp=sharing"))
 
-# Analysis and Results
+Value <- c(data2$Habitat_degradation, data2$Habitat_loss, data2$IAS,
+              data2$Other, data2$Over_exploitation, data2$Pollution,
+              data2$Unknown)
+ExpVariable <- rep(c("Degradation", "Loss", "IAS",
+                  "Other", "Exploitation", "Pollution",
+                  "Unknown"), each= 944)
+DataGroup <- data2$Group
+
+DV <- data.frame(DataGroup, ExpVariable, Value)
+
+ggplot(DV,aes(x=ExpVariable,y=Value, fill=Value)) +
+  geom_bar(stat = "identity") +
+  scale_fill_brewer() +
+  labs(x= "Variable",
+       y= "Frequency",
+       ) +
+  theme_bw()
+
+```
+TODO: descirptions
+
+# Statistical Modeling
 ## Packages
 The R packages utilized for running the statistical modeling for the Random Forest algorithm were **readr**, **plyr**, **ipred**, **caret**, **caTools**, **randomForest**, **ROSE**. 
 - readr: Part of the tidyverse, readr is designed for reading rectangular data, particularly CSVs (comma-separated values) and other delimited types of text files. It's known for its speed and for providing more informative error messages compared to base R functions like read.csv. It also converts data into tibbles, which are a modern take on data frames.
@@ -357,7 +372,6 @@ Given a minority class sample point x, we find its k nearest neighbors. Then, we
 
 Here, λ is a random number between 0 and 1.
 
-## Statistical Modeling
 ### Data Processing
 1. Process the data by setting the first 14 columns as [features] and the last column as the [label]
 2. Split the dataset into training and testing sets
@@ -698,6 +712,23 @@ print(paste('Precision :', precision))
 F1 = 2 * recall * precision / ( recall + precision )
 print(paste('F1 :', F1))
 ```
+
+```{r}
+ctrl <- trainControl(method = "cv",  number = 10) 
+
+bagged_cv <- train(
+  Group~ LF + GF + Biomes + Range +
+    Habitat_degradation + Habitat_loss + IAS +
+    Other + Unknown + Other + Over_exploitation,
+  data    = species_train,
+  method = "treebag",
+  trControl = ctrl,
+  importance = TRUE
+)
+ 
+plot(varImp(bagged_cv), 10) 
+```
+
 #### Confusion Matrix
 ```{r}
 cm_vote <- confusionMatrix(final_pred_factor, label_test_factor)
@@ -740,6 +771,6 @@ grid.arrange(plt1, plt2, nrow = 1, ncol = 2,
 
 ```
 ## Conclusion
-# TODO
-# TODO: Add references of Hard Voting Classifier
+Random Forest is a powerful and flexible machine learning algorithm that can be used for a wide range of tasks. It is particularly useful when dealing with complex data composed of a large number of features, and when the goal is to achieve high predictive accuracy while avoiding overfitting. The algorithm incorporates versatility in its capabilities for classification and regression tasks, handling missing data, and displaying robustness when faced with outliers and noisy data.
+Most extinctions were perennial shrubs found in the Cape Floristic Region. As range was the strongest predictor of extinction, many of the recorded taxa deemed susceptible were range-restricted. Habitat loss is presented as the second strongest variable of importance in predicting plant extinctions. Predictions were based on a quantitative, evidence-based approach, though gaps in knowledge highlighted areas for further study. Improved species monitoring and documentation of threat factors will aid in a deeper understanding of the ecological role and value of South African plant species.
 ## References
