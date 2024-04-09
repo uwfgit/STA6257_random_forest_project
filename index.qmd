@@ -16,6 +16,7 @@ editor:
   markdown: 
     wrap: 72
 ---
+[Quarto Slides](https://raymondfleming.github.io/RandomForestPresentation/#/title-slide)
 
 # Introduction
 Random Forest is a common ensemble method used to make predictions from a variety of dataset types. This is done by combining a number of diverse, but simpler decision tree models into an ensemble model which can be more accurate, but also more versatile.   In creating a normal random forest, each of the decision trees is created with a randomized subset of data, and a random subset of features, with the output of each tree combined into the output of the random forest. The benefits to building the model this way include the ability to handle missing data natively, dimensionality reduction or reducing the need to perform dimensionality reduction prior to modeling, and the structure of the forest can be used to estimate variable importance, which can then be utilized in training other models or feature engineering.  Given these benefits, and the ability to use complex datasets natively, Random Forests have gained popularity over time and are often used.
