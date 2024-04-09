@@ -18,6 +18,9 @@ The goal of this project is to use advanced machine learning techniques and crit
 ## GitHub Repo:
 [STA6257_random_forest_project](https://uwfgit.github.io/STA6257_random_forest_project/)
 
+## Presentation Link:
+[Quarto Slides](https://raymondfleming.github.io/RandomForestPresentation/#/title-slide)
+
 ![](rf.png)
 
 ## Tools
