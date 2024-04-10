@@ -124,17 +124,17 @@ $$
 G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n^2\bar{x}}
 $$
 
-**2. Entropy: **
-
-For decision trees, a related measure is used to measure the entropy of a result by calculating the probability that a random entry will be in the wrong class if it were randomly assigned a label.
-$$I_G=1-\sum\limits_{i=1}^{J}p_i^2$$
-
-**3. Information gain: **
+**2. Information gain: **
 
  This measure can be used in multiclass problems and is often used for finding where to split the features. The other commonly used option is Entropy, which is also an entropy measure but with a more complex calculation.
 
 The tradeoff is a faster calculation using the Gini impurity, with a possibly higher accuracy.
 $$H=\sum\limits_{i=1}^{n}-p_i log_2 p_i$$
+
+**3. Entropy: **
+
+For decision trees, a related measure is used to measure the entropy of a result by calculating the probability that a random entry will be in the wrong class if it were randomly assigned a label.
+$$I_G=1-\sum\limits_{i=1}^{J}p_i^2$$
 
 **4.  Out of bag error estimation: **
 
@@ -176,17 +176,27 @@ Put these five prediction results into a set `Y = {y1, y2, y3, y4, y5}`, and the
 > y_final = mode(Y)
 
 ### Five normalization methods
-The data needs to be normalized using 5 different methods (**Min-Max Normalization**, **Z-Score Normalization**, **Max Absolute Scaling**, **L1 Norm Normalization**, **L2 Norm Normalization**) due to significant differences in feature values initially.
+The data needs to be normalized using 5 different methods, due to significant differences in feature values initially:
 
-> X_new = (X_old-min(X_old)) / (max(X_old)-min(X_old))
->
-> X_new = (X_old - mean(X_old)) / sd(X_old)
->
-> X_new = X_old / max(abs(X_old))
->
-> X_new = X_old / sum(abs(X_old))
->
-> X_new = X_old / sqrt(sum(X_old^2))
+- **Min-Max Normalization** 
+
+  $X_{new}=\frac{X_{old}-\min(X_{old})}{\max(X_{old})-\min(x_{old})}$
+
+- **Z-Score Normalization**
+  
+  $X_{new}=\frac{X_{old}-\bar{X}_{old})}{\sigma_{X_{old}}}$
+
+- **Max Absolute Scaling**
+
+  $X_{new}=\frac{X_{old}}{\max(|X_{old}|)}$
+
+- **L1 Norm Normalization**
+
+  $X_{new}=\frac{X_{old}}{\sum|X_{old}|}$
+
+- **L2 Norm Normalization**
+
+  $X_{new}=\frac{X_{old}}{\sqrt{\sum(X_{old}^2))}}$
 
 ### Evaluation
 Evaluate the test set and calculate four metrics (accuracy, recall, precision, F1).
@@ -249,19 +259,22 @@ Plants are an essential component to an ecosystem’s functionality, so it is cr
 
 The table [@vanderColff2023] below organizes and summarizes the explanatory variables. 
 
-| Class                | Predictor Variables       | Description                                                                                                                                                        |
-|----------------------|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Human pressures**  | Habitat loss              | Conversion, fragmentation, and/or elimination of habitat. e.g., logging, wood harvesting, livestock farming, urban development.                                    |
-|                      | Habitat degradation       | Alteration of natural habitats necessary for species survival resulting in reduced functionality e.g., fire suppression, droughts.                                  |
-|                      | Invasive species          | Impacts of alien species on natives through different mechanisms e.g. alteration of soil chemistry, resource competition.                                          |
-|                      | Pollution                 | Pollutants entering the natural environment e.g., air-borne pollutants, waste.                                                                                     |
-|                      | Over-exploitation         | Excessive use of species causing decreases in viable populations e.g. overharvesting.                                                                              |
-|                      | Other                     | Intrinsic factors, changes in native taxa dynamics, human disturbance, natural disasters.                                                                          |
-|                      | Unknown                   | N/A                                                                                                                                                                |
-| **Biological traits**| Life form (LF)            | Annual or perennial                                                                                                                                                |
-|                      | Growth form (GF)          | One of 14 distinct forms: Parasitic plant, Tree, Shrub, Suffrutex, Herb, Lithophyte, Succulent, Graminoid, Geophyte, Climber, Carnivorous, Cyperoid, Creeper, Epiphyte. |
-| **Distribution state**| Biomes                    | One of nine biomes present in South Africa: Fynbos, Grassland, Succulent Karoo, Albany Thicket, Savanna, Forest, Nama Karoo, Desert, Indian Ocean Coastal Belt. Note: if a taxon was found in multiple biomes, it was marked as generalist. |
-|                      | Range size                | All species range sizes are based on the standard measure of Extent of Occurrence (EOO), a parameter defined as the shortest continuous imaginary boundary that can be drawn to encompass all the known, inferred, or projected sites of present occurrence of a taxon. |
+| **Type of Variable** | **Variable Name**    | **Description**                                                                                                              | **Range of Values** |
+|----------------------|----------------------|------------------------------------------------------------------------------------------------------------------------------|---------------------|
+| **Binary**           | Habitat loss         | Conversion, fragmentation, and/or elimination of habitat. e.g., logging, wood harvesting, livestock farming, urban development.| (No, Yes)               |
+|                      | Habitat degradation  | Alteration of natural habitats necessary for species survival resulting in reduced functionality e.g., fire suppression, droughts.| (No, Yes)               |
+|                      | Invasive species     | Impacts of alien species on natives through different mechanisms e.g. alteration of soil chemistry, resource competition.     | (No, Yes)               |
+|                      | Pollution            | Pollutants entering the natural environment e.g., air-borne pollutants, waste.                                               | (No, Yes)               |
+|                      | Over-exploitation    | Excessive use of species causing decreases in viable populations e.g. overharvesting.                                         | (No, Yes)               |
+|                      | Other                | Intrinsic factors, changes in native taxa dynamics, human disturbance, natural disasters.                                     | (No, Yes)               |
+|                      | Unknown              | N/A                                                                                                                          | (No, Yes)               |
+| **Categorical**      | Life form (LF)       | Annual or perennial                                                                                                           | (No, Yes)               |
+|                      | Growth form (GF)     | One of 14 distinct forms: Parasitic plant, Tree, Shrub, Suffrutex, Herb, Lithophyte, Succulent, Graminoid, Geophyte, Climber, Carnivorous, Cyperoid, Creeper, Epiphyte.| (0,14)            |
+|                      | Biomes               | One of nine biomes present in South Africa: Fynbos, Grassland, Succulent Karoo, Albany Thicket, Savanna, Forest, Nama Karoo, Desert, Indian Ocean Coastal Belt. *Note: if a taxon was found in multiple biomes it was marked as generalist. | (0,9)            |
+| **Continuous**       | Range size           | All species range sizes are based on the standard measure of Extent of Occurrence (EOO), a parameter defined as the shortest continuous imaginary boundary that can be drawn to encompass all the known, inferred, or projected sites of present occurrence of a taxon. | (1,1855022)       |
+| **Descriptive**      | Family               | Taxonomic categorization                                                                                                      | Not used in analysis |
+|                      | Status               | Current Red List Category Designation                                                                                         | Not used in analysis |
+| **Target**           | Group                | Threatened, Not Threatened, or Extinct                                                                                        | (0,3)               |
 
 ### The preview of the dataset
 #### Import packages
@@ -296,6 +309,16 @@ ggplot(data, aes(x = factor(Status), fill = factor(Status))) +
 ```
 The bar plot "Barplot of Status" shows how often different statuses occur. Each bar represents a specific status category. The plot clearly shows that the dataset is seriously unbalanced. One category, marked as 'LC', drastically outnumbers the others with a frequency that surpasses 500. The imbalance could mess up any analysis or predictive modeling that uses this data, as the models might get all biased towards the 'LC' status because it happens so often. To effectively tackle the issue of data imbalance, we might need to use certain techniques for resampling the data that can boost the representation of underrepresented classes or balance out the dominance of the overrepresented class. By implementing these strategies, we ensure that any insights or models derived from our analysis reflect a more balanced dataset, avoiding any bias caused by imbalanced data. In order to achieve this goal, we have chosen to utilize the ROSE package—a tool specifically designed for addressing imbalances in datasets. With its advanced methods for generating synthetic data and resampling, ROSE enables us to achieve a fairer distribution of classes and thereby enhance the reliability and validity of our analytical outcomes.
 
+### CramerV Corrplot
+
+```{r}
+data <- read_csv("All_threat_data.csv")
+corrDFRange <- data %>% select(Group, LF, GF, Fam, Biomes, Range, Habitat_degradation, Habitat_loss, IAS, Other, Over_exploitation, Pollution, Unknown)
+corrDFRange <- corrDFRange %>% mutate(Range=ntile(Range, n=20))
+corrplot::corrplot(DescTools::PairApply(corrDFRange,DescTools::CramerV), type='lower')
+```
+The Cramer’s V plot demonstrates associations between features, similar to a correlation plot but can be used for categorical features.    Range was binned into 20 categories so that it could be compared.   The results show that the Group feature is most strongly associated with Range, Family, Habitat Loss, Biome, and GF.   Features associated with the target for prediction are often the most important features, but colinearity may also exist.   For this dataset, Range does not appear to be colinear with Group. 
+
 ### Distribution of Range by Conservation Status
 ```{r}
 ggplot(data = data, aes(x = Status, y = Range, fill = Status)) +
@@ -303,7 +326,7 @@ ggplot(data = data, aes(x = Status, y = Range, fill = Status)) +
   theme_bw() +
   ylim(0,100000)
 ```
-TODO: descirptions
+This boxplot displays the geographical range sizes of species grouped by conservation status, with categories like Critically Endangered (CR), Endangered (EN), and Vulnerable (VU), among others. It succinctly summarizes the distribution of species' range sizes for each conservation category. The vertical axis shows the range size, while the horizontal axis lists the conservation statuses. Each boxplot shows the median, interquartile range, and outliers for range sizes within each category. The Endangered (EN) category exhibits the broadest range of sizes, while Extinct (EX) species show very limited ranges.
 
 ### Distribution of Categorical Variables
 ```{r}
@@ -330,7 +353,7 @@ ggplot(DV,aes(x=ExpVariable,y=Value, fill=Value)) +
   theme_bw()
 
 ```
-TODO: descirptions
+This bar chart titled "Distribution of Categorical Variables" shows the frequency of yes/no responses for different environmental factors. The vertical axis represents frequency, and the horizontal axis lists the factors: Degradation, Exploitation, IAS (Invasive Alien Species), Loss, Other, Pollution, and Unknown. The colors indicate the presence (Yes in darker shade) or absence (No in lighter shade) of each factor. This visualization allows for a quick assessment of which factors are most frequently reported.
 
 # Statistical Modeling
 ## Packages
@@ -772,6 +795,6 @@ grid.arrange(plt1, plt2, nrow = 1, ncol = 2,
 
 ```
 ## Conclusion
-Random Forest is a powerful and flexible machine learning algorithm that can be used for a wide range of tasks. It is particularly useful when dealing with complex data composed of a large number of features, and when the goal is to achieve high predictive accuracy while avoiding overfitting. The algorithm incorporates versatility in its capabilities for classification and regression tasks, handling missing data, and displaying robustness when faced with outliers and noisy data.
-Most extinctions were perennial shrubs found in the Cape Floristic Region. As range was the strongest predictor of extinction, many of the recorded taxa deemed susceptible were range-restricted. Habitat loss is presented as the second strongest variable of importance in predicting plant extinctions. Predictions were based on a quantitative, evidence-based approach, though gaps in knowledge highlighted areas for further study. Improved species monitoring and documentation of threat factors will aid in a deeper understanding of the ecological role and value of South African plant species.
-## References
+Random Forest is a powerful and flexible machine learning algorithm that can be used for a wide range of tasks. It is particularly useful when dealing with complex data composed of a large number of features and when the goal is to achieve high predictive accuracy while avoiding overfitting. The algorithm incorporates versatility in its capabilities for classification and regression tasks, handling missing data, and displaying robustness when faced with outliers and noisy data.
+
+We produced a predictive model with 88% accuracy, indicating that our explanatory variables were able to differentiate between non threatened, threatened, and extinct taxa. Extinct species were classified with 100% specificity and 70% sensitivity. Most extinctions were perennial shrubs found in the Cape Floristic Region, a global biodiversity hotspot. As range was the strongest predictor of extinction, many of the recorded taxa deemed susceptible were range-restricted. Habitat loss is presented as the second strongest variable of importance in predicting plant extinctions. Predictions were based on a quantitative, evidence-based approach, though gaps in knowledge highlighted areas for further study. Improved species monitoring and documentation of threat factors will aid in a deeper understanding of the ecological role and value of South African plant species.
