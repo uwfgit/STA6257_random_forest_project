@@ -365,7 +365,7 @@ ggplot(DV,aes(x=ExpVariable,y=Value, fill=Value)) +
   theme_bw()
 
 ```
-This bar chart titled "Distribution of Categorical Variables" shows the frequency of yes/no responses for different environmental factors. The vertical axis represents frequency, and the horizontal axis lists the factors: Degradation, Exploitation, IAS (Invasive Alien Species), Loss, Other, Pollution, and Unknown. The colors indicate the presence (Yes in darker shade) or absence (No in lighter shade) of each factor. This visualization allows for a quick assessment of which factors are most frequently reported.
+This bar chart shows the frequency of yes/no responses for different environmental factors. The vertical axis represents frequency, and the horizontal axis lists the factors: Degradation, Exploitation, IAS (Invasive Alien Species), Loss, Other, Pollution, and Unknown. The colors indicate the presence (Yes in darker shade) or absence (No in lighter shade) of each factor. This visualization allows for a quick assessment of which factors are most frequently reported.
 
 # Statistical Modeling
 ## Packages
