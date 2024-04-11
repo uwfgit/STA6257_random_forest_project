@@ -312,10 +312,22 @@ The bar plot "Barplot of Status" shows how often different statuses occur. Each 
 ### CramerV Corrplot
 
 ```{r}
-data <- read_csv("All_threat_data.csv")
-corrDFRange <- data %>% select(Group, LF, GF, Fam, Biomes, Range, Habitat_degradation, Habitat_loss, IAS, Other, Over_exploitation, Pollution, Unknown)
-corrDFRange <- corrDFRange %>% mutate(Range=ntile(Range, n=20))
-corrplot::corrplot(DescTools::PairApply(corrDFRange,DescTools::CramerV), type='lower')
+library(tidyverse)
+library(magrittr)
+library(fastDummies)
+library(caret)
+library(randomForest)
+library(corrplot)
+library(DescTools)
+
+train<-read.csv("All_threat_data.csv")
+corrDF <- train %>% mutate(Range=ntile(Range, n=20))
+corrDF <- corrDF %>% mutate(across(c("Group","LF","GF","Range","Biomes","Range",
+                                     "Habitat_degradation","Habitat_loss",
+                                     "IAS","Other","Over_exploitation",
+                                     "Pollution","Unknown"),as_factor))
+
+corrplot::corrplot(DescTools::PairApply(corrDF,DescTools::CramerV), type='lower')
 ```
 The Cramer’s V plot demonstrates associations between features, similar to a correlation plot but can be used for categorical features.    Range was binned into 20 categories so that it could be compared.   The results show that the Group feature is most strongly associated with Range, Family, Habitat Loss, Biome, and GF.   Features associated with the target for prediction are often the most important features, but colinearity may also exist.   For this dataset, Range does not appear to be colinear with Group. 
 
