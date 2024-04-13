@@ -3571,8 +3571,6 @@ G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n^2\bar{x}}
 </table>
 <section id="the-preview-of-the-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="the-preview-of-the-dataset">The preview of the dataset</h3>
-<section id="import-packages" class="level4">
-<h4 class="anchored" data-anchor-id="import-packages">Import packages</h4>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3616,9 +3614,8 @@ G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n^2\bar{x}}
 </div>
 <p>The bar plot “Barplot of Status” shows how often different statuses occur. Each bar represents a specific status category. The plot clearly shows that the dataset is seriously unbalanced. One category, marked as ‘LC’, drastically outnumbers the others with a frequency that surpasses 500. The imbalance could mess up any analysis or predictive modeling that uses this data, as the models might get all biased towards the ‘LC’ status because it happens so often. To effectively tackle the issue of data imbalance, we might need to use certain techniques for resampling the data that can boost the representation of underrepresented classes or balance out the dominance of the overrepresented class. By implementing these strategies, we ensure that any insights or models derived from our analysis reflect a more balanced dataset, avoiding any bias caused by imbalanced data. In order to achieve this goal, we have chosen to utilize the ROSE package—a tool specifically designed for addressing imbalances in datasets. With its advanced methods for generating synthetic data and resampling, ROSE enables us to achieve a fairer distribution of classes and thereby enhance the reliability and validity of our analytical outcomes.</p>
 </section>
-</section>
-<section id="ggcorrplot" class="level3">
-<h3 class="anchored" data-anchor-id="ggcorrplot">Ggcorrplot</h3>
+<section id="pollution-and-habitat_loss-relationships" class="level3">
+<h3 class="anchored" data-anchor-id="pollution-and-habitat_loss-relationships">“Pollution” and “Habitat_loss” relationships</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3649,7 +3646,7 @@ G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n^2\bar{x}}
 </div>
 </div>
 </div>
-<p>The image is a ggcorrplot, which is basically a fancy way of visualizing how different ecological factors like “Pollution” and “Habitat_loss” are related to each other. The colors in the plot show us how strong these relationships are, with red indicating positive correlation. Oh, and that diagonal line? It just tells us that when we compare variables to themselves, they have a perfect positive correlation.</p>
+<p>The image is a ggcorrplot, which is basically a fancy way of visualizing how different ecological factors like “Pollution” and “Habitat_loss” are related to each other. The colors in the plot show us how strong these relationships are, with red indicating positive correlation. Oh, and that diagonal line? It just tells us that when we compare variables to themselves, they have a perfect positive correlation. The squares in this heatmap show how the variables on the x and y axes are related. A correlation of 1 means they have a perfect positive relationship, -1 means they have a perfect negative relationship, and 0 means there’s no relationship at all. The colors represent the strength and direction of the correlations: red shades mean there’s a positive correlation, blue shades mean there’s a negative correlation, and the intensity of the color shows how strong the correlation is. The variables used here are related to ecology and biology, like “Pollution”, “Over_exploitation”, “Habitat_loss”, and “Biomes”. This suggests that this heatmap is analyzing environmental or ecological data. The diagonal line from top left to bottom right represents each variable’s correlation with itself, which is always 1.</p>
 </section>
 <section id="distribution-of-range-by-conservation-status" class="level3">
 <h3 class="anchored" data-anchor-id="distribution-of-range-by-conservation-status">Distribution of Range by Conservation Status</h3>
