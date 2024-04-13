@@ -3649,7 +3649,7 @@ G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n^2\bar{x}}
 </div>
 </div>
 </div>
-<p>The Cramer’s V plot demonstrates associations between features, similar to a correlation plot but can be used for categorical features. Range was binned into 20 categories so that it could be compared. The results show that the Group feature is most strongly associated with Range, Family, Habitat Loss, Biome, and GF. Features associated with the target for prediction are often the most important features, but colinearity may also exist. For this dataset, Range does not appear to be colinear with Group.</p>
+<p>The image is a ggcorrplot, which is basically a fancy way of visualizing how different ecological factors like “Pollution” and “Habitat_loss” are related to each other. The colors in the plot show us how strong these relationships are, with red indicating positive correlation. Oh, and that diagonal line? It just tells us that when we compare variables to themselves, they have a perfect positive correlation.</p>
 </section>
 <section id="distribution-of-range-by-conservation-status" class="level3">
 <h3 class="anchored" data-anchor-id="distribution-of-range-by-conservation-status">Distribution of Range by Conservation Status</h3>
@@ -3669,7 +3669,7 @@ G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n^2\bar{x}}
 </div>
 </div>
 </div>
-<p>This boxplot displays the geographical range sizes of species grouped by conservation status, with categories like Critically Endangered (CR), Endangered (EN), and Vulnerable (VU), among others. It succinctly summarizes the distribution of species’ range sizes for each conservation category. The vertical axis shows the range size, while the horizontal axis lists the conservation statuses. Each boxplot shows the median, interquartile range, and outliers for range sizes within each category. The Endangered (EN) category exhibits the broadest range of sizes, while Extinct (EX) species show very limited ranges.</p>
+<p>The boxplot here shows the sizes of species’ habitats based on their conservation status, like Critically Endangered (CR), Endangered (EN), and Vulnerable (VU). It basically tells us how big or small the habitats are for each category. On the vertical axis, we have the habitat size, while on the horizontal axis, we see different conservation statuses. Each boxplot gives us an idea about the middle value, range between 25th and 75th percentiles, and any unusual values within each category’s habitat sizes. Among all categories, Endangered (EN) species have a wide variety of habitat sizes, but Extinct (EX) ones have very limited ranges.</p>
 </section>
 <section id="distribution-of-categorical-variables" class="level3">
 <h3 class="anchored" data-anchor-id="distribution-of-categorical-variables">Distribution of Categorical Variables</h3>
@@ -3706,7 +3706,7 @@ G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n^2\bar{x}}
 </div>
 </div>
 </div>
-<p>This bar chart shows the frequency of yes/no responses for different environmental factors. The vertical axis represents frequency, and the horizontal axis lists the factors: Degradation, Exploitation, IAS (Invasive Alien Species), Loss, Other, Pollution, and Unknown. The colors indicate the presence (Yes in darker shade) or absence (No in lighter shade) of each factor. This visualization allows for a quick assessment of which factors are most frequently reported.</p>
+<p>This bar chart shows how often different environmental factors are reported, with the vertical axis representing frequency and the horizontal axis listing the factors: Degradation, Exploitation, IAS (Invasive Alien Species), Loss, Other, Pollution, and Unknown. The colors indicate whether each factor is present (darker shade for Yes) or absent (lighter shade for No). This visualization lets you quickly see which factors are most commonly reported.</p>
 </section>
 </section>
 </section>

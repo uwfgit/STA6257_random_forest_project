@@ -331,7 +331,8 @@ corrDF <- corrDF %>% select(!GenSpec) %>% mutate(across(c("Group","LF","GF","Ran
 
 ggcorrplot::ggcorrplot(DescTools::PairApply(corrDF,DescTools::CramerV), type='lower')
 ```
-The image is a ggcorrplot, which is basically a fancy way of visualizing how different ecological factors like "Pollution" and "Habitat_loss" are related to each other. The colors in the plot show us how strong these relationships are, with red indicating positive correlation. Oh, and that diagonal line? It just tells us that when we compare variables to themselves, they have a perfect positive correlation.
+The image is a ggcorrplot, which is basically a fancy way of visualizing how different ecological factors like "Pollution" and "Habitat_loss" are related to each other. The colors in the plot show us how strong these relationships are, with red indicating positive correlation. Oh, and that diagonal line? It just tells us that when we compare variables to themselves, they have a perfect positive correlation. 
+The squares in this heatmap show how the variables on the x and y axes are related. A correlation of 1 means they have a perfect positive relationship, -1 means they have a perfect negative relationship, and 0 means there's no relationship at all. The colors represent the strength and direction of the correlations: red shades mean there's a positive correlation, blue shades mean there's a negative correlation, and the intensity of the color shows how strong the correlation is. The variables used here are related to ecology and biology, like "Pollution", "Over_exploitation", "Habitat_loss", and "Biomes". This suggests that this heatmap is analyzing environmental or ecological data. The diagonal line from top left to bottom right represents each variable's correlation with itself, which is always 1.
 
 ### Distribution of Range by Conservation Status
 ```{r}
