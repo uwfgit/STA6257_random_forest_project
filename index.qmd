@@ -309,7 +309,7 @@ ggplot(data, aes(x = factor(Status), fill = factor(Status))) +
 ```
 The bar plot "Barplot of Status" shows how often different statuses occur. Each bar represents a specific status category. The plot clearly shows that the dataset is seriously unbalanced. One category, marked as 'LC', drastically outnumbers the others with a frequency that surpasses 500. The imbalance could mess up any analysis or predictive modeling that uses this data, as the models might get all biased towards the 'LC' status because it happens so often. To effectively tackle the issue of data imbalance, we might need to use certain techniques for resampling the data that can boost the representation of underrepresented classes or balance out the dominance of the overrepresented class. By implementing these strategies, we ensure that any insights or models derived from our analysis reflect a more balanced dataset, avoiding any bias caused by imbalanced data. In order to achieve this goal, we have chosen to utilize the ROSE package—a tool specifically designed for addressing imbalances in datasets. With its advanced methods for generating synthetic data and resampling, ROSE enables us to achieve a fairer distribution of classes and thereby enhance the reliability and validity of our analytical outcomes.
 
-### CramerV Corrplot
+### Ggcorrplot
 
 ```{r}
 library(tidyverse)
@@ -319,17 +319,19 @@ library(caret)
 library(randomForest)
 library(corrplot)
 library(DescTools)
+library(ggcorrplot)
 
 train<-read.csv("All_threat_data.csv")
 corrDF <- train %>% mutate(Range=ntile(Range, n=20))
-corrDF <- corrDF %>% mutate(across(c("Group","LF","GF","Range","Biomes","Range",
-                                     "Habitat_degradation","Habitat_loss",
-                                     "IAS","Other","Over_exploitation",
-                                     "Pollution","Unknown"),as_factor))
+corrDF <- corrDF %>% select(!GenSpec) %>% mutate(across(c("Group","LF","GF","Range",
+                                     "Biomes","Range","Habitat_degradation",
+                                     "Habitat_loss","IAS","Other",
+                                     "Over_exploitation","Pollution","Unknown"),
+                                     as_factor))
 
-corrplot::corrplot(DescTools::PairApply(corrDF,DescTools::CramerV), type='lower')
+ggcorrplot::ggcorrplot(DescTools::PairApply(corrDF,DescTools::CramerV), type='lower')
 ```
-The Cramer’s V plot demonstrates associations between features, similar to a correlation plot but can be used for categorical features.    Range was binned into 20 categories so that it could be compared.   The results show that the Group feature is most strongly associated with Range, Family, Habitat Loss, Biome, and GF.   Features associated with the target for prediction are often the most important features, but colinearity may also exist.   For this dataset, Range does not appear to be colinear with Group. 
+The image is a ggcorrplot, which is basically a fancy way of visualizing how different ecological factors like "Pollution" and "Habitat_loss" are related to each other. The colors in the plot show us how strong these relationships are, with red indicating positive correlation. Oh, and that diagonal line? It just tells us that when we compare variables to themselves, they have a perfect positive correlation.
 
 ### Distribution of Range by Conservation Status
 ```{r}
@@ -338,7 +340,7 @@ ggplot(data = data, aes(x = Status, y = Range, fill = Status)) +
   theme_bw() +
   ylim(0,100000)
 ```
-This boxplot displays the geographical range sizes of species grouped by conservation status, with categories like Critically Endangered (CR), Endangered (EN), and Vulnerable (VU), among others. It succinctly summarizes the distribution of species' range sizes for each conservation category. The vertical axis shows the range size, while the horizontal axis lists the conservation statuses. Each boxplot shows the median, interquartile range, and outliers for range sizes within each category. The Endangered (EN) category exhibits the broadest range of sizes, while Extinct (EX) species show very limited ranges.
+The boxplot here shows the sizes of species' habitats based on their conservation status, like Critically Endangered (CR), Endangered (EN), and Vulnerable (VU). It basically tells us how big or small the habitats are for each category. On the vertical axis, we have the habitat size, while on the horizontal axis, we see different conservation statuses. Each boxplot gives us an idea about the middle value, range between 25th and 75th percentiles, and any unusual values within each category's habitat sizes. Among all categories, Endangered (EN) species have a wide variety of habitat sizes, but Extinct (EX) ones have very limited ranges.
 
 ### Distribution of Categorical Variables
 ```{r}
@@ -365,7 +367,7 @@ ggplot(DV,aes(x=ExpVariable,y=Value, fill=Value)) +
   theme_bw()
 
 ```
-This bar chart shows the frequency of yes/no responses for different environmental factors. The vertical axis represents frequency, and the horizontal axis lists the factors: Degradation, Exploitation, IAS (Invasive Alien Species), Loss, Other, Pollution, and Unknown. The colors indicate the presence (Yes in darker shade) or absence (No in lighter shade) of each factor. This visualization allows for a quick assessment of which factors are most frequently reported.
+This bar chart shows how often different environmental factors are reported, with the vertical axis representing frequency and the horizontal axis listing the factors: Degradation, Exploitation, IAS (Invasive Alien Species), Loss, Other, Pollution, and Unknown. The colors indicate whether each factor is present (darker shade for Yes) or absent (lighter shade for No). This visualization lets you quickly see which factors are most commonly reported.
 
 # Statistical Modeling
 ## Packages
