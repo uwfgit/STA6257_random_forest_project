@@ -252,28 +252,27 @@ Data Source: **Mendeley Data**
 [Species data used in Random Forest modelling to determine predictors of extinction](https://data.mendeley.com/datasets/tc6syk8vwf/1)
 
 **Description**
-
-Data was extracted from the South African Red [@SANBI2021] List database to compile a profile for plant extinctions. South Africa offers a wide array of biodiversity and estimates over 22,000 plant taxa. The International Union for Conservation of Nature’s (IUCN) [@IUCN2023] Red List of Threatened Species provides a standardized method to document and assess extinctions (IUCN 2023). Species are classified into one of the following groups: Extinct (EX), Extinct in the wild (EW), Critically endangered possibly extinct (CR PE), Critically endangered (CR), Endangered (EN), Vulnerable (VU), Near threatened (NT), Conservation dependent (CD), Least concern (LC), and Data deficient (DD).
+Data was extracted from the South African Red List database [@SANBI2021] to compile a profile for plant extinctions. South Africa offers a wide array of biodiversity and estimates over 22,000 plant taxa. The International Union for Conservation of Nature’s (IUCN) [@IUCN2023] Red List of Threatened Species provides a standardized method to document and assess extinctions (IUCN 2023). Species are classified into one of the following groups: Extinct (EX), Extinct in the wild (EW), Critically endangered possibly extinct (CR PE), Critically endangered (CR), Endangered (EN), Vulnerable (VU), Near threatened (NT), Conservation dependent (CD), Least concern (LC), and Data deficient (DD).
 
 Plants are an essential component to an ecosystem’s functionality, so it is critical to evaluate drivers of extinction and determine methods of prevention. To examine potential indicators for extinctions, extinct, threatened, and non-threatened taxa are compared to identify and/or distinguish traits that may be associated with risk or vulnerability. The final dataset comprises 842 extant taxa, 33 Extinct taxa, and 69 Possibly Extinct (CR PE) taxa, to total 944 species. 
 
-The table [@vanderColff2023] below organizes and summarizes the explanatory variables. 
+The table below organizes and summarizes the explanatory variables. 
 
 | **Type of Variable** | **Variable Name**    | **Description**                                                                                                              | **Range of Values** |
 |----------------------|----------------------|------------------------------------------------------------------------------------------------------------------------------|---------------------|
-| **Binary**           | Habitat loss         | Conversion, fragmentation, and/or elimination of habitat. e.g., logging, wood harvesting, livestock farming, urban development.| (No, Yes)               |
-|                      | Habitat degradation  | Alteration of natural habitats necessary for species survival resulting in reduced functionality e.g., fire suppression, droughts.| (No, Yes)               |
-|                      | Invasive species     | Impacts of alien species on natives through different mechanisms e.g. alteration of soil chemistry, resource competition.     | (No, Yes)               |
-|                      | Pollution            | Pollutants entering the natural environment e.g., air-borne pollutants, waste.                                               | (No, Yes)               |
-|                      | Over-exploitation    | Excessive use of species causing decreases in viable populations e.g. overharvesting.                                         | (No, Yes)               |
-|                      | Other                | Intrinsic factors, changes in native taxa dynamics, human disturbance, natural disasters.                                     | (No, Yes)               |
-|                      | Unknown              | N/A                                                                                                                          | (No, Yes)               |
-| **Categorical**      | Life form (LF)       | Annual or perennial                                                                                                           | (No, Yes)               |
+| **Binary**           | Habitat loss         | Conversion, fragmentation, and/or elimination of habitat. e.g., logging, wood harvesting, livestock farming, urban development.| (0, 1)               |
+|                      | Habitat degradation  | Alteration of natural habitats necessary for species survival resulting in reduced functionality e.g., fire suppression, droughts.| (0, 1)               |
+|                      | Invasive species     | Impacts of alien species on natives through different mechanisms e.g. alteration of soil chemistry, resource competition.     | (0, 1)               |
+|                      | Pollution            | Pollutants entering the natural environment e.g., air-borne pollutants, waste.                                               | (0, 1)               |
+|                      | Over-exploitation    | Excessive use of species causing decreases in viable populations e.g. overharvesting.                                         | (0, 1)               |
+|                      | Other                | Intrinsic factors, changes in native taxa dynamics, human disturbance, natural disasters.                                     | (0, 1)               |
+|                      | Unknown              | N/A                                                                                                                          | (0, 1)               |
+| **Categorical**      | Life form (LF)       | Annual or perennial                                                                                                           | (0, 1)               |
 |                      | Growth form (GF)     | One of 14 distinct forms: Parasitic plant, Tree, Shrub, Suffrutex, Herb, Lithophyte, Succulent, Graminoid, Geophyte, Climber, Carnivorous, Cyperoid, Creeper, Epiphyte.| (0,14)            |
 |                      | Biomes               | One of nine biomes present in South Africa: Fynbos, Grassland, Succulent Karoo, Albany Thicket, Savanna, Forest, Nama Karoo, Desert, Indian Ocean Coastal Belt. *Note: if a taxon was found in multiple biomes it was marked as generalist. | (0,9)            |
 | **Continuous**       | Range size           | All species range sizes are based on the standard measure of Extent of Occurrence (EOO), a parameter defined as the shortest continuous imaginary boundary that can be drawn to encompass all the known, inferred, or projected sites of present occurrence of a taxon. | (1,1855022)       |
-| **Descriptive**      | Family               | Taxonomic categorization                                                                                                      | Not used in analysis |
-|                      | Status               | Current Red List Category Designation                                                                                         | Not used in analysis |
+| **Descriptive**      | Family               | Taxonomic categorization                                                                                                      | (1, 104) |
+|                      | Status               | Current Red List Category Designation                                                                                         | (1, 11) |
 | **Target**           | Group                | Threatened, Not Threatened, or Extinct                                                                                        | (0,3)               |
 
 ### The preview of the dataset

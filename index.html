@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kristen Monaco, Praya Cheekapara, Raymond Fleming, Teng Ma">
-<meta name="dcterms.date" content="2024-04-13">
+<meta name="dcterms.date" content="2024-04-15">
 
 <title>Predicting Plant Extinctions Using the Random Forest Algorithm</title>
 <style>
@@ -3253,7 +3253,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 13, 2024</p>
+      <p class="date">April 15, 2024</p>
     </div>
   </div>
   
@@ -3463,10 +3463,9 @@ G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n^2\bar{x}}
 <h2 class="anchored" data-anchor-id="data-and-visualization">Data and Visualization</h2>
 <p>Data Source: <strong>Mendeley Data</strong></p>
 <p><a href="https://data.mendeley.com/datasets/tc6syk8vwf/1">Species data used in Random Forest modelling to determine predictors of extinction</a></p>
-<p><strong>Description</strong></p>
-<p>Data was extracted from the South African Red <span class="citation" data-cites="SANBI2021">(<a href="#ref-SANBI2021" role="doc-biblioref"><strong>SANBI2021?</strong></a>)</span> List database to compile a profile for plant extinctions. South Africa offers a wide array of biodiversity and estimates over 22,000 plant taxa. The International Union for Conservation of Nature’s (IUCN) <span class="citation" data-cites="IUCN2023">(<a href="#ref-IUCN2023" role="doc-biblioref"><span>“The IUCN Red List of Threatened Species. Version 2023-1”</span> 2023</a>)</span> Red List of Threatened Species provides a standardized method to document and assess extinctions (IUCN 2023). Species are classified into one of the following groups: Extinct (EX), Extinct in the wild (EW), Critically endangered possibly extinct (CR PE), Critically endangered (CR), Endangered (EN), Vulnerable (VU), Near threatened (NT), Conservation dependent (CD), Least concern (LC), and Data deficient (DD).</p>
+<p><strong>Description</strong> Data was extracted from the South African Red List database <span class="citation" data-cites="SANBI2021">(<a href="#ref-SANBI2021" role="doc-biblioref"><span>“Red List of South African Plants,”</span> n.d.</a>)</span> to compile a profile for plant extinctions. South Africa offers a wide array of biodiversity and estimates over 22,000 plant taxa. The International Union for Conservation of Nature’s (IUCN) <span class="citation" data-cites="IUCN2023">(<a href="#ref-IUCN2023" role="doc-biblioref"><span>“The IUCN Red List of Threatened Species. Version 2023-1”</span> 2023</a>)</span> Red List of Threatened Species provides a standardized method to document and assess extinctions (IUCN 2023). Species are classified into one of the following groups: Extinct (EX), Extinct in the wild (EW), Critically endangered possibly extinct (CR PE), Critically endangered (CR), Endangered (EN), Vulnerable (VU), Near threatened (NT), Conservation dependent (CD), Least concern (LC), and Data deficient (DD).</p>
 <p>Plants are an essential component to an ecosystem’s functionality, so it is critical to evaluate drivers of extinction and determine methods of prevention. To examine potential indicators for extinctions, extinct, threatened, and non-threatened taxa are compared to identify and/or distinguish traits that may be associated with risk or vulnerability. The final dataset comprises 842 extant taxa, 33 Extinct taxa, and 69 Possibly Extinct (CR PE) taxa, to total 944 species.</p>
-<p>The table <span class="citation" data-cites="vanderColff2023">(<a href="#ref-vanderColff2023" role="doc-biblioref"><strong>vanderColff2023?</strong></a>)</span> below organizes and summarizes the explanatory variables.</p>
+<p>The table below organizes and summarizes the explanatory variables.</p>
 <table class="table">
 <colgroup>
 <col style="width: 11%">
@@ -3487,49 +3486,49 @@ G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n^2\bar{x}}
 <td><strong>Binary</strong></td>
 <td>Habitat loss</td>
 <td>Conversion, fragmentation, and/or elimination of habitat. e.g., logging, wood harvesting, livestock farming, urban development.</td>
-<td>(No, Yes)</td>
+<td>(0, 1)</td>
 </tr>
 <tr class="even">
 <td></td>
 <td>Habitat degradation</td>
 <td>Alteration of natural habitats necessary for species survival resulting in reduced functionality e.g., fire suppression, droughts.</td>
-<td>(No, Yes)</td>
+<td>(0, 1)</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td>Invasive species</td>
 <td>Impacts of alien species on natives through different mechanisms e.g. alteration of soil chemistry, resource competition.</td>
-<td>(No, Yes)</td>
+<td>(0, 1)</td>
 </tr>
 <tr class="even">
 <td></td>
 <td>Pollution</td>
 <td>Pollutants entering the natural environment e.g., air-borne pollutants, waste.</td>
-<td>(No, Yes)</td>
+<td>(0, 1)</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td>Over-exploitation</td>
 <td>Excessive use of species causing decreases in viable populations e.g. overharvesting.</td>
-<td>(No, Yes)</td>
+<td>(0, 1)</td>
 </tr>
 <tr class="even">
 <td></td>
 <td>Other</td>
 <td>Intrinsic factors, changes in native taxa dynamics, human disturbance, natural disasters.</td>
-<td>(No, Yes)</td>
+<td>(0, 1)</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td>Unknown</td>
 <td>N/A</td>
-<td>(No, Yes)</td>
+<td>(0, 1)</td>
 </tr>
 <tr class="even">
 <td><strong>Categorical</strong></td>
 <td>Life form (LF)</td>
 <td>Annual or perennial</td>
-<td>(No, Yes)</td>
+<td>(0, 1)</td>
 </tr>
 <tr class="odd">
 <td></td>
@@ -3553,13 +3552,13 @@ G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n^2\bar{x}}
 <td><strong>Descriptive</strong></td>
 <td>Family</td>
 <td>Taxonomic categorization</td>
-<td>Not used in analysis</td>
+<td>(1, 104)</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td>Status</td>
 <td>Current Red List Category Designation</td>
-<td>Not used in analysis</td>
+<td>(1, 11)</td>
 </tr>
 <tr class="even">
 <td><strong>Target</strong></td>
@@ -4885,6 +4884,9 @@ Probst, Philipp, and Anne-Laure Boulesteix. 2018. <span>“To Tune or Not to Tun
 </div>
 <div id="ref-arXiv:2401.10959" class="csl-entry" role="listitem">
 Rabah Ouali, Pascal Yim, Jean-Yves Dieulot. 2024. <span>“Machine Learning Classification of Power Converter Control Mode.”</span> <a href="https://arxiv.org/abs/2401.10959">https://arxiv.org/abs/2401.10959</a>.
+</div>
+<div id="ref-SANBI2021" class="csl-entry" role="listitem">
+<span>“Red List of South African Plants.”</span> n.d. <a href="http://redlist.sanbi.org/index.php">http://redlist.sanbi.org/index.php</a>.
 </div>
 <div id="ref-Ren2017research" class="csl-entry" role="listitem">
 Ren, Cheng, and Han. 2017. <span>“Research on Machine Learning Framework Based on Random Forest Algorithm.”</span> <em>AIP Conf. Proc</em> 1820 (1): 1–8. <a href="https://pubs.aip.org/aip/acp/article/1820/1/080020/886341/Research-on-machine-learning-framework-based-on">https://pubs.aip.org/aip/acp/article/1820/1/080020/886341/Research-on-machine-learning-framework-based-on</a>.
