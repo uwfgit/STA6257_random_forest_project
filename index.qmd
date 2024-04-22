@@ -16,68 +16,323 @@ editor:
   markdown: 
     wrap: 72
 ---
-[Quarto Slides](https://raymondfleming.github.io/RandomForestPresentation/#/title-slide)
+
+[Quarto Slides](slides.html)
 
 # Introduction
-Random Forest is a common ensemble method used to make predictions from a variety of dataset types. This is done by combining a number of diverse, but simpler decision tree models into an ensemble model which can be more accurate, but also more versatile.   In creating a normal random forest, each of the decision trees is created with a randomized subset of data, and a random subset of features, with the output of each tree combined into the output of the random forest. The benefits to building the model this way include the ability to handle missing data natively, dimensionality reduction or reducing the need to perform dimensionality reduction prior to modeling, and the structure of the forest can be used to estimate variable importance, which can then be utilized in training other models or feature engineering.  Given these benefits, and the ability to use complex datasets natively, Random Forests have gained popularity over time and are often used.
+
+Random Forest is a common ensemble method used to make predictions from
+a variety of dataset types. This is done by combining a number of
+diverse, but simpler decision tree models into an ensemble model which
+can be more accurate, but also more versatile. In creating a random
+forest, each of the decision trees is created with a randomized subset
+of data, and a random subset of features, with the output of each tree
+combined into the output of the random forest. The benefits to building
+the model this way include the ability to handle missing data natively,
+dimensionality reduction or reducing the need to perform dimensionality
+reduction prior to modeling, and the structure of the forest can be used
+to estimate variable importance, which can then be utilized in training
+other models or feature engineering. Given these benefits, and the
+ability to use complex datasets natively, Random Forests have gained
+popularity over time and are commonly used.
 
 # Literature Review
-The thesis [@arXiv:1407.7502] dives deep into a detailed analysis of random forests, which is an important machine learning algorithm. It aims to understand how they learn, how they work internally, and how easy they are to interpret. In the first part, it explores the creation of decision trees and their assembly into random forests, including their design and purpose. It also presents a study on the computational efficiency and scalability of random forests, with specific implementation insights from Scikit-Learn. The second part focuses on understanding how interpretable random forests are by examining the Mean Decrease Impurity measure - a key method for determining variable importance, especially in the context of multiway totally randomized trees under extensive or asymptotic conditions.
 
-Random Forest is a widely used machine learning method for analyzing high-dimensional data, loved for its flexibility and ability to identify important features. However, it often overlooks the intricate connections among features and how they collectively influence outcomes. The thesis [@arXiv:2304.02490] introduces two innovative approaches that tackle this issue: Mutual Forest Impact (MFI) and Mutual Impurity Reduction (MIR). MFI assesses the combined effect of features on outcomes, providing a more detailed understanding than correlation analysis. MIR takes this even further by integrating the relationship parameter with individual feature importance, incorporating testing procedures for selecting features based on statistical significance. Evaluations on simulated datasets and comparisons with existing feature selection methods demonstrate the potential of MFI and MIR in uncovering complex relationships between features and outcomes without any biases towards favoring features with many splits or high minor allele frequencies.
+The thesis [@arXiv:1407.7502] dives deep into a detailed analysis of
+random forests, which is an important machine learning algorithm. It
+aims to understand how they learn, how they work internally, and how
+easy they are to interpret. In the first part, it explores the creation
+of decision trees and their assembly into random forests, including
+their design and purpose. It also presents a study on the computational
+efficiency and scalability of random forests, with specific
+implementation insights from Scikit-Learn. The second part focuses on
+understanding how interpretable random forests are by examining the Mean
+Decrease Impurity measure - a key method for determining variable
+importance, especially in the context of multiway totally randomized
+trees under extensive or asymptotic conditions.
 
-The paper [@arXiv:2401.12667] introduces a new method for selecting features called ROBUST Weighted Score for Unbalanced data (ROWSU). It's specifically designed to deal with the problem of class imbalance in high-dimensional gene expression data when doing binary classification tasks. To tackle the challenge of imbalanced classes, ROWSU first balances out the dataset by creating synthetic data points for the minority class. Then it uses a greedy search to find the smallest set of genes that are important, and it introduces a unique weighted robust score that calculates how useful each gene is using support vector weights. This whole process results in a final set of genes that combines both high-scoring genes and those found through greedy search, making sure we select genes that can really tell our classes apart even if they're imbalanced. We tested ROWSU on six different gene expression datasets and compared its performance to other state-of-the-art feature selection techniques using accuracy and sensitivity metrics. We also visualized our results with boxplots and stability plots. Our findings show that ROWSU performs better than other methods at improving classifier effectiveness, as shown by its results with k nearest neighbors (kNN) and random forest (RF) classifiers.
+Random Forest is a widely used machine learning method for analyzing
+high-dimensional data, loved for its flexibility and ability to identify
+important features. However, it often overlooks the intricate
+connections among features and how they collectively influence outcomes.
+The thesis [@arXiv:2304.02490] introduces two innovative approaches that
+tackle this issue: Mutual Forest Impact (MFI) and Mutual Impurity
+Reduction (MIR). MFI assesses the combined effect of features on
+outcomes, providing a more detailed understanding than correlation
+analysis. MIR takes this even further by integrating the relationship
+parameter with individual feature importance, incorporating testing
+procedures for selecting features based on statistical significance.
+Evaluations on simulated datasets and comparisons with existing feature
+selection methods demonstrate the potential of MFI and MIR in uncovering
+complex relationships between features and outcomes without any biases
+towards favoring features with many splits or high minor allele
+frequencies.
 
-The main focus of this article [@arXiv:2401.10959] is to make sure that the electrical grid works properly by making energy providers follow the rules and specifications set by Transmission System Operators (TSOs). Since there are many different energy sources connected through power electronic inverters, it's crucial for them to choose between Grid Forming (GFM) and Grid Following (GFL) operating modes in order to maintain grid stability. This means that energy suppliers need to comply with these requirements. In this study, we compare various machine learning algorithms to classify converter control modes (GFL or GFM) using frequency-domain admittance from external measurements. While most algorithms can accurately identify known control structures, they struggle when faced with new modifications. However, the random forest algorithm stands out as it consistently performs well across different control configurations.
+The paper [@arXiv:2401.12667] introduces a new method for selecting
+features called ROBUST Weighted Score for Unbalanced data (ROWSU). It's
+specifically designed to deal with the problem of class imbalance in
+high-dimensional gene expression data when doing binary classification
+tasks. To tackle the challenge of imbalanced classes, ROWSU first
+balances out the dataset by creating synthetic data points for the
+minority class. Then it uses a greedy search to find the smallest set of
+genes that are important, and it introduces a unique weighted robust
+score that calculates how useful each gene is using support vector
+weights. This whole process results in a final set of genes that
+combines both high-scoring genes and those found through greedy search,
+making sure we select genes that can really tell our classes apart even
+if they're imbalanced. We tested ROWSU on six different gene expression
+datasets and compared its performance to other state-of-the-art feature
+selection techniques using accuracy and sensitivity metrics. We also
+visualized our results with boxplots and stability plots. Our findings
+show that ROWSU performs better than other methods at improving
+classifier effectiveness, as shown by its results with k nearest
+neighbors (kNN) and random forest (RF) classifiers.
 
-In the paper "Analysis of a Random Forests Model", Biau [@biau2012analysis] provides an in-depth analysis of the Random Forests model. The author delves into the statistical components and mathematical support, as well as investigates various aspects of the Random Forests, such as its consistency, convergence rates, and the effect of the number of trees on performance. He touches on the importance of variable selection and the increasing adaptability found within the random forest algorithm. Biau provides theoretical insights into the behavior of Random Forests, shedding light on its robustness and effectiveness as a machine learning algorithm.
+The main focus of this article [@arXiv:2401.10959] is to make sure that
+the electrical grid works properly by making energy providers follow the
+rules and specifications set by Transmission System Operators (TSOs).
+Since there are many different energy sources connected through power
+electronic inverters, it's crucial for them to choose between Grid
+Forming (GFM) and Grid Following (GFL) operating modes in order to
+maintain grid stability. This means that energy suppliers need to comply
+with these requirements. In this study, we compare various machine
+learning algorithms to classify converter control modes (GFL or GFM)
+using frequency-domain admittance from external measurements. While most
+algorithms can accurately identify known control structures, they
+struggle when faced with new modifications. However, the random forest
+algorithm stands out as it consistently performs well across different
+control configurations.
 
-In "A Random Forest Guided Tour", Biau and Scornet [@biau2016random] present an extensive exploration of Random Forests, a popular machine learning algorithm. The paper serves as a comprehensive guide, covering aspects of theoretical foundations, methodology, model evaluation, and empirical performance. They discuss the inner workings of Random Forests, including topics such as tree construction, feature selection, and ensemble learning, which aid in predictive analysis. Overall, the paper serves as a valuable resource for those interested in understanding and utilizing Random Forests in their machine learning tasks.
+In the paper "Analysis of a Random Forests Model", Biau
+[@biau2012analysis] provides an in-depth analysis of the Random Forests
+model. The author delves into the statistical components and
+mathematical support, as well as investigates various aspects of the
+Random Forests, such as its consistency, convergence rates, and the
+effect of the number of trees on performance. He touches on the
+importance of variable selection and the increasing adaptability found
+within the random forest algorithm. Biau provides theoretical insights
+into the behavior of Random Forests, shedding light on its robustness
+and effectiveness as a machine learning algorithm.
 
-In "Classification and Regression by randomForest," Liaw and Wiener [@liaw2002classification] discuss the introduction of the randomForest package for classification and regression tasks in the R programming language. An overview of the Random Forest algorithm is provided, including how it draws bootstrap samples and estimates rates of error. This technique is referred to as ensemble learning called bagging and uses decision trees as base learners. Implementation of the randomForest package addresses parameters for tuning the model and handling missing values. It is noted that the production of multiple trees is crucial in obtaining variable importance and measures of proximity. Overall, the paper serves as a practical guide for R users and highlights the advantages of using random forests for both classification and regression problems, such as robustness to overfitting and high prediction accuracy.
+In "A Random Forest Guided Tour", Biau and Scornet [@biau2016random]
+present an extensive exploration of Random Forests, a popular machine
+learning algorithm. The paper serves as a comprehensive guide, covering
+aspects of theoretical foundations, methodology, model evaluation, and
+empirical performance. They discuss the inner workings of Random
+Forests, including topics such as tree construction, feature selection,
+and ensemble learning, which aid in predictive analysis. Overall, the
+paper serves as a valuable resource for those interested in
+understanding and utilizing Random Forests in their machine learning
+tasks.
 
-In the paper "Random Forest as a Predictive Analytics Alternative to Regression in Institutional Research", the authors [@lingjun2019random] explore the application of Random Forests as a predictive analytics tool in institutional research. They discuss the limitations of traditional regression models in handling complex datasets and introduce Random Forest as an alternative approach. To do this, they highlight the key benefits of the Random Forest model, as it has the ability to handle non-linear relationships, interactions, and high-dimensional data effectively. In addition, they expound upon predictive capabilities, improved accuracy, and robustness as a strategy for data-based decision making.
+In "Classification and Regression by randomForest," Liaw and Wiener
+[@liaw2002classification] discuss the introduction of the randomForest
+package for classification and regression tasks in the R programming
+language. An overview of the Random Forest algorithm is provided,
+including how it draws bootstrap samples and estimates rates of error.
+This technique is referred to as ensemble learning called bagging and
+uses decision trees as base learners. Implementation of the randomForest
+package addresses parameters for tuning the model and handling missing
+values. It is noted that the production of multiple trees is crucial in
+obtaining variable importance and measures of proximity. Overall, the
+paper serves as a practical guide for R users and highlights the
+advantages of using random forests for both classification and
+regression problems, such as robustness to overfitting and high
+prediction accuracy.
 
-In "Machine Learning Benchmarks and Random Forest Regression", Segal [@segal2004machine] explores the application and effectiveness of Random Forest Regression in the context of machine learning. Machine learning algorithms may face challenges, which emphasize the need for standardized datasets and evaluation metrics. Segal (2004) examines how Random Forest Regression performs across various datasets, comparing its performance to other regression techniques. The study highlights the strengths of Random Forest Regression in handling non-linear relationships and noisy data, showcasing its versatility and robustness. Additionally, the paper provides insights into the impact of different parameters on the performance of Random Forest Regression, offering practical guidance for its implementation. Overall, the paper contributes to the understanding of Random Forest Regression and its potential as a powerful tool in the field of machine learning.
+In the paper "Random Forest as a Predictive Analytics Alternative to
+Regression in Institutional Research", the authors [@lingjun2019random]
+explore the application of Random Forests as a predictive analytics tool
+in institutional research. They discuss the limitations of traditional
+regression models in handling complex datasets and introduce Random
+Forest as an alternative approach. To do this, they highlight the key
+benefits of the Random Forest model, as it has the ability to handle
+non-linear relationships, interactions, and high-dimensional data
+effectively. In addition, they expound upon predictive capabilities,
+improved accuracy, and robustness as a strategy for data-based decision
+making.
 
-To tune or not to tune the number of trees in random forest.
-This article [@probst2018tune] intends to demonstrate whether to keep the number of trees in a random forest at the maximum feasible number, or to reduce the number of trees and the effects that might have.  Previous research has shown that past a point, increasing the number of trees yields a small gain in the area under the curve, but this research did not demonstrate whether there was a possibility of a smaller number of trees leading to a better result.  It was found that while there were specific situations and datasets where a lower tree count was beneficial, these were in the minority and selecting a larger number of trees is often beneficial with the possible exception of median squared/median absolute error rather than the more common mean squared/mean absolute error.
+In "Machine Learning Benchmarks and Random Forest Regression", Segal
+[@segal2004machine] explores the application and effectiveness of Random
+Forest Regression in the context of machine learning. Machine learning
+algorithms may face challenges, which emphasize the need for
+standardized datasets and evaluation metrics. Segal (2004) examines how
+Random Forest Regression performs across various datasets, comparing its
+performance to other regression techniques. The study highlights the
+strengths of Random Forest Regression in handling non-linear
+relationships and noisy data, showcasing its versatility and robustness.
+Additionally, the paper provides insights into the impact of different
+parameters on the performance of Random Forest Regression, offering
+practical guidance for its implementation. Overall, the paper
+contributes to the understanding of Random Forest Regression and its
+potential as a powerful tool in the field of machine learning.
 
-Improved random forest for classification.
-The goal of [@paul2018improved] is to create a random forest model to improve feature selection as well as the optimal number of trees simultaneously.  This is done in iterations identifying important and unimportant features, then adds a set number of trees per pass until convergence.    The feature selection method appears to be similar to stepwise regression. Its not clear in the paper whether this method may have similar drawbacks to stepwise regression / feature selection.  The optimal number of trees to add is based on the probability of a good split for a given tree which is calculated using the strength and correlation of the forest.   The idea appears to be to limit the number of trees added to reduce the computational overhead, without a classification accuracy penalty. The results were a fast and accurate classifier with more automation for tuning than common random forest algorithms.
+To tune or not to tune the number of trees in random forest. This
+article [@probst2018tune] intends to demonstrate whether to keep the
+number of trees in a random forest at the maximum feasible number, or to
+reduce the number of trees and the effects that might have. Previous
+research has shown that past a point, increasing the number of trees
+yields a small gain in the area under the curve, but this research did
+not demonstrate whether there was a possibility of a smaller number of
+trees leading to a better result. It was found that while there were
+specific situations and datasets where a lower tree count was
+beneficial, these were in the minority and selecting a larger number of
+trees is often beneficial with the possible exception of median
+squared/median absolute error rather than the more common mean
+squared/mean absolute error.
 
-Random Forest Based Feature Induction
-The goal of [@vens2011random] is to demonstrate a method to create induced features using a random forest, which has the benefit of handling sparse datasets and missing values by default. This can reduce dimensionality and assist with automated feature selection by reducing the dimensionality of the full dataset. When working with a very large number of features, some reduction is necessary to be able to conceptualize or easily work with the data. This method could also help with preparation for a method like PCA. A random forest is built similar to how one would be used for prediction, but instead of prediction the nodes of the trees are combined as a feature space. The resulting feature space used with a support vector machine was able to show high predictive performance, even when the original data set was not usable for SVM presumably due to missing values, On real datasets, this method often generated a better accuracy and in those cases where it did not, there was not a large penalty for using it with one exception.There may be limitations to use due to computational requirements, but there may also be datasets for which using this type of feature induction would decrease total computational requirements with some models.
+Improved random forest for classification. The goal of
+[@paul2018improved] is to create a random forest model to improve
+feature selection as well as the optimal number of trees simultaneously.
+This is done in iterations identifying important and unimportant
+features, then adds a set number of trees per pass until convergence.
+The feature selection method appears to be similar to stepwise
+regression. Its not clear in the paper whether this method may have
+similar drawbacks to stepwise regression / feature selection. The
+optimal number of trees to add is based on the probability of a good
+split for a given tree which is calculated using the strength and
+correlation of the forest. The idea appears to be to limit the number of
+trees added to reduce the computational overhead, without a
+classification accuracy penalty. The results were a fast and accurate
+classifier with more automation for tuning than common random forest
+algorithms.
 
-Application of random forest algorithm on feature subset selection and classification and regression.
-The goal of [@jaiswal2017application] is to use a random forest to select a subset of high value features to be analyzed, reducing dimensionality, computational overhead, reducing the probability of overfit, and possibly benefiting the modeler's ability to visualize and understand the dataset by removing unnecessary features.  The method used is to generate large, unpruned trees then use out of bag estimation and the importance of each variable is calculated based on the number of correct votes - the permuted out of bag variables. This can be an iterative process for large datasets.  Gini values are used to identify variable interactions across trees in the forest.  The results of this paper are not clear, but it does appear that there was a reduction in dimensionality using this method.   The limitations may be if there could be an engineered feature, these would be best created prior to using the random forest feature selection.
+Random Forest Based Feature Induction The goal of [@vens2011random] is
+to demonstrate a method to create induced features using a random
+forest, which has the benefit of handling sparse datasets and missing
+values by default. This can reduce dimensionality and assist with
+automated feature selection by reducing the dimensionality of the full
+dataset. When working with a very large number of features, some
+reduction is necessary to be able to conceptualize or easily work with
+the data. This method could also help with preparation for a method like
+PCA. A random forest is built similar to how one would be used for
+prediction, but instead of prediction the nodes of the trees are
+combined as a feature space. The resulting feature space used with a
+support vector machine was able to show high predictive performance,
+even when the original data set was not usable for SVM presumably due to
+missing values, On real datasets, this method often generated a better
+accuracy and in those cases where it did not, there was not a large
+penalty for using it with one exception.There may be limitations to use
+due to computational requirements, but there may also be datasets for
+which using this type of feature induction would decrease total
+computational requirements with some models.
 
-A guided random forest based feature selection approach for activity recognition.”
-The purpose of [@uddin2015guided] is to use a random forest to during feature selection for a human activity recognition problem.This is performed by training a standard random forest then using the feature importance scores generated to select the most important features to use in a second random forest used for prediction.In general, feature selection of this type can improve accuracy and reduce computational complexity. The results were that the guided random forest has a comparable accuracy to the more common methods such as Relief-F and Lasso Logistic Regression, but has a lower computational complexity than Relief-F making it a possible choice for a solution requiring a tradeoff between complexity and accuracy.
+Application of random forest algorithm on feature subset selection and
+classification and regression. The goal of [@jaiswal2017application] is
+to use a random forest to select a subset of high value features to be
+analyzed, reducing dimensionality, computational overhead, reducing the
+probability of overfit, and possibly benefiting the modeler's ability to
+visualize and understand the dataset by removing unnecessary features.
+The method used is to generate large, unpruned trees then use out of bag
+estimation and the importance of each variable is calculated based on
+the number of correct votes - the permuted out of bag variables. This
+can be an iterative process for large datasets. Gini values are used to
+identify variable interactions across trees in the forest. The results
+of this paper are not clear, but it does appear that there was a
+reduction in dimensionality using this method. The limitations may be if
+there could be an engineered feature, these would be best created prior
+to using the random forest feature selection.
 
-A permutation importance-based feature selection method for short-term electricity load forecasting using random forest.
-The goal of [@huang2016permutation] is to demonstrate a new feature selection method to be used with a random forest based on permutation importance values of a trained random forest to be used in selecting the best features to train a second random forest model to predict load forecasts for a power grid. This feature set is then used as a reduced feature set to train the short term load forecasting model, which improves the computation time necessary and may improve accuracy as well. This feature selection method provided worked best for a random forest model, but also provided better results for an artificial neural network and support vector regression indicating it may generalize well.
+A guided random forest based feature selection approach for activity
+recognition.” The purpose of [@uddin2015guided] is to use a random
+forest to during feature selection for a human activity recognition
+problem.This is performed by training a standard random forest then
+using the feature importance scores generated to select the most
+important features to use in a second random forest used for
+prediction.In general, feature selection of this type can improve
+accuracy and reduce computational complexity. The results were that the
+guided random forest has a comparable accuracy to the more common
+methods such as Relief-F and Lasso Logistic Regression, but has a lower
+computational complexity than Relief-F making it a possible choice for a
+solution requiring a tradeoff between complexity and accuracy.
 
-Overview of random forest methodology and practical guidance with emphasis on computational biology and bioinformatics.
-[@Boulesteix2016random] Random forest (RF) methodology is found to be used to address two main classes of problems which is to construct a prediction rule in a supervised learning problem and to assess and rank variables with respect to their ability to predict the response. RF is a classification and regression method based on the aggregation of a large number of decision trees.  RF has become a popular analysis tool in many application fields including bioinformatics and will most probably remain relevant in the future due to its high flexibility. However, RF approaches still have to face a number of challenges. They can produce  unexpected results in some specific cases such as a bias depending on the distribution of the predictor. 
+A permutation importance-based feature selection method for short-term
+electricity load forecasting using random forest. The goal of
+[@huang2016permutation] is to demonstrate a new feature selection method
+to be used with a random forest based on permutation importance values
+of a trained random forest to be used in selecting the best features to
+train a second random forest model to predict load forecasts for a power
+grid. This feature set is then used as a reduced feature set to train
+the short term load forecasting model, which improves the computation
+time necessary and may improve accuracy as well. This feature selection
+method provided worked best for a random forest model, but also provided
+better results for an artificial neural network and support vector
+regression indicating it may generalize well.
 
-Comparison of Random Forest and SVM for Raw Data in Drug Discovery: Prediction of Radiation Protection and Toxicity Case Study.
-[@Matsumoto2016comprison] Random forest and SVM was compared for the raw data in drug discovery. There were two types of problems based on the target protein. They predicted the radiation protection(cancer) function and toxicity for radioprotectors targeting p53 as a case study.Two experiments were performed for each compound.There were 84 total. First, experiments administering the compounds to normal cells were performed. These experiments were able to measure the toxicity.  Then, experiments administering the compounds to gamma
-irradiated cells were performed. These experiments were able to measure the radiation-protection function. The experiment measured the cell death rate for each
-concentration case. After using random forest and machine learning, SVM was found to be better than random forest as determined by the AUC score. In contrast, for predicting toxicity, random forest is better than SVM. 
+Overview of random forest methodology and practical guidance with
+emphasis on computational biology and bioinformatics.
+[@Boulesteix2016random] Random forest (RF) methodology is found to be
+used to address two main classes of problems which is to construct a
+prediction rule in a supervised learning problem and to assess and rank
+variables with respect to their ability to predict the response. RF is a
+classification and regression method based on the aggregation of a large
+number of decision trees. RF has become a popular analysis tool in many
+application fields including bioinformatics and will most probably
+remain relevant in the future due to its high flexibility. However, RF
+approaches still have to face a number of challenges. They can produce
+unexpected results in some specific cases such as a bias depending on
+the distribution of the predictor.
+
+Comparison of Random Forest and SVM for Raw Data in Drug Discovery:
+Prediction of Radiation Protection and Toxicity Case Study.
+[@Matsumoto2016comprison] Random forest and SVM was compared for the raw
+data in drug discovery. There were two types of problems based on the
+target protein. They predicted the radiation protection(cancer) function
+and toxicity for radioprotectors targeting p53 as a case study.Two
+experiments were performed for each compound.There were 84 total. First,
+experiments administering the compounds to normal cells were performed.
+These experiments were able to measure the toxicity. Then, experiments
+administering the compounds to gamma irradiated cells were performed.
+These experiments were able to measure the radiation-protection
+function. The experiment measured the cell death rate for each
+concentration case. After using random forest and machine learning, SVM
+was found to be better than random forest as determined by the AUC
+score. In contrast, for predicting toxicity, random forest is better
+than SVM.
 
 Research on machine learning framework based on random forest algorithm.
-[@Ren2017research] This article is about research on machine learning framework based on random forest algorithm.There is an introduction to the filtering method. Filtration method is through the statistical method which is to give the characteristics with a weight, to carry out feature ranking according to the characteristics of the weight.Then  some rules are applied to set a threshold and the feature whose weight is greater than the threshold value is retained or 
-otherwise deleted. The steps are as follows for algorithm optimization which is to carry out feature selection and remove noise characteristics, carry out feature selection and delete redundant features, and voting strategies for optimizing the random forest algorithm.
+[@Ren2017research] This article is about research on a machine learning
+framework based on a random forest algorithm.There is an introduction to
+the filtering method. Filtration method gives the characteristics of the
+data with a weight to then carry out feature ranking according to the
+said weight. Then some rules are applied to set a threshold and the
+feature whose weight is greater than the threshold value is retained or
+deleted. The steps are as follows for algorithm optimization which is to
+carry out feature selection and remove noise characteristics, carry out
+feature selection and delete redundant features, and voting strategies
+for optimizing the random forest algorithm.
 
-Random Forest. [@Rigatti2017forest] Colon cancer data from the SEER database was  used to construct both a Cox model and a random forest model to determine how well the models perform on the same data.  The data set is sampled with bootstrap sampling. The article explains what random forest is and gives many examples.In the sample problem they evaluated , the Cox and random forest models performed similarly, so because the Cox model was easier to interpret , it made it the preferred method.It only had a a few predictors and no obvious interactions or nonlinear effects,  so the random forest model would not be the best option in this case.However, the both achieved well, because the  concordance error rate  of the models was approximately 18%.
+Random Forest. [@Rigatti2017forest] Colon cancer data from the SEER
+database was used to construct both a Cox model and a random forest
+model to determine how well the models perform on the same data. The
+data set is sampled with bootstrap sampling. The article explains what
+random forest is and gives many examples.In the sample problem they
+evaluated , the Cox and random forest models performed similarly, so
+because the Cox model was easier to interpret , it made it the preferred
+method.It only had a few predictors and no obvious interactions or
+nonlinear effects, so the random forest model would not be the best
+option in this case.However, the both achieved well, because the error
+rate of the models was approximately 18%.
 
 ## Methods
+
 #### Decision trees
 
-Decision Trees are a type of Supervised Machine Learning where the data is continuously split according to a certain parameter. The tree can be explained by two entities: decision (internal) nodes and leaves. The decision nodes are where the data is split, and the leaves are the decisions or the final outcomes.
-A decision tree is a flowchart-like structure in which each internal node represents a test on a feature (e.g. whether a coin flip comes up heads or tails) , each leaf node represents a class label (decision taken after computing all features), and branches represent conjunctions of features that lead to those class labels. The paths from root to leaf represent classification rules. The algorithm for predicting the class of a given dataset starts from the root node of the tree. It compares the values of the root attribute with the record attribute, follows the branch based on the comparison, and jumps to the next node. This process continues until it reaches the leaf node of the tree.
-
+Decision Trees are a type of Supervised Machine Learning where the data
+is continuously split according to a certain parameter. The tree can be
+explained by two entities: decision (internal) nodes and leaves. The
+decision nodes are where the data is split, and the leaves are the
+decisions or the final outcomes. A decision tree is a flowchart-like
+structure in which each internal node represents a test on a feature
+(e.g. whether a coin flip comes up heads or tails) , each leaf node
+represents a class label (decision taken after computing all features),
+and branches represent conjunctions of features that lead to those class
+labels. The paths from root to leaf represent classification rules. The
+algorithm for predicting the class of a given dataset starts from the
+root node of the tree. It compares the values of the root attribute with
+the record attribute, follows the branch based on the comparison, and
+jumps to the next node. This process continues until it reaches the leaf
+node of the tree.
 
 ```{r}
 library(readr)
@@ -113,169 +368,284 @@ m3 <- rpart(
 rpart.plot(m3)
 
 ```
-Decision trees in random forest work together to create a robust and accurate model by leveraging the diversity and averaging multiple decision trees.
 
-When evaluating the quality of the splits in decision trees, several metrics are considered.
+Decision trees in a random forest work together to create a robust and
+accurate model by leveraging their diversity and combining the output of
+multiple decision trees to make predictions.
 
-**1. Gini impurity: **
+When evaluating the quality of the splits in decision trees, several
+metrics are considered.
 
-The Gini coefficient is a measure of inequality between 0 and 1, where a value closer to 1 indicates more inequality. This is used to calculate inequality in income and wealth, but it can be used in other problems where a measure of inequality is needed.
-$$
+**1. Gini impurity:**
+
+The Gini coefficient is a measure of inequality between 0 and 1, where a
+value closer to 1 indicates more inequality. This is used to calculate
+inequality in income and wealth, but it can be used in other problems
+where a measure of inequality is needed. $$
 G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n^2\bar{x}}
 $$
 
-**2. Information gain: **
+**2. Information gain:**
 
- This measure can be used in multiclass problems and is often used for finding where to split the features. The other commonly used option is Entropy, which is also an entropy measure but with a more complex calculation.
+This measure can be used in multiclass problems and is often used for
+finding where to split the features. The other commonly used option is
+Entropy, which is also an entropy measure but with a more complex
+calculation.
 
-The tradeoff is a faster calculation using the Gini impurity, with a possibly higher accuracy.
-$$H=\sum\limits_{i=1}^{n}-p_i log_2 p_i$$
+The tradeoff is a faster calculation using the Gini impurity, with a
+possibly higher accuracy. $$H=\sum\limits_{i=1}^{n}-p_i log_2 p_i$$
+where $p_i$ is the percentage of each class present in the node
+resulting from a tree split.
 
-**3. Entropy: **
+**3. Entropy:**
 
-For decision trees, a related measure is used to measure the entropy of a result by calculating the probability that a random entry will be in the wrong class if it were randomly assigned a label.
-$$I_G=1-\sum\limits_{i=1}^{J}p_i^2$$
+For decision trees, a related measure is used to measure the entropy of
+a result by calculating the probability that a random entry will be in
+the wrong class if it were randomly assigned a label.
+$$I_G=1-\sum\limits_{i=1}^{J}p_i^2$$ where $p_i$ is the probability that
+a randomly labeled element would be incorrectly classified.
 
-**4.  Out of bag error estimation: **
+**4. Out of bag error estimation:**
 
-- Each decision tree is trained on a bootstrapped sample of the original dataset.
-- The data points that are not included in the bootstrapped sample for a particular tree are called out-of-bag instances.
-- OOB error provides a measure of how well the random forest model is likely to perform on new data.
-- It is useful for assessing model performance and tuning hyperparameters.
+-   Each decision tree is trained on a bootstrapped sample of the
+    original dataset.
+-   The data points that are not included in the bootstrapped sample for
+    a particular tree are called out-of-bag instances.
+-   OOB error provides a measure of how well the random forest model is
+    likely to perform on new data.
+-   It is useful for assessing model performance and tuning
+    hyperparameters.
 
 $$\text{OOB Error} = \frac{1}{N} \sum_{i=1}^{N} I(y_i \neq \hat{y}_{i, \text{OOB}})
-$$
+$$ where $N$ is the number of rows in the dataset and $I$ is an
+indicator function which returns 1 if $y_i \ne \hat{y}_{i,OOB}$
 
 ### Random Forest involves the following basic concepts:
-1. **Bootstrap Sampling (Bagging):**
-Perform random sampling with replacement on the original dataset to form a new dataset for training a decision tree. In each round of bootstrap sampling, about 36.8% of the samples will be missed, not appearing in the new dataset, and these data are referred to as out-of-bag (OOB) data.
 
-2. **Random Feature Selection:**
-At each node of the decision tree training, randomly select a subset of features, and then use information gain (or other criteria) to choose the best split. 
-Repeat the above steps, generating multiple decision trees, to form a "forest".
+1.  **Bootstrap Sampling (Bagging):** Perform random sampling with
+    replacement on the original dataset to form a new dataset for
+    training a decision tree. In each round of bootstrap sampling, about
+    36.8% of the samples will be missed, not appearing in the new
+    dataset, and these data are referred to as out-of-bag (OOB) data.
 
-3. **Prediction:**
-When predicting new data samples, each tree produces its own prediction result. Random Forest synthesizes these results and uses majority voting to determine the final prediction outcome.
+2.  **Random Feature Selection:** At each node of the decision tree
+    training, randomly select a subset of features, and then use
+    information gain (or other criteria) to choose the best split.
+    Repeat the above steps, generating multiple decision trees, to form
+    a "forest".
 
-4. **Ensemble Learning via Hard Voting Classifier:**
-By voting, the results of five models are integrated to get the combined outcome. The result selects the category that appears most frequently as the final prediction result. This is a strategy of ensemble learning, known as the Hard Voting Classifier.
-For a sample point x, five models make predictions respectively:
+3.  **Prediction:** When predicting new data samples, each tree produces
+    its own prediction result. Random Forest combines these results and
+    uses majority voting to determine the final prediction outcome.
 
-> y1 = Model1(x)
-> 
-> y2 = Model2(x)
-> 
-> y3 = Model3(x)
-> 
-> y4 = Model4(x)
-> 
-> y5 = Model5(x)
-
-Put these five prediction results into a set `Y = {y1, y2, y3, y4, y5}`, and the final prediction result y_final is the element that appears most frequently in the set Y, mathematically represented as:
-
-> y_final = mode(Y)
+4.  **Ensemble Learning via Hard Voting Classifier:** By voting, the
+    results of five models are integrated to get the combined outcome.
+    The result selects the category that appears most frequently as the
+    final prediction result. This is a strategy of ensemble learning,
+    known as the Hard Voting Classifier.
 
 ### Five normalization methods
-The data needs to be normalized using 5 different methods, due to significant differences in feature values initially:
 
-- **Min-Max Normalization** 
+The data needs to be normalized using 5 different methods, due to
+significant differences in feature values initially:
 
-  $X_{new}=\frac{X_{old}-\min(X_{old})}{\max(X_{old})-\min(x_{old})}$
+-   **Min-Max Normalization**
 
-- **Z-Score Normalization**
-  
-  $X_{new}=\frac{X_{old}-\bar{X}_{old})}{\sigma_{X_{old}}}$
+    $X_{new}=\frac{X_{old}-\min(X_{old})}{\max(X_{old})-\min(x_{old})}$
 
-- **Max Absolute Scaling**
+-   **Z-Score Normalization**
 
-  $X_{new}=\frac{X_{old}}{\max(|X_{old}|)}$
+    $X_{new}=\frac{X_{old}-\bar{X}_{old}}{\sigma_{X_{old}}}$
 
-- **L1 Norm Normalization**
+-   **Max Absolute Scaling**
 
-  $X_{new}=\frac{X_{old}}{\sum|X_{old}|}$
+    $X_{new}=\frac{X_{old}}{\max(|X_{old}|)}$
 
-- **L2 Norm Normalization**
+-   **L1 Norm Normalization**
 
-  $X_{new}=\frac{X_{old}}{\sqrt{\sum(X_{old}^2))}}$
+    $X_{new}=\frac{X_{old}}{\sum(|X_{old}|)}$
+
+-   **L2 Norm Normalization**
+
+    $X_{new}=\frac{X_{old}}{\sqrt{\sum{X_{old}^2}}}$
 
 ### Evaluation
-Evaluate the test set and calculate four metrics (accuracy, recall, precision, F1).
 
-- Accuracy = sum(actual labels == predicted labels) / total number of labels
-- Recall = True Positives / (True Positives + False Negatives)
-- Precision = True Positives / (True Positives + False Positives)
-- F1 = 2 * (Precision * Recall) / (Precision + Recall)
+Evaluate the test set and calculate four metrics (accuracy, recall,
+precision, F1).
+
+::: columns
+::: {.column width="12%"}
+$\text{Accuracy}$\
+\
+:::
+
+::: {.column width="35%"}
+$=\frac{\sum{\left(\text{Actual Label} = \text{Predicted Label}\right)}}{\text{Label Count}}$\
+\
+:::
+
+::: {.column width="53%"}
+:::
+:::
+
+::: columns
+::: {.column width="12%"}
+$\text{Recall}$\
+\
+:::
+
+::: {.column width="35%"}
+$=\frac{\text{True Positives}}{\text{True Positives} + \text{False Negatives}}$\
+\
+:::
+
+::: {.column width="53%"}
+:::
+:::
+
+::: columns
+::: {.column width="12%"}
+$\text{Precision}$\
+\
+:::
+
+::: {.column width="35%"}
+$=\frac{\text{True Positives}}{\text{True Positives}+\text{False Positives}}$\
+\
+:::
+
+::: {.column width="53%"}
+:::
+:::
+
+::: columns
+::: {.column width="12%"}
+$\text{F1}$
+:::
+
+::: {.column width="35%"}
+$=\frac{2*(\text{Precision}*\text{Recall})}{\text{Precision}+\text{Recall}}$\
+:::
+
+::: {.column width="53%"}
+:::
+:::
 
 ### Final outcome:
-The idea is to combine five models using a voting method and pick the category with the most votes as our final prediction. It's like a team effort in machine learning, known as the Hard Voting Classifier.
-For a sample point x, five models make predictions respectively:
 
-> y1 = Model1(x)
-> 
-> y2 = Model2(x)
-> 
-> y3 = Model3(x)
-> 
-> y4 = Model4(x)
-> 
-> y5 = Model5(x)
+The idea is to combine five models using a voting method and pick the
+category with the most votes as our final prediction. It's like a team
+effort in machine learning, known as the Hard Voting Classifier. For a
+sample point x, five models make predictions respectively:
 
-Place these five prediction results into a set `Y = {y1, y2, y3, y4, y5}`. The final prediction result `y_final` is the element that appears most frequently in the set `Y`, mathematically represented as `y_final = mode(Y)`.
+$y_1 = \text{MinMax}(x)$\
+\
+$y2 = \text{ZScore}(x)$\
+\
+$y3 = \text{MaxAbsoluteValue}(x)$\
+\
+$y4 = \text{L1Norm}(x)$\
+\
+$y5 = \text{L2Norm}(x)$\
+\
+Place these five prediction results into a set
+$Y = \{y_1,y_2,y_3,y_4,y_5\}$. The final prediction result $y_{final}$
+is the element that appears most frequently in the set $Y$,
+mathematically represented as $y_{final} = \text{mode}(Y)$.
 
 ## Benefits/Advantages
-- Capable of performing both classification and regression tasks.
-- Capable of handling large datasets with high dimensionality.
-- Decreased training time compared to other algorithms.
-- Promotes predictive ability with high accuracy, even with large datasets.
-- Can solve problems internally and still maintain accuracy, even when a large proportion of data is missing.
-- Enhances the accuracy of the model and prevents issues in overfitting.
-- Can be used as a feature selection tool using its variable importance plot.
+
+-   Capable of performing both classification and regression tasks.
+-   Capable of handling large datasets with high dimensionality.
+-   Decreased training time compared to other algorithms.
+-   Promotes predictive ability with high accuracy, even with large
+    datasets.
+-   Can still maintain accuracy, even when a large proportion of data is
+    missing.
+-   Enhances the robustness of the model and prevents issues in
+    overfitting.
+-   Can be used as a feature selection tool using its variable
+    importance plot.
 
 ## Limitations/Challenges
-- Prone to problems, such as bias and overfitting.
-  - However, when multiple decision trees form an ensemble in the random forest algorithm, they predict results with greater accuracy, particularly when the individual trees are uncorrelated with each other.
-- Time-consuming.
-  - Since random forest algorithms can handle large data sets, they can provide more  accurate predictions. However, the process can be slow as they are computing data for each individual decision tree.
-- Requires more resources.
-- More complex.
-  - The prediction of a single decision tree is easier to interpret when compared to a forest of them.
+
+-   Decision trees are prone to problems, such as bias and overfitting.
+    -   However, when multiple decision trees form an ensemble in the
+        random forest algorithm, they predict results with greater
+        accuracy, particularly when the individual trees are
+        uncorrelated with each other.
+-   Time-consuming.
+    -   Since random forest algorithms can handle large data sets, they
+        can provide more accurate predictions. However, the process can
+        be slow as they are computing data for each individual decision
+        tree.
+-   Requires more resources.
+-   More complex.
+    -   The decision logic of a single decision tree is easier to
+        interpret when compared to a forest of them.
 
 ## Assumptions
-- Independence of trees: Each tree is built using a random subset of features and a bootstrapped sample of the data, aiming to reduce correlation between trees.
-- Randomness: While some of the actual values in the feature variable of the dataset should be present so the classifier can predict accurate results, random forests must also assume random subset of features to prevent overfitting and encourage diversity.
 
+-   Independence of trees: Each tree is built using a random subset of
+    features and a bootstrapped sample of the data, aiming to reduce
+    correlation between trees.
+-   Randomness: While some of the actual values in the feature variable
+    of the dataset should be present so the classifier can predict
+    accurate results, random forests must also assume a random subset of
+    features to reduce the probability of overfitting and encourage tree
+    diversity.
 
 # Analysis and Results
+
 ## Data and Visualization
+
 Data Source: **Mendeley Data**
 
-[Species data used in Random Forest modelling to determine predictors of extinction](https://data.mendeley.com/datasets/tc6syk8vwf/1)
+[Species data used in Random Forest modelling to determine predictors of
+extinction](https://data.mendeley.com/datasets/tc6syk8vwf/1)
 
-**Description**
-Data was extracted from the South African Red List database [@SANBI2021] to compile a profile for plant extinctions. South Africa offers a wide array of biodiversity and estimates over 22,000 plant taxa. The International Union for Conservation of Nature’s (IUCN) [@IUCN2023] Red List of Threatened Species provides a standardized method to document and assess extinctions (IUCN 2023). Species are classified into one of the following groups: Extinct (EX), Extinct in the wild (EW), Critically endangered possibly extinct (CR PE), Critically endangered (CR), Endangered (EN), Vulnerable (VU), Near threatened (NT), Conservation dependent (CD), Least concern (LC), and Data deficient (DD).
+**Description** Data was extracted from the South African Red List
+database [@SANBI2021] to compile a profile for plant extinctions. South
+Africa offers a wide array of biodiversity and estimates over 22,000
+plant taxa. The International Union for Conservation of Nature’s (IUCN)
+[@IUCN2023] Red List of Threatened Species provides a standardized
+method to document and assess extinctions (IUCN 2023). Species are
+classified into one of the following statuses: Extinct (EX), Extinct in
+the wild (EW), Critically endangered possibly extinct (CR PE),
+Critically endangered (CR), Endangered (EN), Vulnerable (VU), Near
+threatened (NT), Conservation dependent (CD), Least concern (LC), and
+Data deficient (DD).
 
-Plants are an essential component to an ecosystem’s functionality, so it is critical to evaluate drivers of extinction and determine methods of prevention. To examine potential indicators for extinctions, extinct, threatened, and non-threatened taxa are compared to identify and/or distinguish traits that may be associated with risk or vulnerability. The final dataset comprises 842 extant taxa, 33 Extinct taxa, and 69 Possibly Extinct (CR PE) taxa, to total 944 species. 
+Plants are an essential component to an ecosystem’s functionality, so it
+is critical to evaluate drivers of extinction and determine methods of
+prevention. To examine potential indicators for extinctions, extinct,
+threatened, and non-threatened taxa are compared to identify and/or
+distinguish traits that may be associated with risk or vulnerability.
+The final dataset comprises 842 extant taxa, 33 Extinct taxa, and 69
+Possibly Extinct (CR PE) taxa, to total 944 species.
 
-The table below organizes and summarizes the explanatory variables. 
+The table below organizes and summarizes the explanatory variables.
 
-| **Type of Variable** | **Variable Name**    | **Description**                                                                                                              | **Range of Values** |
-|----------------------|----------------------|------------------------------------------------------------------------------------------------------------------------------|---------------------|
-| **Binary**           | Habitat loss         | Conversion, fragmentation, and/or elimination of habitat. e.g., logging, wood harvesting, livestock farming, urban development.| (0, 1)               |
-|                      | Habitat degradation  | Alteration of natural habitats necessary for species survival resulting in reduced functionality e.g., fire suppression, droughts.| (0, 1)               |
-|                      | Invasive species     | Impacts of alien species on natives through different mechanisms e.g. alteration of soil chemistry, resource competition.     | (0, 1)               |
-|                      | Pollution            | Pollutants entering the natural environment e.g., air-borne pollutants, waste.                                               | (0, 1)               |
-|                      | Over-exploitation    | Excessive use of species causing decreases in viable populations e.g. overharvesting.                                         | (0, 1)               |
-|                      | Other                | Intrinsic factors, changes in native taxa dynamics, human disturbance, natural disasters.                                     | (0, 1)               |
-|                      | Unknown              | N/A                                                                                                                          | (0, 1)               |
-| **Categorical**      | Life form (LF)       | Annual or perennial                                                                                                           | (0, 1)               |
-|                      | Growth form (GF)     | One of 14 distinct forms: Parasitic plant, Tree, Shrub, Suffrutex, Herb, Lithophyte, Succulent, Graminoid, Geophyte, Climber, Carnivorous, Cyperoid, Creeper, Epiphyte.| (0,14)            |
-|                      | Biomes               | One of nine biomes present in South Africa: Fynbos, Grassland, Succulent Karoo, Albany Thicket, Savanna, Forest, Nama Karoo, Desert, Indian Ocean Coastal Belt. *Note: if a taxon was found in multiple biomes it was marked as generalist. | (0,9)            |
-| **Continuous**       | Range size           | All species range sizes are based on the standard measure of Extent of Occurrence (EOO), a parameter defined as the shortest continuous imaginary boundary that can be drawn to encompass all the known, inferred, or projected sites of present occurrence of a taxon. | (1,1855022)       |
-| **Descriptive**      | Family               | Taxonomic categorization                                                                                                      | (1, 104) |
-|                      | Status               | Current Red List Category Designation                                                                                         | (1, 11) |
-| **Target**           | Group                | Threatened, Not Threatened, or Extinct                                                                                        | (0,3)               |
+| **Type of Variable** | **Variable Name**   | **Description**                                                                                                                                                                                                                                                         | **Range of Values** |
+|---------------|---------------|-----------------------------|---------------|
+| **Binary**           | Habitat loss        | Conversion, fragmentation, and/or elimination of habitat. e.g., logging, wood harvesting, livestock farming, urban development.                                                                                                                                         | (0, 1)              |
+|                      | Habitat degradation | Alteration of natural habitats necessary for species survival resulting in reduced functionality e.g., fire suppression, droughts.                                                                                                                                      | (0, 1)              |
+|                      | Invasive species    | Impacts of alien species on natives through different mechanisms e.g. alteration of soil chemistry, resource competition.                                                                                                                                               | (0, 1)              |
+|                      | Pollution           | Pollutants entering the natural environment e.g., air-borne pollutants, waste.                                                                                                                                                                                          | (0, 1)              |
+|                      | Over-exploitation   | Excessive use of species causing decreases in viable populations e.g. overharvesting.                                                                                                                                                                                   | (0, 1)              |
+|                      | Other               | Intrinsic factors, changes in native taxa dynamics, human disturbance, natural disasters.                                                                                                                                                                               | (0, 1)              |
+|                      | Unknown             | N/A                                                                                                                                                                                                                                                                     | (0, 1)              |
+| **Categorical**      | Life form (LF)      | Annual or perennial                                                                                                                                                                                                                                                     | (0, 1)              |
+|                      | Growth form (GF)    | One of 14 distinct forms: Parasitic plant, Tree, Shrub, Suffrutex, Herb, Lithophyte, Succulent, Graminoid, Geophyte, Climber, Carnivorous, Cyperoid, Creeper, Epiphyte.                                                                                                 | (1,14)              |
+|                      | Biomes              | One of nine biomes present in South Africa: Fynbos, Grassland, Succulent Karoo, Albany Thicket, Savanna, Forest, Nama Karoo, Desert, Indian Ocean Coastal Belt. \*Note: if a taxon was found in multiple biomes it was marked as generalist.                            | (1,10)              |
+| **Continuous**       | Range size          | All species range sizes are based on the standard measure of Extent of Occurrence (EOO), a parameter defined as the shortest continuous imaginary boundary that can be drawn to encompass all the known, inferred, or projected sites of present occurrence of a taxon. | (1,1855022)         |
+| **Descriptive**      | Family              | Taxonomic categorization                                                                                                                                                                                                                                                | (1, 104)            |
+|                      | Status              | Current Red List Category Designation                                                                                                                                                                                                                                   | (1, 11)             |
+| **Target**           | Group               | Threatened, Not Threatened, or Extinct                                                                                                                                                                                                                                  | (1,3)               |
 
 ### The preview of the dataset
+
 ```{r}
 library(readr)
 library(plyr)
@@ -287,6 +657,7 @@ library(ROSE)
 library(ggplot2)
 library(knitr)
 ```
+
 ```{r, warning=FALSE, echo=T, message=FALSE}
 
 data <- read_csv("All_threat_data.csv")
@@ -305,7 +676,25 @@ ggplot(data, aes(x = factor(Status), fill = factor(Status))) +
         panel.grid.major = element_line(color = "grey80"),
         panel.grid.minor = element_blank())
 ```
-The bar plot "Barplot of Status" shows how often different statuses occur. Each bar represents a specific status category. The plot clearly shows that the dataset is seriously unbalanced. One category, marked as 'LC', drastically outnumbers the others with a frequency that surpasses 500. The imbalance could mess up any analysis or predictive modeling that uses this data, as the models might get all biased towards the 'LC' status because it happens so often. To effectively tackle the issue of data imbalance, we might need to use certain techniques for resampling the data that can boost the representation of underrepresented classes or balance out the dominance of the overrepresented class. By implementing these strategies, we ensure that any insights or models derived from our analysis reflect a more balanced dataset, avoiding any bias caused by imbalanced data. In order to achieve this goal, we have chosen to utilize the ROSE package—a tool specifically designed for addressing imbalances in datasets. With its advanced methods for generating synthetic data and resampling, ROSE enables us to achieve a fairer distribution of classes and thereby enhance the reliability and validity of our analytical outcomes.
+
+The bar plot "Barplot of Status" shows how often different statuses
+occur. Each bar represents a specific status category. The plot clearly
+shows that the dataset is seriously unbalanced. One category, marked as
+'LC', drastically outnumbers the others with a frequency that surpasses
+500. The imbalance could bias any analysis or predictive modeling using
+this data, as the models will likely be biased towards the 'LC' status
+because it happens so often. To effectively tackle the issue of data
+imbalance, it might be necessary to use techniques for resampling the
+data that can boost the representation of underrepresented classes or
+balance out the dominance of the overrepresented class. By implementing
+these strategies, any insights or models derived from this analysis
+reflect a more balanced dataset, avoiding any bias caused by imbalanced
+data. In order to achieve this goal, the ROSE package has been chosen.
+This is a tool specifically designed for addressing imbalances in
+datasets. With its advanced methods for generating synthetic data and
+resampling, ROSE enables us to achieve a fairer distribution of classes
+and thereby enhance the reliability and validity of our analytical
+outcomes.
 
 ### “Pollution” and “Habitat_loss” relationships
 
@@ -329,19 +718,44 @@ corrDF <- corrDF %>% select(!GenSpec) %>% mutate(across(c("Group","LF","GF","Ran
 
 ggcorrplot::ggcorrplot(DescTools::PairApply(corrDF,DescTools::CramerV), type='lower')
 ```
-The image is a ggcorrplot, which is basically a fancy way of visualizing how different ecological factors like "Pollution" and "Habitat_loss" are related to each other. The colors in the plot show us how strong these relationships are, with red indicating positive correlation. Oh, and that diagonal line? It just tells us that when we compare variables to themselves, they have a perfect positive correlation. 
-The squares in this heatmap show how the variables on the x and y axes are related. A correlation of 1 means they have a perfect positive relationship, -1 means they have a perfect negative relationship, and 0 means there's no relationship at all. The colors represent the strength and direction of the correlations: red shades mean there's a positive correlation, blue shades mean there's a negative correlation, and the intensity of the color shows how strong the correlation is. The variables used here are related to ecology and biology, like "Pollution", "Over_exploitation", "Habitat_loss", and "Biomes". This suggests that this heatmap is analyzing environmental or ecological data. The diagonal line from top left to bottom right represents each variable's correlation with itself, which is always 1.
+
+The image is a ggcorrplot, which is a way of visualizing how different
+ecological factors like "Pollution" and "Habitat_loss" are associated to
+each other. The colors in the plot show how strong these relationships
+are, with red indicating positive correlation. The diagonal shows that
+when variables are compared to themselves, there is a perfect positive
+association. The squares in this heatmap show how the variables on the x
+and y axes are related. A correlation of 1 means they have a perfect
+positive relationship, -1 means they have a perfect negative
+relationship, and 0 means there's no relationship at all. The colors
+represent the strength and direction of the correlations: red shades
+mean there's a positive correlation, blue shades mean there's a negative
+correlation, and the intensity of the color shows how strong the
+correlation is. The variables used are related to ecology and biology,
+like "Pollution", "Over_exploitation", "Habitat_loss", and "Biomes".
 
 ### Distribution of Range by Conservation Status
+
 ```{r}
 ggplot(data = data, aes(x = Status, y = Range, fill = Status)) +
   geom_boxplot() +
   theme_bw() +
   ylim(0,100000)
 ```
-The boxplot here shows the sizes of species' habitats based on their conservation status, like Critically Endangered (CR), Endangered (EN), and Vulnerable (VU). It basically tells us how big or small the habitats are for each category. On the vertical axis, we have the habitat size, while on the horizontal axis, we see different conservation statuses. Each boxplot gives us an idea about the middle value, range between 25th and 75th percentiles, and any unusual values within each category's habitat sizes. Among all categories, Endangered (EN) species have a wide variety of habitat sizes, but Extinct (EX) ones have very limited ranges.
+
+This boxplot shows the sizes of species' habitats based on their
+conservation status, such as Critically Endangered (CR), Endangered
+(EN), and Vulnerable (VU). It tells us how large or small the habitats
+are for each category. On the vertical axis is the habitat size in
+square kilometers, while the horizontal axisis the conservation status
+the observation belongs to. Each boxplot demonstrates the middle value
+of the group, a range between 25th and 75th percentiles, and any unusual
+values within each category's habitat sizes. Among all categories,
+Endangered (EN) species have a wide variety of habitat sizes, but
+Extinct (EX) ones have very limited ranges.
 
 ### Distribution of Categorical Variables
+
 ```{r}
 library(tidyverse)
 library(gsheet)
@@ -366,28 +780,73 @@ ggplot(DV,aes(x=ExpVariable,y=Value, fill=Value)) +
   theme_bw()
 
 ```
-This bar chart shows how often different environmental factors are reported, with the vertical axis representing frequency and the horizontal axis listing the factors: Degradation, Exploitation, IAS (Invasive Alien Species), Loss, Other, Pollution, and Unknown. The colors indicate whether each factor is present (darker shade for Yes) or absent (lighter shade for No). This visualization lets you quickly see which factors are most commonly reported.
+
+This bar chart shows how often different environmental factors are
+reported, with the vertical axis representing frequency and the
+horizontal axis listing the factors: Degradation, Exploitation, IAS
+(Invasive Alien Species), Loss, Other, Pollution, and Unknown. The
+colors indicate whether each factor is present (darker shade for Yes) or
+absent (lighter shade for No). This visualization allows a quick way to
+interpret which factors are most commonly reported.
 
 # Statistical Modeling
+
 ## Packages
-The R packages utilized for running the statistical modeling for the Random Forest algorithm were **readr**, **plyr**, **ipred**, **caret**, **caTools**, **randomForest**, **ROSE**. 
-- readr: Part of the tidyverse, readr is designed for reading rectangular data, particularly CSVs (comma-separated values) and other delimited types of text files. It's known for its speed and for providing more informative error messages compared to base R functions like read.csv. It also converts data into tibbles, which are a modern take on data frames.
 
-- **plyr**: This package is used for splitting, applying, and combining data. plyr is known for its capability to handle different data types (arrays, lists, data frames, etc.) and apply functions to each element of the split data, then combine the results. Note that plyr is largely superseded by dplyr (also part of tidyverse), which is more efficient especially for large datasets.
+The R packages utilized for running the statistical modeling for the
+Random Forest algorithm were **readr**, **plyr**, **ipred**, **caret**,
+**caTools**, **randomForest**, **ROSE**. - readr: Part of the tidyverse,
+readr is designed for reading rectangular data, particularly CSVs
+(comma-separated values) and other delimited types of text files. It's
+known for its speed and for providing more informative error messages
+compared to base R functions like read.csv. It also converts data into
+tibbles, which are a modern take on data frames.
 
-- **ipred**: Standing for "Improved Predictors", ipred provides functions for predictive modeling. It includes methods for bagging (Bootstrap Aggregating), which helps improve the stability and accuracy of machine learning algorithms, particularly for decision trees.
+-   **plyr**: This package is used for splitting, applying, and
+    combining data. plyr is known for its capability to handle different
+    data types (arrays, lists, data frames, etc.) and apply functions to
+    each element of the split data, then combine the results. Note that
+    plyr is largely superseded by dplyr (also part of tidyverse), which
+    is more efficient especially for large datasets.
 
-- **caret**: The caret package (short for Classification And REgression Training) is a comprehensive framework for building machine learning models in R. It simplifies the process of model training, tuning, and predicting by providing a unified interface for various machine learning algorithms.
+-   **ipred**: Standing for "Improved Predictors", ipred provides
+    functions for predictive modeling. It includes methods for bagging
+    (Bootstrap Aggregating), which helps improve the stability and
+    accuracy of machine learning algorithms, particularly for decision
+    trees.
 
-- **caTools**: This package contains several tools for handling data, including functions for reading/writing Binary Large Objects (BLOBs), moving window statistics, and splitting data into training/testing sets. It's often used for its simple and effective method for creating reproducible train/test splits.
+-   **caret**: The caret package (short for Classification And
+    REgression Training) is a comprehensive framework for building
+    machine learning models in R. It simplifies the process of model
+    training, tuning, and predicting by providing a unified interface
+    for various machine learning algorithms.
 
-- **randomForest**: As the name suggests, this package is used for implementing the Random Forest algorithm for classification and regression tasks. Random Forest is an ensemble learning method that operates by constructing a multitude of decision trees and outputting the mode of the classes (classification) or mean prediction (regression) of the individual trees.
+-   **caTools**: This package contains several tools for handling data,
+    including functions for reading/writing Binary Large Objects
+    (BLOBs), moving window statistics, and splitting data into
+    training/testing sets. It's often used for its simple and effective
+    method for creating reproducible train/test splits.
 
-- **ROSE**: Standing for Random OverSampling Examples, the ROSE package is used to deal with imbalanced datasets in binary classification problems. It generates synthetic samples in a two-class problem to balance the class distribution, using smoothed bootstrapping. This helps improve the performance of classification models on imbalanced datasets.
+-   **randomForest**: As the name suggests, this package is used for
+    implementing the Random Forest algorithm for classification and
+    regression tasks. Random Forest is an ensemble learning method that
+    operates by constructing a multitude of decision trees and
+    outputting the mode of the classes (classification) or mean
+    prediction (regression) of the individual trees.
 
+-   **ROSE**: Standing for Random OverSampling Examples, the ROSE
+    package is used to deal with imbalanced datasets in binary
+    classification problems. It generates synthetic samples in a
+    two-class problem to balance the class distribution, using smoothed
+    bootstrapping. This helps improve the performance of classification
+    models on imbalanced datasets.
 
 ## Data Preparation
-Encode the 15 columns, with 'group' categorized into 1, 2, and 3. 'Yes' should be encoded as 1, 'No' as 0, and other categories should be numbered starting from 1. In the first column, replace the "-" with a ".".
+
+Encode the 15 columns, with 'group' categorized into 1, 2, and 3. 'Yes'
+should be encoded as 1, 'No' as 0, and other categories should be
+numbered starting from 1. In the first column, replace the "-" with a
+".".
 
 ### Original Dataset Preview
 
@@ -395,27 +854,56 @@ Encode the 15 columns, with 'group' categorized into 1, 2, and 3. 'Yes' should b
 original_data <- read_csv("All_threat_data.csv")
 kable(head(original_data, 10))
 ```
-### Encoding Dataset Prview
+
+### Encoding Dataset Preview
 
 ```{r, warning=FALSE, echo=TRUE}
+EncDF <- read.csv("All_threat_data.csv")
+
+EncDF <- data %>% select(GenSpec,LF,GF,Fam,Biomes,Status,Range,
+                         Habitat_degradation,Habitat_loss,IAS,Other,
+                         Over_exploitation,Pollution,Unknown,Group)
+EncDF <- EncDF %>% 
+            mutate(across(c(
+              "GenSpec","Group","LF","GF","Fam","Biomes","Status","Range",
+              "Habitat_degradation","Habitat_loss", "IAS","Other",
+              "Over_exploitation","Pollution","Unknown"),as_factor))
+EncDF <- EncDF %>% 
+            mutate_at(c("GenSpec","Group","LF","GF","Fam","Biomes",
+                        "Status","Range","Habitat_degradation","Habitat_loss", 
+                        "IAS","Other","Over_exploitation","Pollution","Unknown")
+                      ,as.numeric)
+EncDF <- EncDF %>% mutate(across(c("LF","Fam","IAS","Other","Over_exploitation",
+                                   "Pollution","Unknown"),function (x) x-1))
+
 encode_data <- read_csv("process.csv")
 kable(head(encode_data, 10))
 ```
-Split the dataset into a training set and a test set with a ratio of 7:3. Perform class imbalance handling on the training set using the ROSE library, aiming for an equal data quantity among classes, represented as 1:1:1.
 
-Given a minority class sample point x, we find its k nearest neighbors. Then, we randomly select one of these neighbors, denoted as z, and construct a new data point y that lies on the line segment between x and z:
+Split the dataset into a training set and a test set with a ratio of
+7:3. Perform class imbalance handling on the training set using the ROSE
+library, aiming for an equal data quantity among classes, represented as
+1:1:1.
 
-> y = x + λ * (z - x)
+Given a minority class sample point $x$, we find its $k$ nearest
+neighbors. Then, one neighbor is randomly selected, denoted as $z$, and
+a new data point $y$ is constructed which lies on the line segment
+between $x$ and $z$:
 
-Here, λ is a random number between 0 and 1.
+$y = x + \lambda * (z - x)$
+
+Here, $\lambda$ is a random number between 0 and 1.
 
 ### Data Processing
-1. Process the data by setting the first 14 columns as [features] and the last column as the [label]
-2. Split the dataset into training and testing sets
-3. Combine the training datasets
-4. Print the initial number of each category
+
+1.  Process the data by setting the first 14 columns as \[features\] and
+    the last column as the \[label\]
+2.  Split the dataset into training and testing sets
+3.  Combine the training datasets
+4.  Print the initial number of each category
 
 ```{r}
+
 data <- read.csv("process.csv")
 
 features <- data[, 1:14]
@@ -434,25 +922,32 @@ data_train$label <- label_train
 class_counts <- table(data_train$label)
 
 class_counts <- table(data_train$label)
-print(paste("( Before )Data Category Counts: ", class_counts))
+
+
 ```
-#### Handle class imbalance
-1. Process classes A and B
-2. Process classes A and C
-3. Retain records in data_train_AB_resampled where the label is '2'
-4. Retain records in data_train_AC_resampled where the label is '3'
-5. Retain records in both data_train_AB_resampled and data_train_AC_resampled where the label is '1'
-6. combine
-7. Print the number of each category after class imbalance handling
+
+#### Class Balancing
+
+1.  Process classes A and B
+2.  Process classes A and C
+3.  Retain records in data_train_AB_resampled where the label is '2'
+4.  Retain records in data_train_AC_resampled where the label is '3'
+5.  Retain records in both data_train_AB_resampled and
+    data_train_AC_resampled where the label is '1'
+6.  Combine
+7.  Print the number of each category after class imbalance handling
 
 ```{r}
+
 data_train_AB <- data_train
 data_train_AB <- data_train_AB[data_train_AB$label != '3',]
-data_train_AB_resampled <- ovun.sample(label ~ ., data = data_train_AB, method = "over", N = 980, seed = 1)$data
+data_train_AB_resampled <- ovun.sample(label ~ ., data = data_train_AB, 
+                                       method = "over", N = 980, seed = 1)$data
 
 data_train_AC <- data_train
 data_train_AC <- data_train_AC[data_train_AC$label != '2',]
-data_train_AC_resampled <- ovun.sample(label ~ ., data = data_train_AC, method = "over", N = 980, seed = 1)$data
+data_train_AC_resampled <- ovun.sample(label ~ ., data = data_train_AC, 
+                                       method = "over", N = 980, seed = 1)$data
 
 data_train_AB_2 <- data_train_AB_resampled[data_train_AB_resampled$label == '2',]
 data_train_AC_3 <- data_train_AC_resampled[data_train_AC_resampled$label == '3',]
@@ -460,17 +955,22 @@ data_train_AC_3 <- data_train_AC_resampled[data_train_AC_resampled$label == '3',
 data_train_1 <- data_train_AB_resampled[data_train_AB_resampled$label == '1',]
 data_train_combined <- rbind(data_train_1, data_train_AB_2, data_train_AC_3)
 
-cat("( After )Data Category Counts:\n")
-print(table(data_train_combined$label))
+
+cat("Group Counts Pre-Balancing:  ", 
+    table(data_train$label),
+    "\nGroup Counts Post-Balancing: ", 
+    table(data_train_combined$label))
 ```
+
 #### Normalization
-1. Divide the features and label, and apply different normalization to the training and testing sets
-2. Apply Min-Max normalization to features_train and features_test 
-3. Apply Z-Score normalization to each column of features_train
-4. features_test <- as.data.frame(mapply(function(x, y) {(x - mean(y))/sd(y)}, features_test, features_train, SIMPLIFY = FALSE))
-5. Apply Max Absolute Value normalization to the training set
-6. Apply L1 norm normalization to the training set
-7. Apply L2 norm normalization to the training set
+
+1.  Divide the features and label, and apply different normalization to
+    the training and testing sets
+2.  Apply Min-Max normalization to features_train and features_test
+3.  Apply Z-Score normalization to each column of features_train
+4.  Apply Max Absolute Value normalization to the training set
+5.  Apply L1 norm normalization to the training set
+6.  Apply L2 norm normalization to the training set
 
 ```{r}
 features_train <- data_train_combined[, 1:14]
@@ -478,276 +978,267 @@ label <- data_train_combined[, 15]
 ```
 
 ```{r}
-features_train <- as.data.frame(lapply(features_train, function(x) {(x-min(x))/(max(x)-min(x))}))
-features_test <- as.data.frame(lapply(features_test, function(x) {(x-min(x))/(max(x)-min(x))}))
+trainMM <- as.data.frame(lapply(features_train, 
+                      function(x) {(x-min(x))/(max(x)-min(x))}))
+testMM <- as.data.frame(lapply(features_test, 
+                      function(x) {(x-min(x))/(max(x)-min(x))}))
 
-features_train_1 <- as.data.frame(lapply(features_train, function(x) {(x-min(x))/(max(x)-min(x))}))
-features_test_1 <- as.data.frame(lapply(features_test, function(x) {(x-min(x))/(max(x)-min(x))}))
+TrainZS <- as.data.frame(lapply(features_train, 
+                      function(x) {(x - mean(x))/sd(x)}))
+TestZS <- as.data.frame(lapply(features_test, 
+                      function(x) {(x - mean(x))/sd(x)}))
 
-features_train_2 <- as.data.frame(lapply(features_train, function(x) {(x - mean(x))/sd(x)}))
-features_test_2 <- as.data.frame(lapply(features_test, function(x) {(x - mean(x))/sd(x)}))
+TrainMAV <- as.data.frame(lapply(features_train, 
+                       function(x) {x / max(abs(x))}))
+TestMAV <- as.data.frame(lapply(features_test, 
+                        function(x) {x / max(abs(x))}))
 
-features_train_3 <- as.data.frame(lapply(features_train, function(x) {x / max(abs(x))}))
-features_test_3 <- as.data.frame(lapply(features_test, function(x) {x / max(abs(x))}))
+trainL1 <- as.data.frame(lapply(features_train, 
+                       function(x) {x / sum(abs(x))}))
+TestL1 <- as.data.frame(lapply(features_test, 
+                       function(x) {x / sum(abs(x))}))
 
-features_train_4 <- as.data.frame(lapply(features_train, function(x) {x / sum(abs(x))}))
-features_test_4 <- as.data.frame(lapply(features_test, function(x) {x / sum(abs(x))}))
+TrainL2 <- as.data.frame(lapply(features_train, 
+                       function(x) {x / sqrt(sum(x^2))}))
+TestL2 <- as.data.frame(lapply(features_test, 
+                       function(x) {x / sqrt(sum(x^2))}))
 
-features_train_5 <- as.data.frame(lapply(features_train, function(x) {x / sqrt(sum(x^2))}))
-features_test_5 <- as.data.frame(lapply(features_test, function(x) {x / sqrt(sum(x^2))}))
 ```
-#### Train dataset
-1. Training dataset after Min-Max normalization
-2. Training dataset after Min-Max normalization
-3. Training dataset after Z-Score normalization
-4. Training dataset after Max Absolute Value normalization
-5. Training dataset after L1 norm normalization
-6. Training dataset after L2 norm normalization
+
+#### Training dataset
+
+1.  Training dataset after Min-Max normalization
+2.  Training dataset after Z-Score normalization
+3.  Training dataset after Max Absolute Value normalization
+4.  Training dataset after L1 norm normalization
+5.  Training dataset after L2 norm normalization
 
 ```{r}
-data_train <- features_train
-data_train$label <- label
-class_counts <- table(data_train$label)
+MMModel <- trainMM
+MMModel$label <- label
+MMCounts <- table(MMModel$label)
 
-data_train_1 <- features_train_1
-data_train_1$label <- label
-class_counts_1 <- table(data_train_1$label)
+ZSModel <- TrainZS
+ZSModel$label <- label
+ZSCounts <- table(ZSModel$label)
 
-data_train_2 <- features_train_2
-data_train_2$label <- label
-class_counts_2 <- table(data_train_2$label)
+MAVModel <- TrainMAV
+MAVModel$label <- label
+MAVCounts <- table(MAVModel$label)
 
-data_train_3 <- features_train_3
-data_train_3$label <- label
-class_counts_3 <- table(data_train_3$label)
+L1Model <- trainL1
+L1Model$label <- label
+L1Counts <- table(L1Model$label)
 
-data_train_4 <- features_train_4
-data_train_4$label <- label
-class_counts_4 <- table(data_train_4$label)
-
-data_train_5 <- features_train_5
-data_train_5$label <- label
-class_counts_5 <- table(data_train_5$label)
+L2Model <- TrainL2
+L2Model$label <- label
+L2Counts <- table(L2Model$label)
 ```
-#### Model 1
-1. Calculate and print the accuracy of the test set
-2. Convert to a categorical variable
-3. Obtain the confusion matrix
-4. Calculate the average recall rate (Sensitivity)
-5. Calculate the average precision rate (Positive Predictive Value)
-6. print results
+
+#### Training Steps for Each Model
+
+1.  Calculate and print the accuracy of the test set
+2.  Convert to a categorical variable
+3.  Obtain the confusion matrix
+4.  Calculate the average recall rate (Sensitivity)
+5.  Calculate the average precision rate (Positive Predictive Value)
+6.  Print results
+
+#### MinMax Model
 
 ```{r}
-model_1 <- randomForest(x = data_train_1[-ncol(data_train_combined)], y = as.factor(data_train_1$label), ntree = 2)
-variable_importance_1 = importance(model_1)
-pred_comb_1 <- predict(model_1, features_test_1)
-
-accuracy_1 <- sum(label_test == pred_comb_1) / length(label_test)
-print(paste('Accuracy of Min-Max Normalization for model1:', accuracy_1))
-
-label_test_factor <- as.factor(label_test)
-pred_comb_1_factor <- as.factor(pred_comb_1)
-
-cm <- confusionMatrix(pred_comb_1_factor, label_test_factor)
-
-recall <- mean(c(cm$byClass["Class: 1", "Sensitivity"], cm$byClass["Class: 2", "Sensitivity"], cm$byClass["Class: 3", "Sensitivity"]))
-
-precision <- mean(c(cm$byClass["Class: 1", "Pos Pred Value"], cm$byClass["Class: 2", "Pos Pred Value"], cm$byClass["Class: 3", "Pos Pred Value"]))
+MM <- randomForest(x = MMModel[-ncol(data_train_combined)],
+                        y = as.factor(MMModel$label), ntree = 6)
+importanceMM = importance(MM)
+PredMM <- predict(MM, testMM)
+accuracy <- sum(label_test == PredMM) / length(label_test)
+TestFactorMM <- as.factor(label_test)
+PredFactorMM <- as.factor(PredMM)
+cm <- confusionMatrix(PredFactorMM, TestFactorMM)
+rownames(cm$byClass)<-c("NotThr","Thr","Ext")
+recall <- mean(c(cm$byClass["NotThr", "Sensitivity"], 
+                 cm$byClass["Thr", "Sensitivity"], 
+                 cm$byClass["Ext", "Sensitivity"]),na.rm=TRUE)
+precision <- mean(c(cm$byClass["NotThr", "Pos Pred Value"], 
+                    cm$byClass["Thr", "Pos Pred Value"], 
+                    cm$byClass["Ext", "Pos Pred Value"]),na.rm=TRUE)
 F1 = 2 * recall * precision / ( recall + precision )
-
-print(paste('Recall of model1 :', recall))
-print(paste('Precision of model1 :', precision))
-print(paste('F1 of model1 :', F1))
+printTable=matrix(c(round(accuracy,2),round(recall,2),
+                    round(precision,2),round(F1,2)),
+                  ncol=1,byrow=TRUE)
+colnames(printTable)=c('Score')
+rownames(printTable)=c('Accuracy','Recall',
+                       'Precision','F1')
+print(printTable)
 ```
 
-#### Model 2
-1. Calculate and print the accuracy of the test set
-2. Convert to a factor
-3. Obtain the confusion matrix
-4. Calculate the average recall rate (Sensitivity)
-5. Calculate the average precision rate (Positive Predictive Value)
-6. print results
+#### ZScore Model
 
 ```{r}
-model_2 <- randomForest(x = data_train_2[-ncol(data_train_combined)], y = as.factor(data_train_2$label), ntree = 2) # nolint
-variable_importance_2 = importance(model_2) # nolint
-pred_comb_2 <- predict(model_2, features_test_2)
-
-accuracy_2 <- sum(label_test == pred_comb_2) / length(label_test)
-print(paste('Z-Score Normalization Accuracy for model2:', accuracy_2)) # nolint
-
-label_test_factor <- as.factor(label_test)
-pred_comb_1_factor <- as.factor(pred_comb_2)
-
-cm <- confusionMatrix(pred_comb_1_factor, label_test_factor)
-
-recall <- mean(c(cm$byClass["Class: 1", "Sensitivity"],  # nolint
-                              cm$byClass["Class: 2", "Sensitivity"],  # nolint
-                              cm$byClass["Class: 3", "Sensitivity"]))
-
-precision <- mean(c(cm$byClass["Class: 1", "Pos Pred Value"], # nolint 
-                            cm$byClass["Class: 2", "Pos Pred Value"], # nolint 
-                            cm$byClass["Class: 3", "Pos Pred Value"]))
-F1 = 2 * recall * precision / ( recall + precision ) # nolint
-
-print(paste('Recall of model2 :', recall))  # nolint
-print(paste('Precision of model2 :', precision))  # nolint
-print(paste('F1 of model2 :', F1))  # nolint
-```
-#### Model 3
-1. Calculate and print the accuracy of the test set
-2. Convert to a factor
-3. Obtain the confusion matrix
-4. Calculate the average recall rate (Sensitivity)
-5. Calculate the average precision rate (Positive Predictive Value)
-6. print results
-
-```{r}
-model_3 <- randomForest(x = data_train_3[-ncol(data_train_combined)], y = as.factor(data_train_3$label), ntree = 2)
-variable_importance_3 = importance(model_3)
-pred_comb_3 <- predict(model_3, features_test_3)
-
-accuracy_3 <- sum(label_test == pred_comb_3) / length(label_test)
-print(paste('Accuracy of Max absolute value normalization for model3:', accuracy_3))
-
-label_test_factor <- as.factor(label_test)
-pred_comb_1_factor <- as.factor(pred_comb_3)
-
-cm <- confusionMatrix(pred_comb_1_factor, label_test_factor)
-
+ZS <- randomForest(x = ZSModel[-ncol(data_train_combined)],
+                      y = as.factor(ZSModel$label), ntree = 6)
+ImportanceZS = importance(ZS)
+PredZS <- predict(ZS, TestZS)
+accuracy <- sum(label_test == PredZS) / length(label_test)
+TestFactorZS <- as.factor(label_test)
+PredFactorZS <- as.factor(PredZS)
+cm <- confusionMatrix(PredFactorZS, TestFactorZS)
 recall <- mean(c(cm$byClass["Class: 1", "Sensitivity"],
                               cm$byClass["Class: 2", "Sensitivity"],
-                              cm$byClass["Class: 3", "Sensitivity"]))
+                              cm$byClass["Class: 3", "Sensitivity"]),na.rm=TRUE)
 
 precision <- mean(c(cm$byClass["Class: 1", "Pos Pred Value"],
                             cm$byClass["Class: 2", "Pos Pred Value"],
-                            cm$byClass["Class: 3", "Pos Pred Value"]))
+                            cm$byClass["Class: 3", "Pos Pred Value"]),na.rm=TRUE)
 F1 = 2 * recall * precision / ( recall + precision )
-
-print(paste('Recall of model3 :', recall))
-print(paste('Precision of model3 :', precision))
-print(paste('F1 of mode3 :', F1))
+printTable=matrix(c(round(accuracy,2),round(recall,2),
+                    round(precision,2),round(F1,2)),
+                  ncol=1,byrow=TRUE)
+colnames(printTable)=c('Score')
+rownames(printTable)=c('Accuracy','Recall','Precision','F1')
+print(printTable)
 ```
 
-#### Model 4
-1. Calculate and print the accuracy of the test set
-2. Convert to a factor
-3. Obtain the confusion matrix
-4. Calculate the average recall rate (Sensitivity)
-5. Calculate the average precision rate (Positive Predictive Value)
-6. print results
+#### Max Absolute Value Model
 
 ```{r}
-model_4 <- randomForest(x = data_train_4[-ncol(data_train_combined)], y = as.factor(data_train_4$label), ntree = 2)
-variable_importance_4 = importance(model_4)
-pred_comb_4 <- predict(model_4, features_test_4)
-
-accuracy_4 <- sum(label_test == pred_comb_4) / length(label_test)
-print(paste('Accuracy of L1 norm normalization for model4:', accuracy_4))
-
-label_test_factor <- as.factor(label_test)
-pred_comb_1_factor <- as.factor(pred_comb_4)
-
-cm <- confusionMatrix(pred_comb_1_factor, label_test_factor)
-
+MAV <- randomForest(x = MAVModel[-ncol(data_train_combined)], 
+                        y = as.factor(MAVModel$label), 
+                        ntree = 6)
+ImportanceMAV = importance(MAV)
+PredMAV <- predict(MAV, TestMAV)
+accuracy <- sum(label_test == PredMAV) / length(label_test)
+TestFactorMAV <- as.factor(label_test)
+PredFactorMAV <- as.factor(PredMAV)
+cm <- confusionMatrix(PredFactorMAV, TestFactorMAV)
 recall <- mean(c(cm$byClass["Class: 1", "Sensitivity"],
-                              cm$byClass["Class: 2", "Sensitivity"],
-                              cm$byClass["Class: 3", "Sensitivity"]))
-
+                 cm$byClass["Class: 2", "Sensitivity"],
+                 cm$byClass["Class: 3", "Sensitivity"]),na.rm=TRUE)
 precision <- mean(c(cm$byClass["Class: 1", "Pos Pred Value"],
-                            cm$byClass["Class: 2", "Pos Pred Value"],
-                            cm$byClass["Class: 3", "Pos Pred Value"]))
+                 cm$byClass["Class: 2", "Pos Pred Value"],
+                 cm$byClass["Class: 3", "Pos Pred Value"]),na.rm=TRUE)
 F1 = 2 * recall * precision / ( recall + precision )
-
-print(paste('Recall of model4 :', recall))
-print(paste('Precision of model4 :', precision))
-print(paste('F1 of model4 :', F1))
+printTable=matrix(c(round(accuracy,2),round(recall,2),
+                    round(precision,2),round(F1,2)),
+                  ncol=1,byrow=TRUE)
+colnames(printTable)=c('Score')
+rownames(printTable)=c('Accuracy','Recall','Precision','F1')
+print(printTable)
 ```
-##### Model 5
-1. Calculate and print the accuracy of the test set
-2. Convert to a factor
-3. Obtain the confusion matrix
-4. Calculate the average recall rate (Sensitivity)
-5. Calculate the average precision rate (Positive Predictive Value)
-6. print results
+
+#### L1 Normalization Model
 
 ```{r}
-model_5 <- randomForest(x = data_train_5[-ncol(data_train_combined)], y = as.factor(data_train_5$label), ntree = 2)
-variable_importance_5 = importance(model_5)
-pred_comb_5 <- predict(model_5, features_test_5)
-
-accuracy_5 <- sum(label_test == pred_comb_5) / length(label_test)
-print(paste('Accuracy of L2 norm normalization for model5:', accuracy_5))
-
-label_test_factor <- as.factor(label_test)
-pred_comb_1_factor <- as.factor(pred_comb_5)
-
-cm <- confusionMatrix(pred_comb_1_factor, label_test_factor)
-
+L1 <- randomForest(x = L1Model[-ncol(data_train_combined)], 
+                        y = as.factor(L1Model$label), ntree = 6)
+L1Importance = importance(L1)
+PredL1 <- predict(L1, TestL1)
+accuracy <- sum(label_test == PredL1) / length(label_test)
+TestFactorL1 <- as.factor(label_test)
+PredFactorL1 <- as.factor(PredL1)
+cm <- confusionMatrix(PredFactorL1, TestFactorL1)
 recall <- mean(c(cm$byClass["Class: 1", "Sensitivity"],
                               cm$byClass["Class: 2", "Sensitivity"],
-                              cm$byClass["Class: 3", "Sensitivity"]))
-
+                              cm$byClass["Class: 3", "Sensitivity"]),na.rm=TRUE)
 precision <- mean(c(cm$byClass["Class: 1", "Pos Pred Value"],
                             cm$byClass["Class: 2", "Pos Pred Value"],
-                            cm$byClass["Class: 3", "Pos Pred Value"]))
+                            cm$byClass["Class: 3", "Pos Pred Value"]),na.rm=TRUE)
+F1 = 2 * recall * precision / ( recall + precision )
+printTable=matrix(c(round(accuracy,2),round(recall,2),
+                    round(precision,2),round(F1,2)),
+                    ncol=1,byrow=TRUE)
+colnames(printTable)=c('Score')
+rownames(printTable)=c('Accuracy','Recall','Precision','F1')
+print(printTable)
+```
+
+##### L2 Normalization Model
+
+```{r}
+L2 <- randomForest(x = L2Model[-ncol(data_train_combined)], 
+                        y = as.factor(L2Model$label), ntree = 6)
+L2Importance = importance(L2)
+PredL2 <- predict(L2, TestL2)
+accuracy <- sum(label_test == PredL2) / length(label_test)
+TestFactorL2 <- as.factor(label_test)
+PredFactorL2 <- as.factor(PredL2)
+cm <- confusionMatrix(PredFactorL2, TestFactorL2)
+
+recall <- mean(c(cm$byClass["Class: 1", "Sensitivity"],
+                 cm$byClass["Class: 2", "Sensitivity"],
+                 cm$byClass["Class: 3", "Sensitivity"]),na.rm=TRUE)
+
+precision <- mean(c(cm$byClass["Class: 1", "Pos Pred Value"],
+                 cm$byClass["Class: 2", "Pos Pred Value"],
+                 cm$byClass["Class: 3", "Pos Pred Value"]),na.rm=TRUE)
+
 F1 = 2 * recall * precision / ( recall + precision )
 
-print(paste('Recall of model5 :', recall))
-print(paste('Precision of model5 :', precision))
-print(paste('F1 of model5 :', F1))
+printTable=matrix(c(round(accuracy,2),round(recall,2),
+                    round(precision,2),round(F1,2)),ncol=1,
+                    byrow=TRUE)
+colnames(printTable)=c('Score')
+rownames(printTable)=c('Accuracy','Recall','Precision','F1')
+
+print(printTable)
 ```
+
 #### Prediction
-1. Obtain the number of predicted results
-2. Initialize an empty vector to store the final prediction results
-3. Iterate over each test sample
-4. Get the prediction results of the five models for the i-th sample 
-5. Select the most frequently predicted class as the final prediction result for the i-th sample
-6. Now final_pred contains the prediction results after voting
-7. Calculate and print the accuracy
-8. Convert to a factor type
-9. Obtain the confusion matrix
+
+1.  Obtain the number of predicted results
+2.  Initialize an empty vector to store the final prediction results
+3.  Iterate over each test sample
+4.  Get the prediction results of the five models for the i-th sample
+5.  Select the most frequently predicted class as the final prediction
+    result for the i-th sample
+6.  Now final_pred contains the prediction results after voting
+7.  Calculate and print the accuracy
+8.  Convert to a factor type
+9.  Obtain the confusion matrix
 10. Calculate the recall (Sensitivity) for each category
 11. Calculate the precision for each category
 
 ```{r}
-
-n <- length(pred_comb_1)
-
-final_pred <- rep(NA, n)
-
+n <- length(PredMM)
+final_pred <-rep(NA, n)
 for(i in 1:n) {
-   preds <- c(pred_comb_1[i], pred_comb_2[i], pred_comb_3[i], pred_comb_4[i], pred_comb_5[i])
-
-   final_pred[i] <- as.numeric(names(which.max(table(preds))))
+   preds <- c(PredMM[i], PredZS[i], PredMAV[i],
+              PredL1[i], PredL2[i])
+   final_pred[i] <-as.numeric(names(
+                    which.max(table(preds))))
 }
 
-importances_list <- list(variable_importance_1, variable_importance_2, variable_importance_3, variable_importance_4, variable_importance_5)
-average_importance <- Reduce("+", importances_list) / length(importances_list)
-print(average_importance)
+accuracy <-sum(label_test == final_pred)/
+            length(label_test)
 
-accuracy <- sum(label_test == final_pred) / length(label_test)
-print(paste('Accuracy of Voting method:', accuracy))
+final_pred_factor<-as.factor(final_pred)
+label_test_factor<-as.factor(label_test)
+cm_vote <-confusionMatrix(final_pred_factor,
+                          label_test_factor)
+rownames(cm_vote$byClass)<-c("NotThr","Thr","Ext")
+sensitivity_class1<-cm_vote$byClass["NotThr", "Sensitivity"]
+sensitivity_class2<-cm_vote$byClass["Thr", "Sensitivity"]
+sensitivity_class3<-cm_vote$byClass["Ext",  "Sensitivity"]
+recall =(sensitivity_class1+sensitivity_class2+
+           sensitivity_class3)/3
 
-final_pred_factor <- as.factor(final_pred)
-label_test_factor <- as.factor(label_test)
+precision_class1<-cm_vote$byClass["NotThr",  "Pos Pred Value"]
+precision_class2<-cm_vote$byClass["Thr",  "Pos Pred Value"]
+precision_class3<-cm_vote$byClass["Ext", "Pos Pred Value"]
+precision=(precision_class1+precision_class2+
+             precision_class3)/3
 
-cm_vote <- confusionMatrix(final_pred_factor, label_test_factor)
+F1=2*recall*precision/(recall+precision)
 
-sensitivity_class1 <- cm_vote$byClass["Class: 1", "Sensitivity"]
-sensitivity_class2 <- cm_vote$byClass["Class: 2", "Sensitivity"]
-sensitivity_class3 <- cm_vote$byClass["Class: 3", "Sensitivity"]
-recall = (sensitivity_class1 + sensitivity_class2 + sensitivity_class3) / 3
-print(paste('Recall :', recall))
+printTable=matrix(c(round(accuracy,2),
+                    round(recall,2),
+                    round(precision,2),
+                    round(F1,2)),ncol=1,
+                    byrow=TRUE)
+colnames(printTable)=c('Score')
+rownames(printTable)=c('Accuracy','Recall','Precision','F1')
+print(printTable)
 
-precision_class1 <- cm_vote$byClass["Class: 1", "Pos Pred Value"]
-precision_class2 <- cm_vote$byClass["Class: 2", "Pos Pred Value"]
-precision_class3 <- cm_vote$byClass["Class: 3", "Pos Pred Value"]
-precision = (precision_class1 + precision_class2 + precision_class3) / 3
-print(paste('Precision :', precision))
-
-F1 = 2 * recall * precision / ( recall + precision )
-print(paste('F1 :', F1))
 ```
 
 ```{r}
@@ -767,6 +1258,7 @@ plot(varImp(bagged_cv), 10)
 ```
 
 #### Confusion Matrix
+
 ```{r}
 cm_vote <- confusionMatrix(final_pred_factor, label_test_factor)
  
@@ -774,12 +1266,11 @@ library(ggplot2)
 library(grid)
 library(gridExtra)       	
 library(likert)
- 
+
 cm_vote <- confusionMatrix(final_pred_factor, label_test_factor)
  
 cm <- confusionMatrix(final_pred_factor, label_test_factor)
-cm
- 
+
 cm_d <- as.data.frame(cm$table)
 cm_st <-data.frame(cm$overall)
 cm_st$cm.overall <- round(cm_st$cm.overall,2)
@@ -789,10 +1280,12 @@ cm_d[cm_d == 0] <- NA
 cm_d$Reference <-  reverse.levels(cm_d$Reference)
 cm_d$ref_freq <- cm_d$Freq * ifelse(is.na(cm_d$diag),-1,1) 
  
-plt1 <-  ggplot(data = cm_d, aes(x = Prediction , y =  Reference, fill = Freq))+
+plt1 <-  ggplot(data = cm_d, aes(x = Prediction , y =  Reference, 
+                                 fill = Freq))+
   scale_x_discrete(position = "top") +
   geom_tile( data = cm_d,aes(fill = ref_freq)) +
-  scale_fill_gradient2(guide = FALSE ,low="red",high="mediumvioletred", mid= "mistyrose",
+  scale_fill_gradient2(guide = FALSE ,low="red",high="mediumvioletred", 
+                       mid= "mistyrose",
                    	midpoint = 0,na.value = 'white') +
   geom_text(aes(label = Freq), color = 'black', size = 3)+
   theme_bw() +
@@ -803,11 +1296,52 @@ plt1 <-  ggplot(data = cm_d, aes(x = Prediction , y =  Reference, fill = Freq))+
     	axis.line = element_blank(),
   )
 plt2 <-  tableGrob(cm_st)
-grid.arrange(plt1, plt2, nrow = 1, ncol = 2,
+
+printTable=matrix(c(round(cm$overall['Accuracy'],2),
+                    round(cm$overall['Kappa'],2),
+                    paste("(",round(cm$overall['AccuracyLower'],2),
+                          ",",round(cm$overall['AccuracyUpper'],2),
+                          ")",sep=""),
+                    round(cm$overall['AccuracyNull'],2),
+                    if(cm$overall['AccuracyPValue']<0.001){"<.001"}
+                    else round(cm$overall['AccuracyPValue'],3)),
+                    ncol=1,
+                    byrow=TRUE)
+colnames(printTable)=c('Score')
+rownames(printTable)=c('Accuracy','Kappa','95% CI','AccuracyNull','Accuracy p-value')
+
+
+grid.arrange(plt1, nrow = 1, ncol = 1,
          	top=textGrob("Confusion Matrix",gp=gpar(fontsize=25,font=1)))
+print(printTable,quote=FALSE)
+
+cmBC<-cm$byClass
+rownames(cmBC)<-c("NotThr","Thr","Ext")
+print(t(round(cmBC,2)),quote=FALSE)
+
 
 ```
-## Conclusion
-Random Forest is a powerful and flexible machine learning algorithm that can be used for a wide range of tasks. It is particularly useful when dealing with complex data composed of a large number of features and when the goal is to achieve high predictive accuracy while avoiding overfitting. The algorithm incorporates versatility in its capabilities for classification and regression tasks, handling missing data, and displaying robustness when faced with outliers and noisy data.
 
-We produced a predictive model with 88% accuracy, indicating that our explanatory variables were able to differentiate between non threatened, threatened, and extinct taxa. Extinct species were classified with 100% specificity and 70% sensitivity. Most extinctions were perennial shrubs found in the Cape Floristic Region, a global biodiversity hotspot. As range was the strongest predictor of extinction, many of the recorded taxa deemed susceptible were range-restricted. Habitat loss is presented as the second strongest variable of importance in predicting plant extinctions. Predictions were based on a quantitative, evidence-based approach, though gaps in knowledge highlighted areas for further study. Improved species monitoring and documentation of threat factors will aid in a deeper understanding of the ecological role and value of South African plant species.
+## Conclusion
+
+Random Forest is a powerful and flexible machine learning algorithm that
+can be used for a wide range of tasks. It is particularly useful when
+dealing with complex data composed of a large number of features and
+when the goal is to achieve high predictive accuracy while avoiding
+overfitting. The algorithm incorporates versatility in its capabilities
+for classification and regression tasks, handling missing data, and
+displaying robustness when faced with outliers and noisy data.
+
+We produced a predictive model with 93% accuracy, indicating that our
+explanatory variables were able to differentiate between non threatened,
+threatened, and extinct taxa. Extinct species were classified with 100%
+specificity and 80% sensitivity. Most extinctions were perennial shrubs
+found in the Cape Floristic Region, a global biodiversity hotspot. As
+range was the strongest predictor of extinction, many of the recorded
+taxa deemed susceptible were range-restricted. Habitat loss is presented
+as the second strongest variable of importance in predicting plant
+extinctions. Predictions were based on a quantitative, evidence-based
+approach, though gaps in knowledge highlighted areas for further study.
+Improved species monitoring and documentation of threat factors will aid
+in a deeper understanding of the ecological role and value of South
+African plant species.
